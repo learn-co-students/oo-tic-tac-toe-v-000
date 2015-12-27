@@ -1,7 +1,6 @@
 class TicTacToe
   def initialize(board = nil)
     @board = board || Array.new(9, " ")
-
   end
 
   def display_board
@@ -33,17 +32,13 @@ TicTacToe::WIN_COMBINATIONS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[
       until valid_move?(choice)
         puts "Sorry, that is not a valid choice, please enter 1-9:"
         choice = gets.strip
-      if valid_move?(choice)
-        move(choice)
-        display_board
-        break
-      else 
       end
-    end
-  end  
-
+        move(choice, current_player)
+        display_board
+      end
+    
   def turn_count
-    @board.count{|token| token == "X" || token == "O"}
+    @board.count{ |token| token == "X" || token == "O"}
   end
 
   def current_player
@@ -53,8 +48,9 @@ TicTacToe::WIN_COMBINATIONS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[
   def won?
     TicTacToe::WIN_COMBINATIONS.detect do |win_combo| 
     win_combo.all? { |obj| @board[obj] == "X"} == true || win_combo.all? { |obj| @board[obj] == "O"}
+    end
   end
-end
+
 
   def full?
       if @board.detect { |i| i == " "} 
@@ -87,34 +83,20 @@ end
   def winner
     if won?
       return @board[(won?)[0]]
-    else
+      else
+      end
     end
-  end
+
 
   def play
-    until over?
+      until over?
       turn
       end
-      if won? 
-        then puts "Congratulations " + @board[(won?)[0]]+"!"
-      elsif draw?
-        then puts "Cats Game!"
+      if won?
+        puts "Congratulations " + "#{winner}"+"!"
+      else draw?
+        puts "Cats Game!"
       end
     end
 
 end
-#rspec spec/02_play_spec.rb
-
-# It seems that #turn method is not working right, even though it passed its own tests. 
-# If #over? method checks, full?, draw?, won?....and test is showing that "check for draw" is passing....why am I getting fail on 'check for won?'?
-# My until loop has an "end" but hangs/cycles indefinitely. This supports the
-# idea that #turn is not actually taking a turn yet. 
-# Method #turn does not require an argument, it does pass its own tests, but does not actually take a turn when called in the #play method.
-# Method #move passes whether I pass in one, two or three arguments: 
-    #    1. move
-    #    2. move(position)
-    #    3. move(posiiton, current_player)
-
-
-
-
