@@ -129,9 +129,10 @@ end
 #    puts "Cats Game!"
 #  end
 #end
-  
+
 def play
   until over?
+    display_board
     turn
   end
 
