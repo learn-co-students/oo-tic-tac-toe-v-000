@@ -24,7 +24,6 @@ class TicTacToe
 
   def move(position, token = "X")
     @board[position.to_i-1] = token
-    token == "X" || token == "O"
   end
 
   def position_taken?(position)
@@ -46,7 +45,7 @@ class TicTacToe
       puts "Please enter 1-9:"
       position = gets.strip
     end
-    move(@board[position.to_i], token = "X")
+    move(position.to_i, current_player)
     display_board
   end
 
