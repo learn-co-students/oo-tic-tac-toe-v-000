@@ -36,11 +36,7 @@ class TicTacToe
   end
 
   def valid_move?(position)
-    if position.to_i.between?(1, 9) && position_taken?(position.to_i-1) == false
-      true
-    else
-      false
-    end
+    position.to_i.between?(1, 9) && position_taken?(position.to_i-1) == false
   end
 
   def turn
@@ -93,4 +89,15 @@ class TicTacToe
     end
   end
 
+  def play
+    until over?
+      turn
+    end
+
+    if won?
+      puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cats Game!"
+    end
+  end
 end
