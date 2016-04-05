@@ -30,7 +30,7 @@ class TicTacToe
   def position_taken?(position)
     if @board[position.to_i] == nil || @board[position.to_i]== " " || @board[position.to_i] == ""
       false
-    else
+      else
       true
     end
   end
@@ -100,4 +100,5 @@ class TicTacToe
       puts "Cats Game!"
     end
   end
+
 end
