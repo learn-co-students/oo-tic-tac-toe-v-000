@@ -22,8 +22,8 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  def move(move, token = "X")
-    @board[move.to_i-1] = token
+  def move(position, token = "X")
+    @board[position.to_i-1] = token
     token == "X" || token == "O"
   end
 
@@ -50,7 +50,7 @@ class TicTacToe
       puts "Please enter 1-9:"
       position = gets.strip
     end
-    move(@board[move.to_i], token = "X")
+    move([position.to_i], token = "X")
     display_board
   end
 
