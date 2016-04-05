@@ -50,7 +50,7 @@ class TicTacToe
       puts "Please enter 1-9:"
       position = gets.strip
     end
-    move([position.to_i], token = "X")
+    move(@board[position.to_i], token = "X")
     display_board
   end
 
