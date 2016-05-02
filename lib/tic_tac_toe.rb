@@ -87,7 +87,7 @@ end
 
 #run a turn
 def turn
-  display_board
+
   puts "Please enter 1-9:"
   position = gets
   if !valid_move?(position)
@@ -124,6 +124,10 @@ def current_player
 end
 
 def play
+
+  puts "Welcome to Tic Tac Toe!"
+  display_board
+
   until over?
     turn
   end
@@ -143,5 +147,8 @@ def winner
   end
 end
 
+def reset
+  @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+end
 
 end #end of class TicTacToe
