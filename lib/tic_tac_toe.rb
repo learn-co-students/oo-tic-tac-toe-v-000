@@ -42,13 +42,13 @@ end
 def turn
   puts "Please enter 1-9:"
   position = gets.chomp
-  if valid_move?(position) == true
-    move(position)
-    display_board
-  else
+  if !valid_move?(position)
     turn
   end
+  move(position, current_player)
+  display_board
 end
+
 
 def turn_count
   counter = 1
@@ -89,7 +89,6 @@ def won?
 end
 
 def full?
-
   if @board.none?{|i| i == " "}
     return true
   else false
