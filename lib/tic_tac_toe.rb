@@ -123,4 +123,17 @@ class TicTacToe
     end
   end
 
+  def play
+
+     while over? == false
+      turn
+     end
+     if draw? == true
+        puts "Cats Game!"
+      elsif won? != false && won? != true
+        puts "Congratulations #{@board[(won?)[0]]}!"
+      end
+    end
+
+
 end
