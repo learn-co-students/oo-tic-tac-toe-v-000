@@ -49,8 +49,8 @@ class TicTacToe
       puts "Please enter 1-9:"
       @user_input = gets
       if valid_move?(@user_input)
-        move(@user_input)
-        display_board
+          move( @user_input, current_player)
+          display_board
         return true
       else
         turn
@@ -117,7 +117,6 @@ class TicTacToe
     def over?
       won? || draw?
     end
-
     # The winner method should return the token, "X" or "O" that has won the game given a winning board.
     def winner
       win_combination = won?
@@ -126,7 +125,6 @@ class TicTacToe
         @board[win_index]
       end
     end
-
     #Play method is responsible for the game loop
     def play
       while !over?
