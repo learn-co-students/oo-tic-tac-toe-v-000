@@ -32,7 +32,7 @@ class TicTacToe
 
 
   def move(user_input, value = "X")
-    @board[user_input] = value
+    @board[user_input.to_i-1] = value
   end
 
   def position_taken?(user_input)
@@ -40,13 +40,12 @@ class TicTacToe
   end
 
   def valid_move?(user_input)
-    !position_taken?(user_input.to_i) && user_input.to_i.between?(0, 8)
+    !position_taken?(user_input.to_i-1) && user_input.to_i.between?(1, 9)
   end
 
   def turn
     puts "Please enter 1-9:"
-    input = gets.strip
-    user_input = input.to_i-1
+    user_input = gets.strip
     if valid_move?(user_input)
       move(user_input, current_player)
       display_board
