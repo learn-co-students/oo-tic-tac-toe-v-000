@@ -23,8 +23,8 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  def move(input, token = "X")
-    @board[input.to_i - 1] = token
+  def move(position, token = "X")
+    @board[position.to_i - 1] = token
   end
 
   def position_taken?(position)
@@ -32,18 +32,83 @@ class TicTacToe
   end
 
   def valid_move?(position)
-    position.to_i.pred.between?(0,8) && !position_taken?(position)
+    position.to_i.pred.between?(0,8) && !position_taken?(position.to_i.pred)
   end
 
   def turn
     puts "Please enter 1-9:"
-    input = gets.strip
-    position = move(input, token = "X")
+    position = gets.strip
     if valid_move?(position)
-      move(board, index, current_player(board))
-      display_board(board)
+      move(position, token = current_player)
+      display_board
     else
-      turn(board)
+      turn
+    end
+  end
+
+  def turn_count
+    counter = 0
+    @board.each do |variable|
+      if variable == "X" || variable == "O"
+        counter += 1
+      end
+    end
+    return counter
+  end
+
+  def current_player
+    if turn_count.even?
+      "X"
+    else
+      "O"
+    end
+  end
+
+  def won?
+    WIN_COMBINATIONS.each do |win_combination|
+      win_index_1 = win_combination[0]
+      win_index_2 = win_combination[1]
+      win_index_3 = win_combination[2]
+
+      position_1 = @board[win_index_1] # load the value of the board at win_index_1
+      position_2 = @board[win_index_2] # load the value of the board at win_index_2
+      position_3 = @board[win_index_3] # load the value of the board at win_index_3
+
+      if position_1 == "X" && position_2 == "X" && position_3 == "X" || position_1 == "O" && position_2 == "O" && position_3 == "O"
+        return win_combination
+      end
+    end
+    false
+  end
+
+  def full?
+    @board.all? do |board_element|
+      board_element == "X" || board_element == "O"
+    end
+  end
+
+  def draw?
+    !won? && full?
+  end
+
+  def over?
+    won? || draw? || full?
+  end
+
+  def winner
+    if over?
+      return @board[won?[0]]
+    end
+  end
+
+  def play
+    while !over?
+      turn
+    end
+    if won?
+      puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cats Game!"
     end
   end
 
