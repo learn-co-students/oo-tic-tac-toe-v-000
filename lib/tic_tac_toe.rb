@@ -56,7 +56,8 @@ class TicTacToe
 #  end
 
   def move(index, char)
-    @board[index.to_i-1] = char
+    #@board[index.to_i-1] = char
+    @board[index] = char
   end
 
   def position_taken?(index)
@@ -65,7 +66,6 @@ class TicTacToe
 
   # code your #valid_move? method here
   def valid_move?(index)
-    index = index.to_i
     if index > 9 || index < 0
       return false
     elsif position_taken?(index)
