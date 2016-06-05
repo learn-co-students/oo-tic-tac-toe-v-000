@@ -47,16 +47,20 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  def move(index, char = "X")
-    if valid_move?(index)
-      @board[index] = char
-    else
-      invalid_move
-    end
+#  def move(index, char = "X")
+#    if valid_move?(index)
+#      @board[index] = char
+#    else
+#      invalid_move
+#    end
+#  end
+
+  def move(index, char)
+    @board[index.to_i-1] = char
   end
 
   def position_taken?(index)
-    !(@board[index].nil? || @board[index] == " ")
+    !(@board[index].nil? || @board[index] == " " || @board[index] == "")
   end
 
   # code your #valid_move? method here
