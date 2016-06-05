@@ -65,6 +65,7 @@ class TicTacToe
 
   # code your #valid_move? method here
   def valid_move?(index)
+    index = index.to_i
     if index > 9 || index < 0
       return false
     elsif position_taken?(index)
@@ -85,6 +86,11 @@ class TicTacToe
     index = gets.strip
     index = input_to_index(index)
     cp = current_player
+    if valid_move?(index)
+      move(index,cp)
+    else
+      invalid_move
+    end
     move(index, cp)
     display_board
   end
