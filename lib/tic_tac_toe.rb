@@ -16,7 +16,7 @@ class TicTacToe
 
   # code your input_to_index and move method here!
   def input_to_index(int)
-    return int.to_i - 1
+    return int.to_i
   end
 
   # Define your WIN_COMBINATIONS constant
@@ -55,43 +55,30 @@ class TicTacToe
 #    end
 #  end
 
-  def move(index, char)
-    #@board[index.to_i-1] = char
-    @board[index] = char
+  def move(index, char = "X")
+    @board[index.to_i-1] = current_player
+    #@board[index] = char
   end
 
-  def position_taken?(index)
-    !(@board[index].nil? || @board[index] == " " || @board[index] == "")
-  end
+  def position_taken?(location)
+      @board[location] != " " && @board[location] != ""
+    end
 
   # code your #valid_move? method here
-  def valid_move?(index)
-    if index > 9 || index < 0
-      return false
-    elsif position_taken?(index)
-      return false
-    else
-      return true
-    end
-  end
-
-  def invalid_move
-    puts "That move is invalid!\n"
-    turn
-  end
+  def valid_move?(position)
+     position.to_i.between?(1, 9) && !position_taken?(position.to_i - 1)
+   end
 
   def turn
-    puts "It is your turn.\n"
     puts "Please enter 1-9:"
     index = gets.strip
     index = input_to_index(index)
-    cp = current_player
     if valid_move?(index)
-      move(index,cp)
+      move(index)
     else
-      invalid_move
+      puts "That move is invalid!\n"
+      turn
     end
-    move(index, cp)
     display_board
   end
 
