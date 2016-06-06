@@ -87,12 +87,12 @@ class TicTacToe
 		if my_array.nil? == true
 			return
 		else
-			puts "winning array is #{my_array}"
+			#puts "winning array is #{my_array}"
 			my_array.each do |position|
-				puts "position number is #{position}"
+				#puts "position number is #{position}"
 				pos = position[0]
 				marker = @board[pos]
-				puts "position marker is #{marker}"
+				#puts "position marker is #{marker}"
 				return marker
 			end
 		end
