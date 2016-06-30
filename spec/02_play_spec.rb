@@ -8,7 +8,7 @@ describe './lib/tic_tac_toe.rb' do
         allow($stdout).to receive(:puts)
         allow(game).to receive(:over?).and_return(false, true)
 
-        expect(game).to receive(:gets).at_least(:once).and_return("1")
+        expect(game).to receive(:gets).at_least(:once).and_return(1)
 
         game.play
       end
@@ -16,7 +16,7 @@ describe './lib/tic_tac_toe.rb' do
       it 'checks if the game is over after every turn' do
         game = TicTacToe.new
         allow($stdout).to receive(:puts)
-        allow(game).to receive(:gets).and_return("1", "2", "3")
+        allow(game).to receive(:gets).and_return(1, 2, 3)
 
         expect(game).to receive(:over?).at_least(:twice).and_return(false, false, true)
 
@@ -26,7 +26,7 @@ describe './lib/tic_tac_toe.rb' do
       it 'plays the first turn of the game' do
         game = TicTacToe.new
         allow($stdout).to receive(:puts)
-        allow(game).to receive(:gets).and_return("1")
+        allow(game).to receive(:gets).and_return(0)
 
         allow(game).to receive(:over?).and_return(false, true)
 
@@ -39,7 +39,7 @@ describe './lib/tic_tac_toe.rb' do
         game = TicTacToe.new
 
         allow($stdout).to receive(:puts)
-        allow(game).to receive(:gets).and_return("1","2","3")
+        allow(game).to receive(:gets).and_return(1,2,3)
         allow(game).to receive(:over?).and_return(false, false, false, true)
 
         game.play
@@ -51,7 +51,7 @@ describe './lib/tic_tac_toe.rb' do
       it 'checks if the game is won after every turn' do
         game = TicTacToe.new
         allow($stdout).to receive(:puts)
-        allow(game).to receive(:gets).and_return("1", "2", "3")
+        allow(game).to receive(:gets).and_return(1,2,3)
         allow(game).to receive(:winner).and_return("X")
 
         expect(game).to receive(:won?).at_least(:twice).and_return(false, false, true)
@@ -62,7 +62,7 @@ describe './lib/tic_tac_toe.rb' do
       it 'checks if the game is draw after every turn' do
         game = TicTacToe.new
         allow($stdout).to receive(:puts)
-        allow(game).to receive(:gets).and_return("1", "2", "3")
+        allow(game).to receive(:gets).and_return(1, 2, 3)
 
         expect(game).to receive(:draw?).at_least(:twice).and_return(false, false, true)
 
@@ -130,13 +130,13 @@ describe './lib/tic_tac_toe.rb' do
         game = TicTacToe.new
         allow($stdout).to receive(:puts)
 
-        expect(game).to receive(:gets).and_return("1")
-        expect(game).to receive(:gets).and_return("2")
-        expect(game).to receive(:gets).and_return("3")
-        expect(game).to receive(:gets).and_return("4")
-        expect(game).to receive(:gets).and_return("5")
-        expect(game).to receive(:gets).and_return("6")
-        expect(game).to receive(:gets).and_return("7")
+        expect(game).to receive(:gets).and_return(0)
+        expect(game).to receive(:gets).and_return(1)
+        expect(game).to receive(:gets).and_return(2)
+        expect(game).to receive(:gets).and_return(3)
+        expect(game).to receive(:gets).and_return(4)
+        expect(game).to receive(:gets).and_return(5)
+        expect(game).to receive(:gets).and_return(6)
 
         expect($stdout).to receive(:puts).with("Congratulations X!")
 
