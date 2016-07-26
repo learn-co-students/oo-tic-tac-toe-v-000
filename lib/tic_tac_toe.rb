@@ -26,17 +26,13 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  def input_to_index(input)
-    @index = input.to_i - 1
-  end
-
-  # def move(user_input, player = "X")
-  #   input_index = user_input.to_i - 1
-  #   @board[input_index] = player
+  # def input_to_index(input)
+  #   @index = input.to_i - 1
   # end
 
-  def move(player = "X")
-    @board[@index] = player
+  def move(user_input, player = "X")
+    input_index = user_input.to_i - 1
+    @board[input_index] = player
   end
 
   def position_taken?(user_input)
@@ -61,7 +57,7 @@ class TicTacToe
   def turn(board)
     puts "Please enter 1-9:"    #asks for user's input_to_index
     user_input = gets.strip          #gets input and assigns it to a variable
-    @index = user_input.to_i - 1 #converts the input to an index and assigns it to a variable "index"
+    index = user_input.to_i - 1 #converts the input to an index and assigns it to a variable "index"
     player = current_player(board)
     if valid_move?(board, index) == true
       move(board, index, player)
