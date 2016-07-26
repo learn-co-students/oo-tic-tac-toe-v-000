@@ -3,10 +3,6 @@ class TicTacToe
     @board = board || Array.new(9, " ")
   end
 
-  # def user_input
-  #   @user_input = gets.to_i
-  # end
-
   WIN_COMBINATIONS = [
     [0, 1, 2],
     [3, 4, 5],
@@ -31,7 +27,7 @@ class TicTacToe
   end
 
   def move(user_input, player = "X")
-    input_index = user_input.to_i - 1
+    input_index = input_to_index(user_input)
     @board[input_index] = player
   end
 
@@ -44,8 +40,9 @@ class TicTacToe
   end
 
   def valid_move?(user_input)
-    move = @board[user_input]
-    if user_input >= 0 && user_input <= 8
+    input_index = input_to_index(user_input)
+    move = @board[input_index]
+    if input_index >= 0 && input_index <= 8
       if move == "X" || move == "Y"
         return false
       else
@@ -56,14 +53,13 @@ class TicTacToe
 
   def turn
     puts "Please enter 1-9:"    #asks for user's input_to_index
-    user_input = gets.strip          #gets input and assigns it to a variable
-    index = input_to_index(user_input) #converts the input to an index and assigns it to a variable "index"
-    player = current_player(board)
-    if valid_move?(@board, index) == true
-      move(@board, index, player)
-      display_board(@board)
+    user_input = gets.to_i          #gets input and assigns it to a variable
+    player = current_player
+    if valid_move?(user_input) == true
+      move(user_input, player)
+      display_board
     else
-      turn(@board)
+      turn
     end
   end
 
@@ -80,7 +76,7 @@ class TicTacToe
   end
 
   def current_player
-    turn_number = turn_count(@board)
+    turn_number = turn_count
     if turn_number.even?
       return "X"
     else
@@ -88,29 +84,29 @@ class TicTacToe
     end
   end
 
-  def won?(board)
+  def won?
     WIN_COMBINATIONS.each do |win_combination|
       index_1 = win_combination[0]
       index_2 = win_combination[1]
       index_3 = win_combination[2]
-      if (board[index_1] == "X" && board[index_2] == "X" && board[index_3] == "X") || (board[index_1] == "O" && board[index_2] == "O" && board[index_3] == "O")
+      if (@board[index_1] == "X" && @board[index_2] == "X" && @board[index_3] == "X") || (@board[index_1] == "O" && @board[index_2] == "O" && @board[index_3] == "O")
         return win_combination
       end
     end
     return false
   end
 
-  def full?(board)
-    if board.include?(" ")
+  def full?
+    if @board.include?(" ")
       return false
     else
       return true
     end
   end
 
-  def draw?(board)
-    win = won?(board)
-    full = full?(board)
+  def draw?
+    win = won?
+    full = full?
     if win == false && full == true
       return true
     else
@@ -118,10 +114,10 @@ class TicTacToe
     end
   end
 
-  def over?(board)
-    win = won?(board)
-    full = full?(board)
-    draw = draw?(board)
+  def over?
+    win = won?
+    full = full?
+    draw = draw?
     if full == true || draw == true || win != false
       return true
     else
@@ -129,24 +125,23 @@ class TicTacToe
     end
   end
 
-  def winner(board)
-    win_array = won?(board)
+  def winner
+    win_array = won?
     if win_array != false
       win_index = win_array[0]
-      return board[win_index]
+      return @board[win_index]
     else
       return nil
     end
   end
 
-  def play(board)
-    until over?(board) == true
-      turn(board)
+  def play
+    until over? == true
+      turn
     end
-    if won?(board) != false
-      winner = winner(board)
+    if won? != false
       puts "Congratulations #{winner}!"
-    elsif draw?(board) == true
+    elsif draw? == true
       puts "Cats Game!"
     end
   end
