@@ -26,9 +26,9 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  # def input_to_index(input)
-  #   @index = input.to_i - 1
-  # end
+  def input_to_index(input)
+    input.to_i - 1
+  end
 
   def move(user_input, player = "X")
     input_index = user_input.to_i - 1
@@ -54,24 +54,24 @@ class TicTacToe
     end
   end
 
-  def turn(board)
+  def turn
     puts "Please enter 1-9:"    #asks for user's input_to_index
     user_input = gets.strip          #gets input and assigns it to a variable
-    index = user_input.to_i - 1 #converts the input to an index and assigns it to a variable "index"
+    index = input_to_index(user_input) #converts the input to an index and assigns it to a variable "index"
     player = current_player(board)
-    if valid_move?(board, index) == true
-      move(board, index, player)
-      display_board(board)
+    if valid_move?(@board, index) == true
+      move(@board, index, player)
+      display_board(@board)
     else
-      turn(board)
+      turn(@board)
     end
   end
 
-  def turn_count(board)
+  def turn_count
     counter = 0
     positions = 0   # Number of positions taken
     until counter == 9
-      if board[counter] == "X" || board[counter] == "O"
+      if @board[counter] == "X" || @board[counter] == "O"
         positions += 1
       end
       counter += 1
@@ -79,8 +79,8 @@ class TicTacToe
     return positions
   end
 
-  def current_player(board)
-    turn_number = turn_count(board)
+  def current_player
+    turn_number = turn_count(@board)
     if turn_number.even?
       return "X"
     else
