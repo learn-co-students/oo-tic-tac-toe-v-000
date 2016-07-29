@@ -26,12 +26,12 @@ class TicTacToe
    @board[location.to_i-1] = token
  end
 
-def position_taken?(@board)
-!(@board[location] ==" " || @board[location] =="" || @board[location] ==nil)
+def position_taken?(position)
+!(@board[position] ==" " || @board[position] =="" || @board[position] ==nil)
 end
 
-def valid_move?(board,index)
-  index.between?(0,8) && !position_taken?(board, index)
+def valid_move?(position)
+  @board[position(0,8)] && !(@board[position_taken?(position)])
 end
 
 def input_to_index(user_input)
