@@ -31,22 +31,21 @@ def position_taken?(position)
 end
 
 def valid_move?(position)
-  @board[position(0,8)] && !(@board[position_taken?(position)])
+position.to_i.between?(1,9) && !position_taken?(position.to_i-1)
 end
 
 def input_to_index(user_input)
 user_input.to_i - 1
 end
 
-def turn(board)
+def turn
   puts "Please enter 1-9:"
-  input = gets.strip
-  index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index, current_player(board))
-    display_board(board)
+  user_input = gets.strip
+    if valid_move?(user_input)
+    move(user_input, current_player)
+    display_board
   else
-    turn(board)
+    turn
   end
 end
 
@@ -58,16 +57,16 @@ def current_player
   turn_count % 2 == 0 ? "X" : "O"
 end
 
-def won?(board)
+def won?
   #checks the win_index on each WIN_COMBINATIONS
-  WIN_COMBINATIONS.each do |win_index|
+  WIN_COMBINATIONS.detect do |win_index|
     #checks if win_index on board index are all X or all O
-    if win_index.all?{|index| board[index] == "X"} || win_index.all?{|index| board[index] == "O"}
+    if win_index.all?{|index| @board[index] == "X"} || win_index.all?{|index| @board[index] == "O"}
       #returns the winning combination (win_index)
       return win_index
     else
       #returns NOT won if no winning combination on board
-      win_index.all?{|index| board[index] == " "}
+      win_index.all?{|index| @board[index] == " "}
     end
   end
   nil
