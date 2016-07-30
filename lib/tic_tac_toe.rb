@@ -72,19 +72,23 @@ def won?
   nil
 end
 
-def full?(board)
+def full?
   #checks if board is NOT empty
-  if !board.include?(" ")
+  if !@board.include?(" ")
     true
   else
     false
   end
 end
 
-def draw?(board)
+def draw?
   #checks if board is NOT won AND board is full
-  if !won?(board) && full?(board)
+  if !won?(@board) && full?(@board)
     true
+  else
+    #checks if board is NOT won AND board is NOT full
+    !won?(@board) && !full?(@board)
+    false
   end
 end
 
