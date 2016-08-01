@@ -10,8 +10,8 @@ class TicTacToe
     [0,4,8],  # Left diagonal win
     [2,4,6] # right diagonal win
   ]
- def initialize(board = nil)
-   @board = board || Array.new(9, " ")
+ def initialize()
+   @board = Array.new(9, " ")
  end
 
  def display_board
@@ -39,6 +39,7 @@ user_input.to_i - 1
 end
 
 def turn
+  display_board
   puts "Please enter 1-9:"
   user_input = gets.strip
     if valid_move?(user_input)
@@ -82,53 +83,53 @@ def full?
 end
 
 def draw?
-  #checks if board is NOT won AND board is full
-  if !won?(@board) && full?(@board)
+  #checks if game is NOT won AND game is full
+  if !won? && full?
     true
   else
-    #checks if board is NOT won AND board is NOT full
-    !won?(@board) && !full?(@board)
+    #checks if game is NOT won AND game is NOT full
+    !won? && !full?
+    false
+  end
+
+end
+
+def over?
+  #checks if game is won OR game is a draw
+  if won? || draw?
+    true
+  else
     false
   end
 end
 
-def over?(board)
-  #checks if board is won OR board is a draw
-  if won?(board) || draw?(board)
-    true
-  else
-    false
-  end
-end
-
-def winner(board)
+def winner
   #gets win_combo from board that is won
-	win_combo = won?(board)
+	win_combo = won?
   #if win_combo does not equal nil
    if win_combo != nil
      #index = first array in win_combo out of the 3
      index=win_combo[0]
      #returns either X or O from the board index
-     board[index]
+      @board[index]
    else
      return nil
     end
   end
 
-  def play(board)
+  def play
     #Is game over?
-    while !over?(board)
+    while !over?
       #Take turns
-        turn(board)
+        turn
     end
       #Is game won?
-      if won?(board)
+      if won?
       #Congratulate winner
-        puts "Congratulations #{winner(board)}!"
-      else
+        puts "Congratulations #{winner}!"
+      elsif
       #Game is a draw
         puts "Cats Game!"
     end
   end
-
 end
