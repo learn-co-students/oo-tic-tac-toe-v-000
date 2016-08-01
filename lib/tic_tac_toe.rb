@@ -67,7 +67,8 @@ def won?
       return win_index
     else
       #returns NOT won if no winning combination on board
-      win_index.all?{|index| @board[index] == " "}
+      #win_index.all?{|index| @board[index] == " "}
+      false
     end
   end
   nil
