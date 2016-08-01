@@ -44,7 +44,7 @@ def turn
   user_input = gets.strip
     if valid_move?(user_input)
     move(user_input, current_player)
-    display_board
+    #display_board
   else
     turn
   end
