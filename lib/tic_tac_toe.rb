@@ -6,7 +6,6 @@ class TicTacToe
 
   def initialize(board = Array.new(9," "))
     @board = board
-    @index = index
   end
   def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
@@ -16,12 +15,12 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 #get input from user
-  def index= (new_index)
-      @index = new_index
-  end
-  def index
-    @index
-  end
+def index= (new_index)
+    @index = new_index
+end
+def index
+  @index
+end
   def valid_move?(index)
     index = index.to_i - 1
     if index.between?(0,8)
@@ -46,32 +45,23 @@ class TicTacToe
     end
   end
   def move(number, value = "X")
-    puts "Please enter 1-9:"
-    number = number.to_i - 1
-    @board[number] = value
+    @index = input_to_index(number)
+    @board[index] = value
   end
   def input_to_index(number)
     @index = (number.to_i) - 1
   end
   def turn
-    puts "Please enter 1-9:"
-    number = gets.strip
-    @index = input_to_index(number)
-    until @index.between?(0,8)
+    until valid_move?(index)
       puts "Please enter 1-9"
-      number = gets.strip
-      @index = input_to_index(number)
+      @index = gets.strip
     end
-
-    valid_move?(index)
     move(index, current_player)
     display_board
-
-
   end
 
   def current_player
-    if turn_count % 2
+    if turn_count % 2 == 0
        "X"
     else
        "O"
@@ -137,16 +127,16 @@ class TicTacToe
     end
   end
   def play
-    while !(over?)
+    until over?
       turn
     end
-    if winner == "O"
-      puts "Congratulations O!"
-    elsif winner == "X"
-      puts "Congratulations X!"
-    end
-    if draw?
+    winner
+    if won?
+      puts "Congratulations #{winner}!"
+    elsif draw?
       puts "Cats Game!"
+    else
+      false
     end
   end
 end
