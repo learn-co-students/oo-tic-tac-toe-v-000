@@ -49,9 +49,8 @@ class TicTacToe
   def turn
     puts "Please enter 1-9:"
     input = gets.strip
-    index = input.to_i - 1
-    if valid_move?(index)
-      move(index, current_player)
+    if valid_move?(input)
+      move(input, current_player)
       display_board
     else
       turn
@@ -143,7 +142,7 @@ class TicTacToe
         if token == "X"
           turn
         elsif token == "O"
-          turn(character = "O")
+          turn
         end
       end
     if won?
