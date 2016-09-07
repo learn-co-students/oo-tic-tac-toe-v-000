@@ -16,7 +16,7 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  def move(position, value="X")
+  def move(position, value= "X")
     @board[position - 1] = value
   end
 
@@ -42,7 +42,7 @@ class TicTacToe
     input = gets.strip
     input = input.to_i
     if valid_move?(input)
-      move(input)
+      move(input, current_player)
       display_board
     else
       turn

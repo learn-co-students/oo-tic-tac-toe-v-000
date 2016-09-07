@@ -1,14 +1,9 @@
 
 require_relative '../lib/tic_tac_toe.rb'
 
-def initialize (board = nil)
-  @board = board || Array.new(9, " ")
-end
-
-
 puts "Welcome to Tic Tac Toe!"
 puts "Where would you like to go?"
 input = gets.strip
 index = input_to_index(input)
-TicTacToe.new
+display_board
 play
