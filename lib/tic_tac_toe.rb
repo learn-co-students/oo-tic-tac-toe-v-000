@@ -57,10 +57,10 @@ def input_to_index (user_input)
 end
 def move (board, index, current_player) # localized variables used = "board, index,current_player"
   #Part of your #move method will mean updating the board array passed into it, which is
-  board[index] = current_player #updated board entries
   #in one line w/ 3 arguments = placeholder for values in the bin/move file
   #remove space btwn board and its array values
   #rec'd error for not allowing default 3rd arguments
+  board[index] = current_player #updated board entries
 end
 ##################
 # code your #valid_move? method here
@@ -97,6 +97,7 @@ def turn_count (board)
 end
 #define current_player
 def current_player() # can't have a space b/f and use parenthesise to hold argument
+  #no argument case per flatiron
   if turn_count() % 2 == 0 #failed to include turn_count method's argument (board) 1st x; worked after argument inclusion
     return "X"# is the correct line here for instructios states even #'s are to output string "X"'
 #pry
