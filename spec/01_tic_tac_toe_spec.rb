@@ -1,3 +1,5 @@
+require 'pry'
+#You'll be defining the main game class, `TicTacToe`
 require_relative '../lib/tic_tac_toe.rb'
 
 describe './lib/tic_tac_toe.rb' do
@@ -55,7 +57,9 @@ describe './lib/tic_tac_toe.rb' do
     describe '#move' do
       it 'allows "X" player in the top left and "O" in the middle' do
         game = TicTacToe.new
+        binding.pry
         game.move(1, "X")
+        binding.pry
         game.move(5, "O")
 
         board = game.instance_variable_get(:@board)
