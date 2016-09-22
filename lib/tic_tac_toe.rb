@@ -1,4 +1,4 @@
-require 'pry'
+#require 'pry'
 #You'll be defining the main game class, `TicTacToe`
 #in `lib/tic_tac_toe.rb`. Without that file defining a `TicTacToe` class,
 #everything will break.
@@ -17,7 +17,7 @@ class TicTacToe
 #end @ board is nil, @ board = nil
 #will have to place this end at end of the method
 game = TicTacToe.new ("Board") #given 0 expected 1 # of arguments
-binding.pry
+#binding.pry
 WIN_COMBINATIONS = [
   [0,1,2], # Top row, #had extra comma&deleted comma, #add comma to delineate element of array WIN_COMBINATIONS
   [3,4,5],  # Middle row, #add comma to delineate element of array WIN_COMBINATIONS
@@ -33,7 +33,8 @@ def input_to_index (user_input)
   user_input.to_i-1 #converts user_input argument to integer w .to_i
   #and to match board index position, subtracts 1 from converted user input integer
 end
-def display_board () #flatiron said takeout local variable
+def display_board () #flatiron said takeout local variable based on
+  #error msg @
   puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
   puts "-----------"
   puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
@@ -95,13 +96,13 @@ def turn_count (board)
   counter #why did this method missing an argument? when it's not here the each block returns the board array instead of a counter value
 end
 #define current_player
-def current_player(board) # can't have a space b/f and use parenthesise to hold argument
-  if turn_count(board) % 2 == 0 #failed to include turn_count method's argument (board) 1st x; worked after argument inclusion
+def current_player() # can't have a space b/f and use parenthesise to hold argument
+  if turn_count() % 2 == 0 #failed to include turn_count method's argument (board) 1st x; worked after argument inclusion
     return "X"# is the correct line here for instructios states even #'s are to output string "X"'
 #pry
     #return "X"#, no comma is allowed after the value "X" #returns nil. same as print nor put command.
     #instruction calls for X If the turn count is an even number, the `#current_player` method should return `"X"`, otherwise, it should return `"O"`.
-  elsif turn_count(board) % 2 == 1
+  elsif turn_count() % 2 == 1
     #return "O" #1st x w/"X"-returned failure/error msg where it expected "X" & got "O"
     return "O"#,no comma is allowed #return nil. same as print nor put command
   end
@@ -175,7 +176,7 @@ def turn(board)
     #2nd x = current player removed,
     #3rd x = current_player(board)
     #binding.pry
-    display_board (board)
+    display_board ()#per flatiron, removed the arguments board
   elsif
     turn(board) #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
   end
