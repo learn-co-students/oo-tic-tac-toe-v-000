@@ -55,12 +55,9 @@ def input_to_index (user_input)
   user_input.to_i-1 #converts user_input argument to integer w .to_i
   #and to match board index position, subtracts 1 from converted user input integer
 end
-def move (board, index, current_player) # localized variables used = "board, index,current_player"
-  #Part of your #move method will mean updating the board array passed into it, which is
-  #in one line w/ 3 arguments = placeholder for values in the bin/move file
-  #remove space btwn board and its array values
-  #rec'd error for not allowing default 3rd arguments
-  board[index] = current_player #updated board entries
+def move (index, current_player)
+  #removed board variable per arguments error
+  index = current_player #updated board entries
 end
 ##################
 # code your #valid_move? method here
