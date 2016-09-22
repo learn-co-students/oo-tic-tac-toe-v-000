@@ -1,4 +1,4 @@
-#require 'pry'
+require 'pry'
 #You'll be defining the main game class, `TicTacToe`
 #in `lib/tic_tac_toe.rb`. Without that file defining a `TicTacToe` class,
 #everything will break.
@@ -32,6 +32,7 @@ WIN_COMBINATIONS = [
 def input_to_index (user_input)
   user_input.to_i-1 #converts user_input argument to integer w .to_i
   #and to match board index position, subtracts 1 from converted user input integer
+  binding.pry
 end
 def display_board () #flatiron said takeout local variable based on
   #error msg @
@@ -57,7 +58,8 @@ def input_to_index (user_input)
 end
 def move (index, current_player)
   #removed board variable per arguments error in spec
-  index = current_player #updated board entries
+  board[index] = current_player #updated board entries
+  #binding.pry
 end
 ##################
 # code your #valid_move? method here

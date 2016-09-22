@@ -57,13 +57,13 @@ describe './lib/tic_tac_toe.rb' do
     describe '#move' do
       it 'allows "X" player in the top left and "O" in the middle' do
         game = TicTacToe.new
-        binding.pry
+
         game.move(1, "X")
-        binding.pry
+        
         game.move(5, "O")
 
         board = game.instance_variable_get(:@board)
-
+        binding.pry
         expect(board).to eq(["X", " ", " ", " ", "O", " ", " ", " ", " "])
       end
     end
