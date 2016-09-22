@@ -56,7 +56,7 @@ def input_to_index (user_input)
   #and to match board index position, subtracts 1 from converted user input integer
 end
 def move (index, current_player)
-  #removed board variable per arguments error
+  #removed board variable per arguments error in spec
   index = current_player #updated board entries
 end
 ##################
