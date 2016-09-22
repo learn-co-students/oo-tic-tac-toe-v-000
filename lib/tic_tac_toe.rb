@@ -1,4 +1,4 @@
-#require 'pry'
+require 'pry'
 #You'll be defining the main game class, `TicTacToe`
 #in `lib/tic_tac_toe.rb`. Without that file defining a `TicTacToe` class,
 #everything will break.
@@ -17,7 +17,7 @@ class TicTacToe
 #end @ board is nil, @ board = nil
 #will have to place this end at end of the method
 game = TicTacToe.new ("Board") #given 0 expected 1 # of arguments
-#binding.pry
+binding.pry
 WIN_COMBINATIONS = [
   [0,1,2], # Top row, #had extra comma&deleted comma, #add comma to delineate element of array WIN_COMBINATIONS
   [3,4,5],  # Middle row, #add comma to delineate element of array WIN_COMBINATIONS
@@ -33,7 +33,7 @@ def input_to_index (user_input)
   user_input.to_i-1 #converts user_input argument to integer w .to_i
   #and to match board index position, subtracts 1 from converted user input integer
 end
-def display_board (board)
+def display_board () #flatiron said takeout local variable
   puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
   puts "-----------"
   puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
