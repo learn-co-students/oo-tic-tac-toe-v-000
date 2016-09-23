@@ -66,19 +66,18 @@ end
 ##################
 # code your #valid_move? method here
 def valid_move?(position)
-  #binding.pry
+  binding.pry
 # re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
 # remember to check position_taken_spec.rb for syntax of the conditions
 # board argument removed for wrong # of arguments error
 # changed argument name from index to position per error msg.
-    #binding.pry
     #checks to see user entered "index" value is comparable to "", " ", or nil
   if board[position.to_i] == " " && position.between?(0, 8)# index =>0 && index <=8 failed for short circuit evaluation
-    #binding.pry, failed to process pry here
+    #binding.pry #failed to process pry here
     #.to_i for argument, position, to meet spec test; passed spec test
-    # comparison of string with 0 failed! error. 
+    # comparison of string with 0 failed! error.
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
-    binding.pry
+    #binding.pry
   elsif board[position] == "X" || board[position] == "O" #index <0
     #binding.pry
     false#print false if user has entered a position

@@ -82,7 +82,7 @@ describe './lib/tic_tac_toe.rb' do
 
         position = 1
         expect(game.position_taken?(position)).to be(false)
-        binding.pry
+
         position = 7
         expect(game.position_taken?(position)).to be(false)
       end
@@ -96,7 +96,7 @@ describe './lib/tic_tac_toe.rb' do
 
         position = "1"
         expect(game.valid_move?(position)).to be_truthy
-        binding.pry
+        
         position = "5"
         expect(game.valid_move?(position)).to be_falsey
 
