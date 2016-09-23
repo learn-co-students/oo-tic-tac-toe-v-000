@@ -1,6 +1,5 @@
 require 'pry'
-#You'll be defining the main game class, `TicTacToe`
-#in `lib/tic_tac_toe.rb`. Without that file defining a `TicTacToe` class,
+#You'll be defining the main game class, `TicTacToe` #in `lib/tic_tac_toe.rb`. Without that file defining a `TicTacToe` class,
 #everything will break.
 class TicTacToe
   #.pry
@@ -42,7 +41,9 @@ def display_board () #flatiron said takeout local variable based on
   puts "-----------"
   puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
 end
-def position_taken? (board, index) # remember to check position_taken_spec.rb for syntax of the conditions
+def position_taken? (index) # remember to check position_taken_spec.rb for syntax of the conditions
+  #index leads to argment errors, && when removed, leads to undefined local variable error
+  #removed board rather than index
   #board = ["", "","X", "", "", "", "", "", "" ]
   if board[index] == "" || board[index] == " "|| board[index] == nil
     #if board index values are not comparable, hence, "empty string", "empty space", or "nothingness" i.e. nil are not comparable == to "X" then return
@@ -55,22 +56,30 @@ end
 def input_to_index (user_input)
   user_input.to_i-1 #converts user_input argument to integer w .to_i
   #and to match board index position, subtracts 1 from converted user input integer
+  binding.pry
 end
 def move (index, current_player)
   #removed board variable per arguments error in spec
-  board[index] = current_player #updated board entries
+  board[index-1] = current_player #updated board entries
   #binding.pry
 end
 ##################
 # code your #valid_move? method here
-def valid_move?(board, index)
+def valid_move?(position)
+  #binding.pry
 # re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
 # remember to check position_taken_spec.rb for syntax of the conditions
+# board argument removed for wrong # of arguments error
+# changed argument name from index to position per error msg.
     #binding.pry
     #checks to see user entered "index" value is comparable to "", " ", or nil
-  if board[index] == " " && index.between?(0, 8)# index =>0 && index <=8 failed for short circuit evaluation
+  if board[position.to_i] == " " && position.between?(0, 8)# index =>0 && index <=8 failed for short circuit evaluation
+    #binding.pry, failed to process pry here
+    #.to_i for argument, position, to meet spec test; passed spec test
+    # comparison of string with 0 failed! error. 
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
-  elsif board[index] == "X" || board[index] == "O" #index <0
+    binding.pry
+  elsif board[position] == "X" || board[position] == "O" #index <0
     #binding.pry
     false#print false if user has entered a position
   else
