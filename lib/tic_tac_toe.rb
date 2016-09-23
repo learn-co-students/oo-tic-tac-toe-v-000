@@ -72,16 +72,20 @@ def valid_move?(position)
 # board argument removed for wrong # of arguments error
 # changed argument name from index to position per error msg.
     #checks to see user entered "index" value is comparable to "", " ", or nil
-  if board[position.to_i] == " " && position.to_i.between?(0, 8)# index =>0 && index <=8 failed for short circuit evaluation
+  if board[position.to_i] == " " && position.to_i.between?(1, 9)# index =>0 && index <=8 failed for short circuit evaluation
     #binding.pry #failed to process pry here
     #.to_i for argument, position, to meet spec test; passed spec test
     # comparison of string with 0 failed! error.
     # changed position to positionl.to_i.between...
+    # changed from (0, 8) to (1, 9)
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
     #binding.pry
-  elsif board[position] == "X" || board[position] == "O" #index <0
+  #elsif board[position.to_i] == "X" || board[position.to_i] == "O" #index <0
     #binding.pry
-    false#print false if user has entered a position
+    #failure/error-expected false, but got true
+    #changed position to position.to_i for it's string not integer data type
+    #false#print false if user has entered a position
+    #commented on line 83 elsif, for no need to 2 false 
   else
     false
   end
