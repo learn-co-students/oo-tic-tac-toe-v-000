@@ -2,7 +2,7 @@
 require 'pry'
 #
 class TicTacToe
-  #.
+  #binding.pry
   def initialize (board=[" ", " ", " ", " ", " ", " ", " ", " ", " "]) #not Instantiate but initialize
     @board = board #removed printed boards
     ##.
@@ -32,7 +32,6 @@ WIN_COMBINATIONS = [
   #user_input.to_i-1 #converts user_input argument to integer w .to_i
   #and to match board index position, subtracts 1 from converted user input integer
   ##.
-end
 def display_board () #flatiron said takeout local variable based on
   #error msg @
   puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
@@ -197,7 +196,7 @@ def turn()
     ##.
     display_board ()#per flatiron, removed the arguments board
   elsif
-    turn() #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
+    turn(board) #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
     #removed local variable, board to solve wrong # of arguments error
   end
 end
@@ -220,6 +219,4 @@ def play(board)
       #puts "Congratulations", it returned nil
     end
 end
-
-#game = TicTacToe.new ("[" "," "," "," "," "," "," "," "," "]") #given 0 expected 1 # of arguments
-#TicTacToe.board= "[" "," "," "," "," "," "," "," "," "]" undefined method board=
+end
