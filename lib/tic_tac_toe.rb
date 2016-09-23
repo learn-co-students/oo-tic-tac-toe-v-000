@@ -1,11 +1,12 @@
+#require ''
 require 'pry'
 #You'll be defining the main game class, `TicTacToe` #in `lib/tic_tac_toe.rb`. Without that file defining a `TicTacToe` class,
 #everything will break.
 class TicTacToe
-  #.pry
+  #.
   def initialize (board=[" ", " ", " ", " ", " ", " ", " ", " ", " "]) #not Instantiate but initialize
     @board = board #removed printed boards
-    #binding.pry
+    ##.
   end
   def board= (board)
     @board = board
@@ -16,7 +17,7 @@ class TicTacToe
 #end @ board is nil, @ board = nil
 #will have to place this end at end of the method
 game = TicTacToe.new ("Board") #given 0 expected 1 # of arguments
-#binding.pry
+##.
 WIN_COMBINATIONS = [
   [0,1,2], # Top row, #had extra comma&deleted comma, #add comma to delineate element of array WIN_COMBINATIONS
   [3,4,5],  # Middle row, #add comma to delineate element of array WIN_COMBINATIONS
@@ -31,7 +32,7 @@ WIN_COMBINATIONS = [
 def input_to_index (user_input)
   user_input.to_i-1 #converts user_input argument to integer w .to_i
   #and to match board index position, subtracts 1 from converted user input integer
-  binding.pry
+  ##.
 end
 def display_board () #flatiron said takeout local variable based on
   #error msg @
@@ -56,41 +57,45 @@ end
 def input_to_index (user_input)
   user_input.to_i-1 #converts user_input argument to integer w .to_i
   #and to match board index position, subtracts 1 from converted user input integer
-  binding.pry
+  ##.
 end
 def move (index, current_player)
   #removed board variable per arguments error in spec
   board[index-1] = current_player #updated board entries
-  #binding.pry
+  ##.
 end
 ##################
 # code your #valid_move? method here
 def valid_move?(position)
-  #binding.pry
+#binding.pry
 # re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
 # remember to check position_taken_spec.rb for syntax of the conditions
 # board argument removed for wrong # of arguments error
 # changed argument name from index to position per error msg.
     #checks to see user entered "index" value is comparable to "", " ", or nil
-  if board[position.to_i] == " " && position.to_i.between?(1, 9)# index =>0 && index <=8 failed for short circuit evaluation
-    #binding.pry #failed to process pry here
+  if board[position.to_i-1] == " " && position.to_i.between?(1, 9)# index =>0 && index <=8 failed for short circuit evaluation
+    #. #failed to process  here
     #.to_i for argument, position, to meet spec test; passed spec test
     # comparison of string with 0 failed! error.
     # changed position to positionl.to_i.between...
     # changed from (0, 8) to (1, 9)
+    # same error expected false, got true
+    # missed -1 from position.to_i
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
-    #binding.pry
+    ##.
   #elsif board[position.to_i] == "X" || board[position.to_i] == "O" #index <0
-    #binding.pry
+    ##.
     #failure/error-expected false, but got true
     #changed position to position.to_i for it's string not integer data type
     #false#print false if user has entered a position
-    #commented on line 83 elsif, for no need to 2 false 
+    #error msg: failure/error: expected false, got true
+    #commented on line 83 elsif, for no need to 2 false
+    #same error msg: failre/error; expected false, got true
   else
     false
   end
 end
-#require 'pry'
+#require ''
 def turn_count (board)
   #if only two occupied position, then player "o" made move
   #if only one occupied position, then player "x" made move
@@ -112,7 +117,7 @@ def current_player() # can't have a space b/f and use parenthesise to hold argum
   #no argument case per flatiron
   if turn_count() % 2 == 0 #failed to include turn_count method's argument (board) 1st x; worked after argument inclusion
     return "X"# is the correct line here for instructios states even #'s are to output string "X"'
-#pry
+#
     #return "X"#, no comma is allowed after the value "X" #returns nil. same as print nor put command.
     #instruction calls for X If the turn count is an even number, the `#current_player` method should return `"X"`, otherwise, it should return `"O"`.
   elsif turn_count() % 2 == 1
@@ -124,7 +129,7 @@ end
 #define won?
 def won?(board) WIN_COMBINATIONS.find do |win|
   #FIND the 1 unique combination in the constant WIN_COMBINATIONS
-  #binding.pry
+  ##.
     position_1 = board[win[0]]#assigns variables to board nested array
     position_2 = board[win[1]]
     position_3 = board[win[2]]
@@ -169,7 +174,7 @@ def winner(board)
   #from parent board array value, located at its' child array ,win array, index 0
   position_2 = board[win[1]]
   position_3 = board[win[2]]
-  #binding.pry
+  ##.
   if position_1 == "X"
     return "X"
   elsif position_1 == "O"
@@ -178,20 +183,21 @@ def winner(board)
     false
   end
 end
-def turn(board)
+def turn()
   #puts "Please enter 1-9:"
   input= gets.strip
   input= input_to_index(input) #missing input_to_index METHOD
-  if valid_move?(board,input)
-    #binding.pry
+  if valid_move?(input)
+    ##removed board argument to meet wrong # of arguments error
     move(board,input, current_player(board))
       # current_player argument inserted,
     #2nd x = current player removed,
     #3rd x = current_player(board)
-    #binding.pry
+    ##.
     display_board ()#per flatiron, removed the arguments board
   elsif
-    turn(board) #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
+    turn() #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
+    #removed local variable, board to solve wrong # of arguments error
   end
 end
 #PLAY METHOD###############################

@@ -98,7 +98,7 @@ describe './lib/tic_tac_toe.rb' do
         expect(game.valid_move?(position)).to be_truthy
 
         position = "5"
-        binding.pry
+
         expect(game.valid_move?(position)).to be_falsey
 
         position = "invalid"
