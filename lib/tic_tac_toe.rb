@@ -1,7 +1,6 @@
 #require ''
 require 'pry'
-#You'll be defining the main game class, `TicTacToe` #in `lib/tic_tac_toe.rb`. Without that file defining a `TicTacToe` class,
-#everything will break.
+#
 class TicTacToe
   #.
   def initialize (board=[" ", " ", " ", " ", " ", " ", " ", " ", " "]) #not Instantiate but initialize
@@ -29,8 +28,8 @@ WIN_COMBINATIONS = [
   [2,4,6],  #diagnoal from ne to sw#add comma to delineate element of array WIN_COMBINATIONS
   # ETC, an array for each win combination#add comma to delineate element of array WIN_COMBINATIONS
 ]
-def input_to_index (user_input)
-  user_input.to_i-1 #converts user_input argument to integer w .to_i
+#def input_to_index (user_input); not used in oo ruby
+  #user_input.to_i-1 #converts user_input argument to integer w .to_i
   #and to match board index position, subtracts 1 from converted user input integer
   ##.
 end
@@ -78,9 +77,11 @@ def valid_move?(position)
     #.to_i for argument, position, to meet spec test; passed spec test
     # comparison of string with 0 failed! error.
     # changed position to positionl.to_i.between...
-    # changed from (0, 8) to (1, 9)
+    # changed from (0, 8) to (1, 9)   Q; DON'T KNOW WHY
     # same error expected false, got true
     # missed -1 from position.to_i
+    # not sure why used
+    binding.pry
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
     ##.
   #elsif board[position.to_i] == "X" || board[position.to_i] == "O" #index <0
@@ -219,6 +220,6 @@ def play(board)
       #puts "Congratulations", it returned nil
     end
 end
-end
+
 #game = TicTacToe.new ("[" "," "," "," "," "," "," "," "," "]") #given 0 expected 1 # of arguments
 #TicTacToe.board= "[" "," "," "," "," "," "," "," "," "]" undefined method board=
