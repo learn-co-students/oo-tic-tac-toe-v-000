@@ -76,11 +76,15 @@ def valid_move?(position)
     #.to_i for argument, position, to meet spec test; passed spec test
     # comparison of string with 0 failed! error.
     # changed position to positionl.to_i.between...
-    # changed from (0, 8) to (1, 9)   Q; DON'T KNOW WHY
+    # changed from (0, 8) to (1, 9)   Q; DON'T KNOW WHY; returned to 0,8
+    # changed position.to_i
     # same error expected false, got true
-    # missed -1 from position.to_i
-    # not sure why used
-    binding.pry
+    # missed -1 from position.to_i , for board position is 1 less than
+    #     player's position
+    # not sure why used to return true/false based on
+    #position error, for position is from players', i.e. 1 to 9, not 0 to 8.
+    # changed position.to_i-1 to position.to_i
+    #binding.pry
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
     ##.
   #elsif board[position.to_i] == "X" || board[position.to_i] == "O" #index <0
@@ -196,7 +200,7 @@ def turn()
     ##.
     display_board ()#per flatiron, removed the arguments board
   elsif
-    turn(board) #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
+    turn() #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
     #removed local variable, board to solve wrong # of arguments error
   end
 end
