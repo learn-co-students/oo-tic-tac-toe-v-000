@@ -150,6 +150,7 @@ def turn()
   input= gets.strip
 #binding.pry
 #  input= input_to_index(input) #missing input_to_index METHOD
+# 9-24-16-810 hr-DISABLING LINE 152 WAS KEY to ending the looping as was discovered in pry
 #binding.pry
   if valid_move?(input)
 #binding.pry
