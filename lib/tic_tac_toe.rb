@@ -58,7 +58,7 @@ end
 ##################
 # code your #valid_move? method here
 def valid_move?(position)
-  if board[position.to_i-1] == " " && position.to_i.between?(1, 9)# index =>0 && index <=8 failed for short circuit evaluation
+  if @board[position] == " " && position.between?(1, 9)# index =>0 && index <=8 failed for short circuit evaluation
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
   else
     false
@@ -150,17 +150,20 @@ def turn()
   #puts "Please enter 1-9:"
   input= gets.strip
   input= input_to_index(input) #missing input_to_index METHOD
-  binding.pry
+  #binding.pry
   if valid_move?(input)
+    #binding.pry
     ##removed board argument to meet wrong # of arguments error
     move(board,input, current_player(board))
+    #binding.pry
       # current_player argument inserted,
     #2nd x = current player removed,
     #3rd x = current_player(board)
     ##.
     display_board ()#per flatiron, removed the arguments board
+    #binding.pry
   else
-    turn() #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
+    turn(board) #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
     #removed local variable, board to solve wrong # of arguments error
     #tried else, removed elsif
   end
