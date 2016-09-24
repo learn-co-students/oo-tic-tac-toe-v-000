@@ -150,6 +150,7 @@ def turn()
   #puts "Please enter 1-9:"
   input= gets.strip
   input= input_to_index(input) #missing input_to_index METHOD
+  binding.pry
   if valid_move?(input)
     ##removed board argument to meet wrong # of arguments error
     move(board,input, current_player(board))
@@ -158,9 +159,10 @@ def turn()
     #3rd x = current_player(board)
     ##.
     display_board ()#per flatiron, removed the arguments board
-  elsif
+  else
     turn() #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
     #removed local variable, board to solve wrong # of arguments error
+    #tried else, removed elsif
   end
 end
 #PLAY METHOD###############################
