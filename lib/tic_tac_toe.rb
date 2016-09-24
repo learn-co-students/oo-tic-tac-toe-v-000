@@ -1,5 +1,5 @@
-#require ''
-require 'pry'
+require ''
+#require 'pry'
 #
 class TicTacToe
   #binding.pry
@@ -59,7 +59,7 @@ end
 # code your #valid_move? method here
 def valid_move?(position)
   if @board[position.to_i-1] == " " && position.to_i.between?(1, 9)
-binding.pry
+#binding.pry
     true
   else
     false
@@ -149,13 +149,17 @@ def winner(board)
 end
 def turn()
   input= gets.strip
+binding.pry
   input= input_to_index(input) #missing input_to_index METHOD
+binding.pry
   if valid_move?(input)
-  binding.pry
+binding.pry
     move(board,input, current_player(board))
-    display_board ()#per flatiron, removed the arguments board
+binding.pry
+    display_board
+binding.pry
   else
-    turn #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
+    turn
   end
 end
 #PLAY METHOD###############################
