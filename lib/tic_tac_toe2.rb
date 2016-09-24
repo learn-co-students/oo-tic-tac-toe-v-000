@@ -13,7 +13,8 @@ class TicTacToe
   def board
     @board
   end
-
+#end @ board is nil, @ board = nil
+#will have to place this end at end of the method
 game = TicTacToe.new ("Board") #given 0 expected 1 # of arguments
 ##.
 WIN_COMBINATIONS = [
@@ -27,10 +28,10 @@ WIN_COMBINATIONS = [
   [2,4,6],  #diagnoal from ne to sw#add comma to delineate element of array WIN_COMBINATIONS
   # ETC, an array for each win combination#add comma to delineate element of array WIN_COMBINATIONS
 ]
-def input_to_index (user_input); #not used in oo ruby
-  user_input.to_i-1 #converts user_input argument to integer w .to_i
+#def input_to_index (user_input); not used in oo ruby
+  #user_input.to_i-1 #converts user_input argument to integer w .to_i
   #and to match board index position, subtracts 1 from converted user input integer
-end
+  ##.
 def display_board () #flatiron said takeout local variable based on
   #error msg @
   puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
@@ -40,7 +41,11 @@ def display_board () #flatiron said takeout local variable based on
   puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
 end
 def position_taken? (index) # remember to check position_taken_spec.rb for syntax of the conditions
+  #index leads to argment errors, && when removed, leads to undefined local variable error
+  #removed board rather than index
+  #board = ["", "","X", "", "", "", "", "", "" ]
   if board[index] == "" || board[index] == " "|| board[index] == nil
+    #if board index values are not comparable, hence, "empty string", "empty space", or "nothingness" i.e. nil are not comparable == to "X" then return
     false
   else #board[index] == "X" || "O"; hence, if board[index] value is comparable to "X" or "O" then return "true"
     true
@@ -49,27 +54,54 @@ end
 #############code your input_to_index and #############move method here!
 def input_to_index (user_input)
   user_input.to_i-1 #converts user_input argument to integer w .to_i
+  #and to match board index position, subtracts 1 from converted user input integer
   ##.
 end
 def move (index, current_player)
+  #removed board variable per arguments error in spec
   board[index-1] = current_player #updated board entries
   ##.
 end
 ##################
 # code your #valid_move? method here
 def valid_move?(position)
+#binding.pry
+# re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
+# remember to check position_taken_spec.rb for syntax of the conditions
+# board argument removed for wrong # of arguments error
+# changed argument name from index to position per error msg.
+    #checks to see user entered "index" value is comparable to "", " ", or nil
   if board[position.to_i-1] == " " && position.to_i.between?(1, 9)# index =>0 && index <=8 failed for short circuit evaluation
+    #. #failed to process  here
+    #.to_i for argument, position, to meet spec test; passed spec test
+    # comparison of string with 0 failed! error.
+    # changed position to positionl.to_i.between...
+    # changed from (0, 8) to (1, 9)   Q; DON'T KNOW WHY; returned to 0,8
+    # changed position.to_i
+    # same error expected false, got true
+    # missed -1 from position.to_i , for board position is 1 less than
+    #     player's position
+    # not sure why used to return true/false based on
+    #position error, for position is from players', i.e. 1 to 9, not 0 to 8.
+    # changed position.to_i-1 to position.to_i
+    #binding.pry
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
-  else
+    else
     false
   end
 end
 #require ''
 def turn_count (board)
+  #if only two occupied position, then player "o" made move
+  #if only one occupied position, then player "x" made move
   counter = 0
+#if board.each do |item| == "X", got sytax error, unexpected ==^ "X"
   board.each do |item|#iterate through board array element and pass each value to local variable item
     if item !=" "
+    #if item !=""
     counter +=1
+  #elsif item == "O"; worked
+    #counter +=1; worked w/ line 23
   end
     end
   #desired outcome is number of turns that have been made by
@@ -151,16 +183,10 @@ def turn()
   input= gets.strip
   input= input_to_index(input) #missing input_to_index METHOD
   if valid_move?(input)
-    ##removed board argument to meet wrong # of arguments error
     move(board,input, current_player(board))
-      # current_player argument inserted,
-    #2nd x = current player removed,
-    #3rd x = current_player(board)
-    ##.
     display_board ()#per flatiron, removed the arguments board
   elsif
-    turn() #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
-    #removed local variable, board to solve wrong # of arguments error
+    turn()
   end
 end
 #PLAY METHOD###############################
