@@ -58,8 +58,8 @@ end
 ##################
 # code your #valid_move? method here
 def valid_move?(position)
-  if @board[position.to_i-1] == " " && position.to_i-1.between?(0, 8)# index =>0 && index <=8 failed for short circuit evaluation
-    true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
+  if @board[position.to_i-1] == " " && position.to_i-1.between?(0, 8)
+    true
   else
     false
   end
@@ -153,7 +153,7 @@ def turn()
     move(board,input, current_player(board))
     display_board ()#per flatiron, removed the arguments board
   else
-    turn(board) #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
+    turn() #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
   end
 end
 #PLAY METHOD###############################
