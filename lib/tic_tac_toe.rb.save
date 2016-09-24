@@ -48,24 +48,30 @@ end
 #############code your input_to_index and #############move method here!
 def input_to_index (user_input)
   user_input.to_i-1 #converts user_input argument to integer w .to_i
-#binding.pry
+binding.pry
 end
-def move (index, current_player)
-  board[index.to_i-1] = current_player #updated board entries
-#binding.pry
+def move (board, index, current_player)
+  board[index-1] = current_player #updated board entries
+b
+learn open oo-tic-tac-toe-v-000
+learn open oo-tic-tac-toe-v-000
+learn open oo-tic-tac-toe-v-000
+learn open oo-tic-tac-toe-v-000
+learn open oo-tic-tac-toe-v-000
+inding.pry
 end
 ##################
 # code your #valid_move? method here
 def valid_move?(position)
   if @board[position.to_i-1] == " " && position.to_i.between?(1, 9)
-#binding.pry
+binding.pry
     true
   else
     false
   end
 end
 #require ''
-def turn_count ()
+def turn_count (board)
   counter = 0
   board.each do |item|#iterate through board array element and pass each value to local variable item
     if item !=" "
@@ -76,21 +82,21 @@ def turn_count ()
   counter #why did this method missing an argument? when it's not here the each block returns the board array instead of a counter value
 end
 #define current_player
-def current_player() # can't have a space b/f and use parenthesise to hold argument
+def current_player(board) # can't have a space b/f and use parenthesise to hold argument
   #no argument case per flatiron
-  if turn_count() % 2 == 0 #failed to include turn_count method's argument (board) 1st x; worked after argument inclusion
+  if turn_count(board) % 2 == 0 #failed to include turn_count method's argument (board) 1st x; worked after argument inclusion
     return "X"# is the correct line here for instructios states even #'s are to output string "X"'
 #
     #return "X"#, no comma is allowed after the value "X" #returns nil. same as print nor put command.
     #instruction calls for X If the turn count is an even number, the `#current_player` method should return `"X"`, otherwise, it should return `"O"`.
-  elsif turn_count() % 2 == 1
+  elsif turn_count(board) % 2 == 1
     #return "O" #1st x w/"X"-returned failure/error msg where it expected "X" & got "O"
     return "O"#,no comma is allowed #return nil. same as print nor put command
   end
   #return "X" #1st x w/ "O"-returned failure/error msg where it expected "X" & got "O"
 end
 #define won?
-def won?() WIN_COMBINATIONS.find do |win|
+def won?(board) WIN_COMBINATIONS.find do |win|
   #FIND the 1 unique combination in the constant WIN_COMBINATIONS
   ##.
     position_1 = board[win[0]]#assigns variables to board nested array
@@ -109,28 +115,28 @@ def won?() WIN_COMBINATIONS.find do |win|
                         end
 end
 #define full?
-def full?() #defines the full? method w/board array
+def full?(board) #defines the full? method w/board array
   board.all? { |elem| # iterate through ALL of the board array
     elem == "X"  || elem == "O" || elem != " "#value is comparable to X OR O OR is not empty
   }
 end
-def draw?()
-  if !won?() && full?() # if not won board and not full board then
+def draw?(board)
+  if !won?(board) && full?(board) # if not won board and not full board then
     true
   else
     false
   end
 end
-def over?()
-    if draw?() || won?() # if board is at draw or board is won
+def over?(board)
+    if draw?(board) || won?(board) # if board is at draw or board is won
       true # then return true.
     else
       false
     end
 end
 #define winner
-def winner()
-  win = won?() #sets variable to return value
+def winner(board)
+  win = won?(board) #sets variable to return value
   return if win.nil? # solves for incident when win is nil, for when win is
   #nil, win[0] does not pass the spec test
   position_1 = board[win[0]] # assignment equality operator to extract
@@ -150,29 +156,28 @@ def turn()
   input= gets.strip
 #binding.pry
 #  input= input_to_index(input) #missing input_to_index METHOD
-# 9-24-16-810 hr-DISABLING LINE 152 WAS KEY to ending the looping as was discovered in pry
 #binding.pry
   if valid_move?(input)
-#binding.pry
-    move(input, current_player())
-#binding.pry
+binding.pry
+    move(board,input, current_player(board))
+binding.pry
     display_board
-#binding.pry
+binding.pry
   else
     turn
   end
 end
 #PLAY METHOD###############################
-def play()
+def play(board)
   #input = gets.strip
-    while !over?()
-      turn()
+    while !over?(board)
+      turn(board)
       end
-    if won?() && winner() == "X"
+    if won?(board) && winner(board) == "X"
         puts "Congratulations X!"
-    elsif won?() && winner() == "O" #
+    elsif won?(board) && winner(board) == "O" #
         puts "Congratulations O!"
-    elsif draw?() == true
+    elsif draw?(board) == true
         puts "Cats Game!"
         #return "Cats Game!"; return was the error
     else

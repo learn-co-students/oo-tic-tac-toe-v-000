@@ -1,3 +1,5 @@
+require 'pry'
+#You'll be defining the main game class, `TicTacToe`
 require_relative '../lib/tic_tac_toe.rb'
 
 describe './lib/tic_tac_toe.rb' do
@@ -55,7 +57,9 @@ describe './lib/tic_tac_toe.rb' do
     describe '#move' do
       it 'allows "X" player in the top left and "O" in the middle' do
         game = TicTacToe.new
+
         game.move(1, "X")
+
         game.move(5, "O")
 
         board = game.instance_variable_get(:@board)
@@ -94,6 +98,7 @@ describe './lib/tic_tac_toe.rb' do
         expect(game.valid_move?(position)).to be_truthy
 
         position = "5"
+
         expect(game.valid_move?(position)).to be_falsey
 
         position = "invalid"
@@ -102,7 +107,7 @@ describe './lib/tic_tac_toe.rb' do
     end
 
     describe '#turn' do
-      it 'makes valid moves and displays the board' do
+        it 'makes valid moves and displays the board' do
         game = TicTacToe.new
         allow($stdout).to receive(:puts)
         expect(game).to receive(:gets).and_return("1")
