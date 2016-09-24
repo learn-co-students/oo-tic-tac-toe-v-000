@@ -58,7 +58,8 @@ end
 ##################
 # code your #valid_move? method here
 def valid_move?(position)
-  if @board[position.to_i-1] == " " && position.to_i-1.between?(0, 8)
+  if @board[position.to_i-1] == " " && position.to_i.between?(1, 9)
+binding.pry
     true
   else
     false
@@ -150,10 +151,11 @@ def turn()
   input= gets.strip
   input= input_to_index(input) #missing input_to_index METHOD
   if valid_move?(input)
+  binding.pry
     move(board,input, current_player(board))
     display_board ()#per flatiron, removed the arguments board
   else
-    turn() #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
+    turn #here is the missing line for 9-12 pm (3 hrs) last nt and 9-11 am (2 hrs today), method calls itself is a new concept
   end
 end
 #PLAY METHOD###############################
