@@ -58,7 +58,7 @@ end
 ##################
 # code your #valid_move? method here
 def valid_move?(position)
-  if @board[position] == " " && position.between?(1, 9)# index =>0 && index <=8 failed for short circuit evaluation
+  if @board[position.to_i-1] == " " && position.to_i-1.between?(0, 8)# index =>0 && index <=8 failed for short circuit evaluation
     true#print true if user entered value is one of 3 conditions r met, i.e user entered "", or " ", or nil
   else
     false
