@@ -10,7 +10,7 @@ class TicTacToe
       turn
     end
     if won?
-      puts "Congratulations #{winner}"
+      puts "Congratulations #{winner}!"
     elsif draw?
       puts "Cats Game!"
     end
@@ -22,8 +22,8 @@ class TicTacToe
 #      input = input_to_index(input)
 #      binding.pry
       if valid_move?(input)
-        turn_count
-        current_player = current_player
+        #turn_count
+        #current_player = current_player
         move(input, current_player)
         display_board
       else
@@ -47,7 +47,7 @@ class TicTacToe
 #    input = input.to_i-1
 #  end
 
-  def move (input, current_player)
+  def move (input, current_player = "X")
     #input = input.to_i-1
     @board[input.to_i-1] = current_player
   end
@@ -83,7 +83,13 @@ class TicTacToe
   end
 
   def current_player
-    turn_count % 2 == 0 ? "X" : "O"
+#    turn_count % 2 == 0 ? "X" : "O"
+    output = turn_count
+      if output % 2 == 0
+        return "X"
+      else
+        return "O"
+      end
   end
 
   def turn_count
