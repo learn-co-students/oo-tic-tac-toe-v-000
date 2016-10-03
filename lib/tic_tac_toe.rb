@@ -48,7 +48,7 @@ class TicTacToe
     index = input
     #index = input_to_index(input)
     if valid_move?(index)
-      move(index.to_i)
+      move(index.to_ic current_player)
       display_board
     else
       turn
@@ -95,6 +95,17 @@ class TicTacToe
 
   def winner
     won? ? @board[won?[0]] : nil
+  end
+
+  def play
+    until over?
+      turn
+    end
+    if won?
+      puts "Congratulations"
+    else
+      puts "Game was draw"
+    end
   end
 
 end
