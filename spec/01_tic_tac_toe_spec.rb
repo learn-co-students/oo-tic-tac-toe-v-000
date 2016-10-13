@@ -92,12 +92,15 @@ describe './lib/tic_tac_toe.rb' do
 
         position = "1"
         expect(game.valid_move?(position)).to be_truthy
+        puts "For 1 #{game.valid_move?(1)} "
 
         position = "5"
         expect(game.valid_move?(position)).to be_falsey
+        puts "For 5 #{game.valid_move?(5)} "
 
         position = "invalid"
         expect(game.valid_move?(position)).to be_falsey
+        puts "For invalid #{game.valid_move?("invalid")} "
       end
     end
 
