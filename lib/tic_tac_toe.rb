@@ -126,4 +126,20 @@ end
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
+  def play
+
+    until over?
+      turn
+    end
+
+    if won?
+      if winner == "X"
+        puts "Congratulations X!"
+      elsif winner == "O"
+        puts "Congratulations O!"
+      end
+    elsif draw?
+      puts "Cats Game!"
+    end
+  end
 end
