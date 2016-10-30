@@ -50,12 +50,12 @@ class TicTacToe
   end
 
   def input_to_index (input)
-    @index = input.to_i - 1
+    index = input.to_i - 1
   end
 
   def move (position, char = "X")
-    @index = input_to_index(position)
-    @board[@index] = char
+    index = input_to_index(position)
+    @board[index] = char
   end
 
   def valid_move? (position)
@@ -94,7 +94,7 @@ class TicTacToe
       puts "Invalid input. Please enter 1-9:"
       user_input = gets.strip
     end
-    move(@index, current_player)
+    move(user_input, current_player)
     display_board
   end
 
@@ -119,7 +119,6 @@ class TicTacToe
   def play
     until over?
       turn
-      binding.pry
     end
 
     if won?
