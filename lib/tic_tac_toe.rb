@@ -33,21 +33,18 @@ class TicTacToe
 
 
 
-  def input_to_index(position)
-    position.to_i - 1
+
+
+  def move(position, token = "X")
+    @board[position.to_i - 1] = token
   end
 
-
-  def move(index, token = "X")
-    @board[index.to_i - 1] = token
+  def position_taken?(i)
+    @board[i] == "X" || @board[i] == "O"
   end
 
-  def position_taken?(index)
-    @board[index] == "X" || @board[index] == "O"
-  end
-
-  def valid_move?(index)
-    index.to_i.between?(0,8)  && !position_taken?(index)
+  def valid_move?(position)
+    position.to_i.between?(1,9)  && !position_taken?(position.to_i - 1)
   end
 
 
@@ -55,9 +52,8 @@ class TicTacToe
   def turn
     puts "Choose a number between 1- 9. 1 signifies the top left corner and 9 signifies the bottom right corner"
     position = gets.strip
-  index = input_to_index(position)
-    if valid_move?(index)
-      move(index, token)
+    if valid_move?(position)
+      move(position, current_player)
         display_board
     else
       turn
@@ -91,7 +87,7 @@ class TicTacToe
     WIN_COMBINATIONS.detect do |combo|
     @board[combo[0]] == @board[combo[1]] &&
     @board[combo[1]] == @board[combo[2]] &&
-    position_taken?(@board, combo[0])
+    position_taken?(combo[0])
    end
   end
 
@@ -104,7 +100,7 @@ class TicTacToe
   end
 
   def over?
-  won? || draw? || full?
+  won? || draw?
   end
 
   def winner
