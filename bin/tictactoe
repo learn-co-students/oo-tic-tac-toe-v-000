@@ -1,3 +1,12 @@
 #!/usr/bin/env ruby
 require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
+
+# Instantiate an instance of TicTacToe
+TicTacToe.new.play
+# puts "Welcome to Tic Tac Toe!"
+# display_board
+
+
+
+# rspec spec/03_cli_spec.rb
