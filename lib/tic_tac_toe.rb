@@ -47,7 +47,7 @@ class TicTacToe
 
     def turn
       puts "Please enter 1-9:"
-      input = gets.strip
+      user_input = gets.strip
       index = input_to_index(user_input)
       if current_player == "X"
         character = "X"
@@ -86,9 +86,9 @@ class TicTacToe
         win_index_2 = win_combination[1]
         win_index_3 = win_combination[2]
 
-        position_1 = board[win_index_1]
-        position_2 = board[win_index_2]
-        position_3 = board[win_index_3]
+        position_1 = @board[win_index_1]
+        position_2 = @board[win_index_2]
+        position_3 = @board[win_index_3]
 
           if position_1 == "X" && position_2 == "X" && position_3 == "X"
             return win_combination
@@ -132,7 +132,7 @@ class TicTacToe
       if won?
         puts "Congratulations #{winner}!"
       elsif draw?
-        puts "Cats Game!"
+        puts "Cat's Game!"
       end
     end
   end
