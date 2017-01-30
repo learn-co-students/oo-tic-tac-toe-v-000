@@ -22,8 +22,8 @@ class TicTacToe
     user_input.to_i - 1
   end
 
-def move(index, token)      # the InstanceVariable @board' calls? or writes?
-	    @board[index] = token # line object initialized as [board] in code:rb3
+def move(index, player)      # the InstanceVariable @board' calls? or writes?
+	    @board[index] = player # line object initialized as [board] in code:rb3
 	  end
 
     # def position_taken?(board, index)
@@ -50,8 +50,8 @@ def turn
 	    user_input = gets.strip
 	    index = input_to_index(user_input)
 	    if valid_move?(index)
-    token = current_player
-        move(index, token)
+    player = current_player
+        move(index, player)
     else
     	  turn
     	end
@@ -59,9 +59,9 @@ def turn
     	end
 
 def won?
-  WIN_COMBINATIONS.any? do |combo|
-    if position_taken?(combo[0]) && @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]
-    	return combo
+  WIN_COMBINATIONS.any? do |win_combo| # I redefined 'row' from procedural ruby solution rb:37  to 'win_combo' because it makes more sense
+    if position_taken?(win_combo[0]) && @board[win_combo[0]] == @board[win_combo[1]] && @board[win_combo[1]] == @board[win_combo[2]]
+    	return win_combo
     end
   end
 end
@@ -82,8 +82,8 @@ def full?
 
 
     def winner
-      if combo = won?
-        @board[combo[0]]
+      if win_combo = won?
+        @board[win_combo[0]]
       end
     end
 
