@@ -90,6 +90,6 @@ def full?
 
   def play
         turn until over?
-        puts winner ? "Congratulations #{winner}!" : "Cat's Game!"
+        puts winner ? "Congratulations #{winner}!" : "Cat's Game!" # don't know whatis 'Cats Game!' but added to pass rspec
       end
 end
