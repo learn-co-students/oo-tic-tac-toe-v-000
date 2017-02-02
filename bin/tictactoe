@@ -1,3 +1,15 @@
 #!/usr/bin/env ruby
 require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
+
+class TicTacToe
+  def TicTacToe(play)
+    @TicTacToe = (play)
+end
+
+def play
+  @TicTacToe
+end
+end
+
+TicTacToe.new.play
