@@ -85,6 +85,7 @@ class TicTacToe
       else
         turn
       end
+
     end
 
     def won?
@@ -114,19 +115,7 @@ class TicTacToe
     end
 
     def play
-      until over?
-        if won?
-          return puts "Congratulations #{current_player}!"
-          break
-        else
-          turn
-        end
-      end
-
-    if won?
-      return puts "Congratulations #{current_player}!"
-    elsif draw? || full?
-        return puts "Cat's Game!"
-      end
+      turn until over?
+      puts winner ? "Congratulations #{winner}!" : "Cat's Game!"
     end
-end
+  end
