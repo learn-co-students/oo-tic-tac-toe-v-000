@@ -1,0 +1,34 @@
+
+./lib/tic_tac_toe.rb
+  TicTacToe
+    #initialize
+      assigns an instance variable @board to an array with 9 blank spaces " "
+    WIN_COMBINATIONS
+      defines a constant WIN_COMBINATIONS with arrays for each win combination
+    #display_board
+      prints arbitrary arrangements of the board
+    #input_to_index
+      accepts the user's input (a string) as an argument
+      converts the user's input (a string) into an integer
+      converts the user's input from the user-friendly format (on a 1-9 scale) to the array-friendly format (where the first index starts at 0)
+    #move
+      allows "X" player in the top left and "O" in the middle
+    #position_taken?
+      returns true/false based on whether the position on the board is already occupied (FAILED - 1)
+
+Failures:
+
+  1) ./lib/tic_tac_toe.rb TicTacToe#position_taken? returns true/false based on whether the position on the board is already occupied
+     Failure/Error: expect(game.position_taken?(index)).to be(true)
+
+       expected true
+            got #<Array:21450520> => ["X", " ", " ", " ", " ", " ", " ", " ", "O"]
+     # ./spec/01_tic_tac_toe_spec.rb:92:in `block (4 levels) in <top (required)>'
+
+Finished in 0.02262 seconds (files took 0.27985 seconds to load)
+8 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/01_tic_tac_toe_spec.rb:86 # ./lib/tic_tac_toe.rb TicTacToe#position_taken? returns true/false based on whether the position on the board is already occupied
+
