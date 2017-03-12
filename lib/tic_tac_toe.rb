@@ -81,7 +81,7 @@ class TicTacToe
   end
 
   def winner
-    if winning_combination = won?
+    if winning_combination = won? #creates winning_combination variable then checks to see if it = true (i.e. if won? = true)
       @board[winning_combination[0]]
     end
   end
@@ -90,7 +90,7 @@ class TicTacToe
     until over?
       turn
     end
-    if won?
+    if won? #can use ternary operator here
       puts "Congratulations #{winner}!"
     elsif draw?
       puts "Cat's Game!"
