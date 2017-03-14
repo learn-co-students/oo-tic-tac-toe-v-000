@@ -112,19 +112,11 @@ def current_player
   end
 
   def draw?
-    if !won? && full? == true
-      true
-    else
-      false
-    end
+    !won? && full? == true ? true : false
   end
 
   def over?
-    if draw?
-      return true
-    elsif full?
-      return true
-    elsif WIN_COMBINATIONS.any? {|combo| combo == won?}
+    if draw? || full? || WIN_COMBINATIONS.any? {|combo| combo == won?}
       return true
     end
   end
@@ -133,7 +125,7 @@ def current_player
     if WIN_COMBINATIONS.any? {|combo| combo == won?}
     winner = won?
     return "#{@board[winner[1]]}"
-  end
+    end
   end
 
   def play
@@ -145,5 +137,5 @@ def current_player
        elsif draw?
          puts "Cat's Game!"
       end
-  end
+    end
   end
