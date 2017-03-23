@@ -15,7 +15,8 @@ class TicTacToe
     ]
 
   def initialize
-    @board = Array.new(9, " ")
+    @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    # @board = Array.new(9, " ")
   end
 
   def display_board
@@ -67,8 +68,49 @@ class TicTacToe
    display_board
  end
 
+ def won?
+     WIN_COMBINATIONS.any? do |combo|
+       if position_taken?(combo[0]) && @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]
+         return combo
+       end
+     end
+   end
+
+   def full?
+     board.all? { |choice| choice != (" ")}
+   end
+
+   def draw?
+    full? && !won?
+   end
+
+   def over?
+     full? || won?
+   end
+
+   def winner
+     winning_combination = won?
+     if !winning_combination
+       return nil
+     end
+     first_winning_index = winning_combination[0]
+     board[first_winning_index]
+   end
+
+   def play
+     until over? || draw? ## draw added to pass test
+       display_board
+        turn
+     end
+
+     if won?
+       puts "Congratulations #{winner}!"
+
+     else
+       puts "Cat\'s Game!"
+     end
+   end
 
 
-end
 
 end
