@@ -45,7 +45,8 @@ class TicTacToe
       return true
     end
   end
-  #
+
+  
   #this method tests if the inputed position for the game board is a valid move or not
   #it tests to see if the index value is correct and if the position is taken or not
   def valid_move?(index)
