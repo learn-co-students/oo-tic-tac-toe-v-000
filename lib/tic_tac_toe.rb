@@ -66,6 +66,14 @@ class TicTacToe
     @board[location] != " " && @board[location] != ""
   end
 
+    def location=(location)
+      @location = location
+    end
+
+    def location
+      @location
+    end
+
   def valid_move?(index)
     index.between?(0,8) && !position_taken?(index)
   end
