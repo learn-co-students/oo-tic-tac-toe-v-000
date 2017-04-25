@@ -30,49 +30,25 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  def input_to_index
-    @user_input.to_i - 1
+  def input_to_index(user_input)
+    user_input.to_i - 1
   end
 
-    def user_input=(user_input)
-      @user_input = user_input
-    end
-
-    def user_input
-      @user_input
-    end
-
-  def move
-    @board[@index] = @current_player
+  def user_input=(user_input)
+    @user_input = user_input
   end
 
-    def index=(index)
-      @index = index
-    end
+  def user_input
+    @user_input
+  end
 
-    def index
-      @index
-    end
-
-    def current_player=(current_player)
-      @current_player = current_player
-    end
-
-    def current_player
-      @current_player
-    end
+  def move(index, current_player)
+    @board[index] = current_player
+  end
 
   def position_taken?(location)
     @board[location] != " " && @board[location] != ""
   end
-
-    def location=(location)
-      @location = location
-    end
-
-    def location
-      @location
-    end
 
   def valid_move?(index)
     index.between?(0,8) && !position_taken?(index)
@@ -128,7 +104,7 @@ class TicTacToe
   end
 
   def over?
-    full? || won?
+    draw? || won?
   end
 
   def winner
@@ -144,9 +120,10 @@ class TicTacToe
   end
 
   def play
-    if !over?
+    until over?
       turn
-    elsif won?
+    end
+    if won?
       puts "Congratulations #{winner}!"
     elsif draw?
       puts "Cat's Game!"
