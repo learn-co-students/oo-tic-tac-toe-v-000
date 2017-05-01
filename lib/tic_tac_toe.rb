@@ -43,6 +43,7 @@ class TicTacToe
  end
 
  def turn_count
+   #Turn counter
    count = 0
    @board.each do |space|
     if (space == "X" || space == "O")
