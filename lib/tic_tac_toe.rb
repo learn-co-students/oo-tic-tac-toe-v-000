@@ -24,7 +24,7 @@ class TicTacToe
     [2, 4, 6]
   ]
 
-  def display_board(board = @board)
+  def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
     puts "-----------"
     puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
@@ -35,20 +35,20 @@ class TicTacToe
   def input_to_index(user_input)
     user_input.to_i - 1
   end
-#instructions say this one should have two arguments, not three. Check
-  def move(board = @board, index, current_player)
+
+  def move(index, current_player)
     board[index] = current_player
   end
 
-  def position_taken?(board = @board, index)
+  def position_taken?(index)
     board[index] != " " && board[index] != ""
   end
 
-  def valid_move?(board = @board, index)
-    !position_taken?(board = @board, index) && index.between?(0, 8)
+  def valid_move?(index)
+    !position_taken?(index) && index.between?(0, 8)
   end
 
-  def turn_count(board = @board)
+  def turn_count
   counter = 0
   board.each do |position|
     if position == "X" || position == "O"
@@ -58,28 +58,27 @@ class TicTacToe
       return counter
   end
 
-  def current_player(board = @board)
-    if turn_count(board = @board) % 2 == 0
+  def current_player
+    if turn_count % 2 == 0
       return "X"
     else
       return "O"
     end
   end
 
-  def turn(board = @board)
+  def turn
     puts "Please enter 1-9:"
     user_input = gets.strip
     index = input_to_index(user_input)
-    if valid_move?(board = @board, index)
-      #ask why this works with current player//why the three arguments and not two
-      move(board = @board, index, current_player = current_player(board = @board))
-      display_board(board = @board)
+    if valid_move?(index)
+      move(index, current_player)
+      display_board
     else
-      turn(board = @board)
+      turn
     end
   end
 
-  def won?(board = @board)
+  def won?
     WIN_COMBINATIONS.each do |win_combination|
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
@@ -96,20 +95,20 @@ class TicTacToe
    return false
   end
 
-  def full?(board = @board)
+  def full?
     board.none? { |position| position == " " || position == "   "}
   end
 
-  def draw?(board = @board)
-    full?(board) && !won?(board)
+  def draw?
+    full? && !won?
   end
 
-  def over?(board = @board)
-    full?(board) || won?(board) || draw?(board)
+  def over?
+    full? || won? || draw?
   end
 
-  def winner(board = @board)
-    won?(board = @board)
+  def winner
+    won?
     WIN_COMBINATIONS.each do |win_combination|
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
@@ -129,14 +128,14 @@ class TicTacToe
     return nil
   end
 
-  def play(board = @board)
-    while !over?(board = @board)
-      turn(board = @board)
+  def play
+    while !over?
+      turn
     end
-    if won?(board = @board)
-      puts "Congratulations #{winner(board = @board)}!"
+    if won?
+      puts "Congratulations #{winner}!"
     end
-    if draw?(board = @board)
+    if draw?
       puts "Cat's Game!"
     end
   end
