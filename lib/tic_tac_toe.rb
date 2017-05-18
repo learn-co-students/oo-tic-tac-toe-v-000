@@ -29,7 +29,7 @@ class TicTacToe
     @board[index] == "X" || @board[index] == "O"
   end
   def valid_move?(index)
-    @board[index] == " "
+    index >= 0 && index <= 8 && !position_taken?(index)
   end
   def turn_count
     @board.count{|character| character == "X" || character == "O"}
