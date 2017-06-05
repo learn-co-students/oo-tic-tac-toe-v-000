@@ -50,16 +50,17 @@ end
 
 def turn
   puts "Please enter 1-9"
-  @input = gets.strip
+  input = gets.strip
   @index = input_to_index(input)
-  if valid_move?(index)
-    move(input_to_index, player_character)
+  if valid_move?(@index)
+    move(@index, current_player)
     display_board
   else
-    turn until valid_move?(index)
+    turn
       end
-
 end
+
+
 
 def turn_count
   @board.count{ |current_space| current_space == "X" || current_space == "O"}
@@ -76,9 +77,9 @@ def won?
     win_index_2 = winner_combination[1]
     win_index_3 = winner_combination[2]
 
-    position_1 = board[win_index_1]
-    position_2 = board[win_index_2]
-    position_3 = board[win_index_3]
+    position_1 = @board[win_index_1]
+    position_2 = @board[win_index_2]
+    position_3 = @board[win_index_3]
 
     if (position_1 == "X" && position_2 == "X" && position_3 == "X") || (position_1 == "O" && position_2 == "O" && position_3 == "O")
       return winner_combination
@@ -98,24 +99,25 @@ end
 
 
 def draw?
-  if (full?(@board)) && (!won?(@board))
+  if (full?) && (!won?)
     true
   else
     false
   end
 end
+
+
 
 def over?
-  if won?(@board) || full?(@board)
+  if won? || full?
     true
   else
     false
   end
 end
 
-
 def winner
-  if winning = won?(@board)
+  if winning = won?
     position = winning[0]
     return @board[position]
   else
@@ -124,17 +126,15 @@ def winner
 end
 
 def play
-  num_of_times = 0
-  until num_of_times == 9
-    turn(@board)
-    num_of_times +=1
+  until over? || draw?
+    turn
   end
-  if won?(@board)
-    puts "congratulations!"
-  elsif draw?(@board)
-    puts "It's a draw."
+
+  if won?
+    player = winner
+    puts "Congratulations #{player}!"
+  elsif draw?
+    puts "Cat's Game!"
   end
 end
-
-
 end
