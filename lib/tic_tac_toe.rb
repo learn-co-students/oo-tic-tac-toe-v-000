@@ -36,11 +36,7 @@ class TicTacToe
   end
 
   def valid_move? (index)
-    if position_taken?(index) != false || !(index.between?(0,8))
-      return false
-    elsif position_taken?(index) == false && index.between?(0,8)
-      return true
-    end
+    !position_taken?(index) && index.between?(0,8)
   end
 
   def turn_count
@@ -52,18 +48,15 @@ class TicTacToe
   end
 
   def won?
-    WIN_COMBINATIONS.each do |combo|
-      if @board[combo[0]] == "X" && @board[combo[1]] == "X" && @board[combo[2]] == "X"
-        return combo
-      elsif @board[combo[0]] == "O" && @board[combo[1]] == "O" && @board[combo[2]] == "O"
+    WIN_COMBINATIONS.any? do |combo|
+      if position_taken?(combo[0]) && @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]
         return combo
       end
     end
-    return false
   end
 
   def full?
-    @board.all? {|element| element == "X" || element == "O"}
+    @board.all? {|element| element != " "}
   end
 
   def draw?
@@ -73,18 +66,15 @@ class TicTacToe
   end
 
   def over?
-    if won?|| full? || draw?
+    if won?|| draw?
       return true
     end
   end
 
   def winner
-    if !(won?)
-      return nil
-    elsif won?.all?{|element| @board[element] == "X"}
-        return "X"
-    elsif won?.all?{|element| @board[element] == "O"}
-        return "O"
+    #because they inherit from each other, you can use combo
+    if combo = won?
+      @board[combo[0]]
     end
   end
 
@@ -95,21 +85,17 @@ class TicTacToe
     if valid_move?(index)
       symbol = current_player
       move(index, symbol)
-      display_board
     else
       turn
     end
+    display_board
   end
 
   def play
     until over? do
       turn
     end
-    if won?
-      puts "Congratulations #{winner}!"
-    elsif draw?
-      puts "Cat's Game!"
-    end
+    puts winner ? "Congratulations #{winner}!" : "Cat's Game!"
   end
 
 end
