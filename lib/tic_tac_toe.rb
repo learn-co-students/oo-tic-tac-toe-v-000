@@ -87,6 +87,9 @@ class TicTacToe
   end
 
   # turn : receives user input via the gets method
+    # calls #input_to_index, #valid_move?, and #current_player
+    # makes valid moves and displays the board
+    # asks for input again after a failed validation
   def turn
     puts "Please enter 1-9:"
     user_input = gets.chomp
@@ -94,7 +97,7 @@ class TicTacToe
     if valid_move?( user_input ) == true
       puts "Valid move was made"
       character = current_player
-      move( index, character )
+      move( user_input, character )
       display_board
     else
       while valid_move?( user_input ) == false
@@ -105,9 +108,64 @@ class TicTacToe
       if valid_move?( user_input ) == true
         puts "Valid move was made"
         character = current_player
-        move( index, character )
+        move( user_input, character )
         display_board
       end
+    end
+  end
+
+  # won? : returns false for a draw
+  def won?
+    WIN_COMBINATIONS.detect do |combo|
+      combo.all? { |c| position_taken?( c ) && @board[c] == @board[ combo[0] ] }
+    end
+  end
+
+  # full? : returns true for a draw
+  def full?
+    @board.all? do |position|
+      position != " "
+    end
+  end
+
+  # draw? : returns true for a draw
+  def draw?
+    if !won? && full?
+      return true
+    else
+      return false
+    end
+  end
+
+  # over? : returns true for a draw
+  def over?
+    if draw? || won?
+      return true
+    else
+      return false
+    end
+  end
+
+  # winner : return X when X won
+  def winner
+    if won?
+      return @board[ won?[0] ]
+    else
+      return nil
+    end
+  end
+
+  # play : asks for players input on a turn of the game
+  def play
+    while !over?
+      turn
+    end
+    if won?
+      puts "Congratulations #{ winner }!"
+    elsif draw?
+      puts "Cat's Game!"
+    else
+      puts "Game over"
     end
   end
 
