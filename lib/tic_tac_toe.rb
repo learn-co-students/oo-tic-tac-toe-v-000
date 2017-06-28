@@ -35,7 +35,6 @@ end
 
 
 
-# code your #position_taken? method here!
 def position_taken?(index)
   if @board[index] == " " || @board[index] == ""
     false
@@ -57,7 +56,6 @@ def valid_move?(index)
 end
 
 
-#Turn method with helper methods
 def turn
   puts "Please enter 1-9:"
   index = input_to_index(gets.chomp)
@@ -70,19 +68,7 @@ def turn
   end
 end
 
-# def turn(board)
-#   puts "Please enter 1-9:"
-#   index = input_to_index(gets.chomp)
-#   if valid_move?(board, index)
-#     player_token = current_player(board)
-#     move(board, index, player_token)
-#     display_board(board)
-#   else
-#     turn(board)
-#   end
-# end
 
-#turn_count method
 def turn_count
   counter = 0
   @board.each do |token|
@@ -93,17 +79,7 @@ def turn_count
   return counter
 end
 
-# def turn_count(board)
-#   counter = 0
-#   board.each do |token|
-#     if token == "X" || token == "O"
-#       counter += 1
-#     end
-#   end
-#   return counter
-# end
-
-#current player method
+  
 def current_player
   if turn_count.even?
     "X"
@@ -151,7 +127,6 @@ def winner
 end
 
 
-# Define your play method below
 
 def play
   until over?
@@ -164,7 +139,6 @@ def play
     elsif draw? && over?
       puts "Cat's Game!"
     end
-end
+  end
 
-
-end #end of TicTacToe class
+end 
