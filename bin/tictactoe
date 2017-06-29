@@ -1,3 +1,10 @@
 #!/usr/bin/env ruby
+
 require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
+
+#Your bin/tictactoe CLI should:
+# Instantiate an instance of TicTacToe
+# Start the game by calling #play on that instance.
+
+TicTacToe.new.play
