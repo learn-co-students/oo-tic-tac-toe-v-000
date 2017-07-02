@@ -56,6 +56,7 @@ class TicTacToe
   # Helper Method
   #TURN
   def turn
+    puts "Please enter 1-9:"
     #get input
     user_input = gets.strip
 
@@ -93,30 +94,21 @@ end
 
 # Helper Method
 def over?
-	draw? || won?
+	won? || draw?
 end
 
 # Helper Method
 def winner
-	if won?
-		winning_combo = won?
-		@board[winning_combo[0]]
+	if win = won?
+		@board[win[0]]
 	end
 end
 
 # Helper Method
 def play
-  puts "Please enter 1-9:"
-  until over?
-  	turn
-  end
-  if won?
-    puts "Congratulations #{winner}!"
-  elsif draw?
-    puts "Cat's Game!"
-  end
+  turn until over?
+  puts winner ?  "Congratulations #{winner}!" : "Cat's Game!"
 end
-
 end
 ####################################################
 #initialize
