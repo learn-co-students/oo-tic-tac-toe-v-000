@@ -5,7 +5,7 @@ class TicTacToe
 
   WIN_COMBINATIONS =
   [
-    [0,1,2], # Top row
+    [0,1 ,2], # Top row
     [3,4,5],  # Midlle row
     [6,7,8], # last row
     [0,3,6], # left column
