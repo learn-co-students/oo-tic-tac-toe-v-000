@@ -1,3 +1,10 @@
 #!/usr/bin/env ruby
 require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
+
+# we need to create an instance of the Game
+# then we need to figure out how to start a game
+
+game = TicTacToe.new
+# instance.method
+game.play
