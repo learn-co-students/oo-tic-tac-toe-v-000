@@ -23,32 +23,32 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  def input_to_index(user_input)
-    user_input.to_i - 1
+  def input_to_index(input)
+    input.to_i - 1
   end
 
-  def move(board, index, player_token)
-    board[index] = player_token
+  def move(index,player_token)
+    @board[index] = player_token
   end
 
-  def position_taken?(board, location)
-    board[location] != " " && board[location] != ""
+  def position_taken?(location)
+    @board[location] != " " && @board[location] != ""
   end
 
-  def valid_move?(board, index)
-    index.between?(0,8) == true && position_taken?(board, index) == false
+  def valid_move?(index)
+    index.between?(0,8) == true && position_taken?(index) == false
   end
 
-  def turn(board)
+  def turn
     puts "Please enter 1-9:"
     input = gets.strip
     index = input_to_index(input)
-    player_token = current_player(board) #set local variable to return value of current_player method
-    if valid_move?(board, index)
-      move(board, index, player_token)
-      display_board(board)
+    player_token = current_player #set local variable to return value of current_player method
+    if valid_move?(index)
+      move(index,player_token)
+      display_board
     else
-      turn(board)
+      turn
     end
   end
 
