@@ -117,7 +117,7 @@ class TicTacToe
           win_token = winner# get return value of #winner method
           puts "Congratulations #{win_token}!"
         elsif draw?
-          puts "Cats Game!"
+          puts "Cat's Game!"
         end
     end
 
