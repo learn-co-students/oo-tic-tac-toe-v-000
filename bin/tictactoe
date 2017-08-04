@@ -5,6 +5,5 @@ require_relative '../lib/tic_tac_toe.rb'
 
 @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 puts "Wecome to Tic Tac Toe!"
-TicTacToe.new
-play 
-end
+game = TicTacToe.new
+game.play
