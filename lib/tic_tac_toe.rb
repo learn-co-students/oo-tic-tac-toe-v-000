@@ -55,8 +55,47 @@ class TicTacToe
       display_board
     else
       puts "invalid"
+      puts "Please enter 1-9:"
+      turn
+    end
+  end
+
+  def won?
+    WIN_COMBINATIONS.detect do |combo|
+      @board[combo[0]] == @board[combo[1]] &&
+      @board[combo[1]] == @board[combo[2]] &&
+      @board[combo[0]] != " "
+    end
+  end
+
+  def full?
+    @board.all? { |token| token == "X" || token == "O" }
+  end
+
+  def draw?
+    full? && !won?
+  end
+
+  def over?
+    won? || draw?
+  end
+
+  def winner
+    if winning_combo = won?
+      @board[winning_combo.first]
+    end
+  end
+
+  def play
+    until over?
+      puts "Please enter 1-9:"
       turn
     end
 
+    if won?
+      puts "Congratulations #{winner}!"
+    else
+      puts "Cat's Game!"
+    end
   end
 end
