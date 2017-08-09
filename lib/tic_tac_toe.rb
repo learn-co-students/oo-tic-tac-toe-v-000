@@ -30,4 +30,33 @@ class TicTacToe
   def move(index, token="X")
     @board[index] = token
   end
+
+  def position_taken?(index)
+    !(@board[index].nil? || @board[index] == " ")
+  end
+
+  def valid_move?(index)
+    !position_taken?(index) && index.between?(0,8)
+  end
+
+  def turn_count
+    @board.count { |token| token == "X" || token == "O" }
+  end
+
+  def current_player
+    turn_count.even? ? "X" : "O"
+  end
+
+  def turn
+    input = gets.strip
+    index = input_to_index(input)
+    if valid_move?(index)
+      move(index, current_player)
+      display_board
+    else
+      puts "invalid"
+      turn
+    end
+
+  end
 end
