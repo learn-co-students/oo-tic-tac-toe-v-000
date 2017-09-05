@@ -80,7 +80,7 @@ class TicTacToe
       end
       display_board
     end
-#
+
     def won?
       WIN_COMBINATIONS.each do |win_combination|
         win_index_1 = win_combination[0]
@@ -95,24 +95,44 @@ class TicTacToe
           return win_combination # return the win_combination indexes that won.
         elsif  position_1 == "O" && position_2 == "O" && position_3 == "O"
           return win_combination
+        end
+        end
+      return false
+    end
+
+    def full?
+      @board.all? do |pos|
+        pos == "X" || pos == "O"
+      end
+    end
+
+    def play
+      while !over?
+        turn
+      end
+      if won?
+        puts "Congratulations #{winner}!"
+      else
+        puts "Cat's Game!"
+      end
+    end
+
+    def draw?
+      if full? && !won?
+        return true
+      else
+        return false
+      end
+    end
+
+    def over?
+    draw? || won?
+    end
+
+    def winner
+      won? ? @board[won?[0]] : nil
     end
   end
-end
-#
-#   def full?
-#     @board.all? do |pos|
-#       pos == "X" || pos == "O"
-
-
-    # def play
-    #   while !over?
-    #     turn
-    #   end
-    #   if won?
-    #     puts "Congratulations #{winner}!"
-    #   else
-    #     puts "Cat's Game!"
-    #   end
 
 # #GET the value of a variable
 # #SET the value of a variable
