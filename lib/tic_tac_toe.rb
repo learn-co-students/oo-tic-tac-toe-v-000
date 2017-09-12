@@ -57,16 +57,16 @@ class TicTacToe
   end
 
   def turn
-    puts "Please enter 1-9:"
+    puts "Please enter a number 1-9:"
     input = gets.chomp
     index = input_to_index(input)
     if valid_move?(index)
-    current_player
-    move(index, current_player)
-    display_board
+    token = current_player
+    move(index, token)
     else
     turn
    end
+   display_board
   end
 
   def won?
