@@ -62,22 +62,54 @@ class TicTacToe
     index = input_to_index(input)
     if valid_move?(index)
     current_player
-    move(index, character = "X")
+    move(index, current_player)
     display_board
     else
     turn
    end
   end
 
-#  def won?
-#    if WIN_COMBINATIONS
-
-#  end
-
   def won?
     WIN_COMBINATIONS.detect do |path|
       @board[path[0]] == @board[path[1]] &&
       @board[path[1]] == @board[path[2]] &&
-      position_taken?(board, path[0])
+      position_taken?(path[0])
+      end
     end
+
+
+ def full?
+   @board.all?{|mark| mark == "X" || mark == "O"}
+ end
+
+
+ def draw?
+   if won?
+     false
+   elsif full?
+     true
+   end
+ end
+
+ def over?
+   if draw?
+     true
+   elsif won?
+     true
+   else
+     false
+   end
+ end
+
+ def winner
+   if winning_combo = won?
+     @board[winning_combo.first]
+   end
+ end
+
+ def play
+    turn until over?
+    puts winner ? "Congratulations #{winner}!" : "Cat's Game!"
   end
+
+end
