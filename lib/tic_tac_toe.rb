@@ -1,4 +1,4 @@
-#TTT in OO 
+#TTT 
 class TicTacToe
   def initialize
     @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
