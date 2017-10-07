@@ -1,3 +1,14 @@
 #!/usr/bin/env ruby
 require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
+
+# GREET THE PLAYER AND DECLARE AN EMPTY BOAR
+board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+puts "Welcome to Tic Tac Toe!"
+
+# DISPLAYS THE EMPTY BOARD
+game_1 = TicTacToe.new(board)
+game_1.display_board
+
+# PLAY THE GAME
+game_1.play
