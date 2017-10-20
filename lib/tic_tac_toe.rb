@@ -99,7 +99,7 @@
    end
 
    def over?
-     full? || won?
+     draw? || won?
    end
 
    def winner
@@ -110,13 +110,11 @@
 
    def play
      while !over?
-       if !draw?
-         turn
-       end
+       turn
      end
      if won?
        puts "Congratulations #{winner}!"
-     else draw?
+     else
        puts "Cat's Game!"
      end
    end
