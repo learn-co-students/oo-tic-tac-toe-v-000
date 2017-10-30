@@ -37,7 +37,8 @@ class TicTacToe
   end
 
   def current_player
-    turn_count % 2 === 0 ? "X" : "O"
+    # turn_count % 2 === 0 ? "X" : "O"
+    turn_count.even? ? "X" : "O"
   end
 
   def turn
@@ -62,7 +63,8 @@ class TicTacToe
   end
 
   def full?
-    turn_count == 9 ? true : false
+    # turn_count == 9 ? true : false
+    @board.all? {|e| e != " "}
   end
 
   def draw?
@@ -80,14 +82,16 @@ class TicTacToe
   end
 
   def play
-    while !over?
-      turn
-    end
-    if over? && won?
-      puts "Congratulations #{winner}!"
-    elsif over? && draw?
-      puts "Cat's Game!"
-    end
+    # while !over?
+    #   turn
+    # end
+    # if over? && won?
+    #   puts "Congratulations #{winner}!"
+    # elsif over? && draw?
+    #   puts "Cat's Game!"
+    # end
+    turn until over?
+    puts winner ? "Congratulations #{winner}!" : "Cat's Game!"
   end
 
 end
