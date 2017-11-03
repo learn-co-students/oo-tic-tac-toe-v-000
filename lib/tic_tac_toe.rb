@@ -54,7 +54,6 @@ def turn
  puts "Please enter 1-9:"
  user_input = gets.strip
  index = input_to_index(user_input)
- binding.pry
 
  if valid_move?(index)
    move(index, current_player)
@@ -98,7 +97,7 @@ def draw?
 end #  if board[top_row_win[0]] == "X" && board[top_row_win[1]] == "X" && board
 
  def over?
-   won? || full?
+   won? || draw?
  end
 
  def winner
@@ -114,6 +113,8 @@ end
   puts "Congratulations O!"
   puts "Cat's Game!"
 end
+
+
 
 
 
