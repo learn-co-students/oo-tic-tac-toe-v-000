@@ -1,3 +1,134 @@
+require "pry"
+class TicTacToe
+  WIN_COMBINATIONS = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [6,4,2]
+  ]
+  def display_board
+    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+    puts "-----------"
+    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+    puts "-----------"
+    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+  end
+  def input_to_index(input)
+   index = input.to_i - 1
+ end
+ def move(index, token)
+   @board[index] = token
+ end
+ def position_taken?(index)
+   !(@board[index].nil? || @board[index] == " ")
+ end
+ def valid_move?(index)
+   if index.between?(0,8) && @board[index] == " "
+   return true
+ end
+end
+def turn_count
+  index = 0
+  counter = 0
+  while index <= @board.length-1
+    if position_taken?(index)
+      counter += 1
+    end
+
+    index += 1
+  end
+  counter
+end
+def current_player
+  if turn_count % 2 == 0
+    "X"
+  else
+    "O"
+  end
+end
+def turn
+ puts "Please enter 1-9:"
+ user_input = gets.strip
+ index = input_to_index(user_input)
+ binding.pry
+
+ if valid_move?(index)
+   move(index, current_player)
+   display_board
+ else
+  turn
+   end
+end
+def won?
+  # win_combination is a 3 element ar
+  WIN_COMBINATIONS.each do |win_combination|# grab each index from the win_combination that composes a win.
+    win_index_1 = win_combination[0]
+    win_index_2 = win_combination[1]
+    win_index_3 = win_combination[2]
+
+    position_1 = @board[win_index_1] # load the value of the board at win_index_1
+    position_2 = @board[win_index_2] # load the value of the board at win_index_2
+    position_3 = @board[win_index_3]
+    # load the value of the board at
+    win_index_3
+
+    if position_1 == "X" && position_2 == "X" && position_3 == "X"
+      return win_combination
+    elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+        return win_combination
+    end
+  end
+  false
+end
+def full?
+  @board.all? {|token| token == "X" || token == "O"}
+
+end
+ #  top_row_win = [0,1,2]
+def draw?
+  if full? == true && won? == false
+  return true
+  else
+  return false
+  end
+end #  if board[top_row_win[0]] == "X" && board[top_row_win[1]] == "X" && board
+
+ def over?
+   won? || full?
+ end
+
+ def winner
+   if win_combination = won?
+   @board[win_combination[0]]
+ end
+end
+def play
+while !over?
+  turn
+end
+  puts "Congratulations X!"
+  puts "Congratulations O!"
+  puts "Cat's Game!"
+end
+
+
+
+
+
+
+
+  def initialize
+    @board = [" "," "," "," "," "," "," "," "," "]
+  end
+end
+
+
+
+=begin
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -38,6 +169,7 @@ def won?(board)
   false
 end
 # board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
+[]
 def full?(board)
   board.all? {|token| token == "X" || token == "O"}
 
@@ -148,3 +280,4 @@ end #  if board[top_row_win[0]] == "X" && board[top_row_win[1]] == "X" && board
    def over?(board)
      won?(board) || draw?(board)
    end
+=end
