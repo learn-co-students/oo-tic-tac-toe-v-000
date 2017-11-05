@@ -97,19 +97,19 @@ def over?
 end
 
 def winner
-  if won? != nil
-    winner = [won?[0]]
+    if won? != nil
+      winner = @board[won?[0]]
+    end
   end
-end
 
-def play
-  until over? == true
-    turn
+  def play
+    until over? == true
+      turn
+    end
+    if draw? == true
+         puts "Cat's Game!"
+    else won?
+       puts "Congratulations #{winner}!"
+     end
   end
-  if draw? == true
-       puts "Cat's Game!"
-  else won?
-     puts "Congratulations #{winner(board)}!"
-   end
-end
 end
