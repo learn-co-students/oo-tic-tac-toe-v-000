@@ -1,6 +1,6 @@
 class TicTacToe
   def initialize
-    @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]  #sets board array equal to an instance variable
   end
 
   WIN_COMBINATIONS = [
