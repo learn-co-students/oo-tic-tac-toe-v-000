@@ -26,8 +26,8 @@ class TicTacToe
     "#{input}".to_i - 1
   end
 
-  def move(index,token="X")
-    @board[index] = token
+  def move(index,current_player="X")
+    @board[index] = current_player
   end
 
   def position_taken?(index)
@@ -56,9 +56,12 @@ class TicTacToe
     puts "Please enter 1-9:"
     input = gets.strip
     index = input_to_index(input)
-    valid_move?(index)
-    move(index,current_player)
-    display_board
+    if valid_move?(index)
+      move(index,current_player)
+      display_board
+    else
+      turn
+    end
   end
 
     def won?
@@ -84,4 +87,10 @@ class TicTacToe
     def winner
       @board[won?[0]] if won?
     end
-end
+
+    def play
+      turn until over? || won? || draw?
+      puts "Congratulations #{winner}!" if won?
+      puts "Cat's Game!" if draw?
+    end
+  end
