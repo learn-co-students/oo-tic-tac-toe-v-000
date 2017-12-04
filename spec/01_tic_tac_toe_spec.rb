@@ -286,6 +286,13 @@ describe './lib/tic_tac_toe.rb' do
     end
 
     describe '#winner' do
+      it 'returns nil when no winner' do
+        game = TicTacToe.new
+        board = ["X", "O", " ", " ", " ", " ", " ", "O", "X"]
+        game.instance_variable_set(:@board, board)
+
+        expect(game.winner).to be_nil
+      end
       it 'return X when X won' do
         game = TicTacToe.new
         board = ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
@@ -301,14 +308,14 @@ describe './lib/tic_tac_toe.rb' do
 
         expect(game.winner).to eq("O")
       end
+      # it 'returns nil when no winner' do
+      #   game = TicTacToe.new
+      #   board = ["X", "O", " ", " ", " ", " ", " ", "O", "X"]
+      #   game.instance_variable_set(:@board, board)
+      #
+      #   expect(game.winner).to be_nil
+      # end
 
-      it 'returns nil when no winner' do
-        game = TicTacToe.new
-        board = ["X", "O", " ", " ", " ", " ", " ", "O", "X"]
-        game.instance_variable_set(:@board, board)
-
-        expect(game.winner).to be_nil
-      end
     end
   end
 end
