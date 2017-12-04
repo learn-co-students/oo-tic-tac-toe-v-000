@@ -56,18 +56,32 @@ class TicTacToe
     puts "Please enter 1-9:"
     input = gets.strip
     index = input_to_index(input)
-      if valid_move?(index)
-        move(index,current_player)
-        display_board
-      else
-        turn
-      end
-    end
+    valid_move?(index)
+    move(index,current_player)
+    display_board
+  end
 
     def won?
       WIN_COMBINATIONS.detect do |i|
         position_taken?(i[0]) && @board[i[0]] == @board[i[1]] && @board[i[1]] == @board[i[2]]
       end
-    end 
+    end
 
+    def full?
+      @board.all? do |i|
+        i == "X" || i == "O"
+      end
+    end
+
+    def draw?
+      full? && !won?
+    end
+
+    def over?
+      full? || won?
+    end
+
+    def winner
+      @board[won?[0]] if won?
+    end
 end
