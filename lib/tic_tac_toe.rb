@@ -2,7 +2,7 @@
 #translating the procedural ruby tictactoe game to OO tictactoe
 class TicTacToe
   def initialize(board = nil)
-    @board = board || Array.new(9, " ")
+    @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   end
 
   # Define your WIN_COMBINATIONS constant
@@ -26,7 +26,7 @@ class TicTacToe
   end
 
   def input_to_index(input)
-      index = input.to_i - 1
+      input.to_i - 1
   end
 
 
@@ -42,10 +42,20 @@ class TicTacToe
       taken = true
       end
   end
+  #more eloquent way but less comprehensive is the following:
+  # def position_taken(index)
+  #  @board[index] != " "
+  # end
+
 
   def valid_move?(index)
-    (position_taken?(index)==false && index.between?(0,8))
+    (position_taken?(index) == false && index.between?(0,8))
   end
+
+  #or
+  #def valid_move?(index)
+  #!position_taken(index) && index.between? (0,8)
+  #end
 
   def turn
     puts "Please enter 1-9:"
@@ -58,6 +68,7 @@ class TicTacToe
     else
       turn
     end
+    display_board
   end
 
 
@@ -83,9 +94,26 @@ end
     end
   end
 
+  #could also use any? and explicitly return win_combo since the implicit
+  #return is true or false. in this case I prefer detect since it's implicit
+  #return value is what we are looking for anyways.
+# def won?
+#    WIN_COMBINATIONS.any? do |combo|
+#      if position_taken?(combo[0]) && @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]
+#        return combo
+#      end
+#    end
+#  end
+
+
   def full?
     @board.all? {|value| value == "X" || value == "O"}
   end
+
+  #or
+  #def full?
+  #  @board.all?{|square| square != " " }
+  #end
 
   def draw?
     full? && !won?
@@ -111,6 +139,13 @@ end
       puts "Cat's Game!"
     end
   end
+#or
+#def play
+#    turn until over?
+#    puts winner ? "Congratulations #{winner}!" : "Cat's Game!"
+#  end
+#end
+
 
 end
 =begin
