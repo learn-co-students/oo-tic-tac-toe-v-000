@@ -1,7 +1,7 @@
 # Helper Methods
 #translating the procedural ruby tictactoe game to OO tictactoe
 class TicTacToe
-  def initialize(board = nil)
+  def initialize
     @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   end
 
@@ -68,7 +68,6 @@ class TicTacToe
     else
       turn
     end
-    display_board
   end
 
 
