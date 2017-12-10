@@ -129,14 +129,14 @@ class TicTacToe
   end
 
   def play
-    victor = winner
-    until over?
+
+    until won?|| over?
       turn
     end
     if draw?
       puts draw?
     else
-      puts "Congratulations #{victor}!"
+      puts "Congratulations #{winner}!"
     end
   end
 
