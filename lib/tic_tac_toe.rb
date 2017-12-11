@@ -1,3 +1,4 @@
+require 'pry'
 class TicTacToe
 
   def initialize(board = nil)
@@ -27,7 +28,7 @@ class TicTacToe
 
   # converts players input to actual index on board
   def input_to_index(input)
-    input.to_i - 1
+    index = input.to_i - 1
   end
 
   # makes the move
@@ -51,8 +52,7 @@ class TicTacToe
     input = gets.strip
     index = input_to_index(input)
     if valid_move?(index)
-      move(index)
-      current_player
+      move(index, current_player)
       display_board
     else
       turn
@@ -61,22 +61,12 @@ class TicTacToe
 
   # determine how many turns have been made
   def turn_count
-  counter = 0
-  @board.each do |turn|
-    if turn == "X" || turn == "O"
-        counter += 1
-    end
-   end
-   return counter
+    @board.count{|token| token == "X" || token == "O"}
   end
 
   # determine if it's X's or O's turn
   def current_player
-    if turn_count % 2 == 0
-         "X"
-    elsif turn_count % 2 == 1
-         "O"
-    end
+    turn_count % 2 == 0 ? "X" : "O"
   end
 
   # false for no win/draw, returns winning array
