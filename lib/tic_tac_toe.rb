@@ -12,13 +12,11 @@ def play
     puts "Congratulations #{winner}!"
   else
     puts "Cat's Game!"
+  end
 end
-end
-# input = gets  THIS IS NOT NEEDED BECAUSE TURN(BOARD) ALREADY GETS INPUT, BOOM!
-
 
 WIN_COMBINATIONS = [
-  [0,1,2], # Top row
+  [0,1,2], 
   [3,4,5],
   [6,7,8],
   [0,3,6],
@@ -40,20 +38,20 @@ def display_board
   puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
 end
 
-def input_to_index(input)#Is input a baseword or a hardwired argument/method? #The input is an integer but we needed to show a conversion to integer just because that's how input could be accepted in order to make the needed -1 change to the index?
+def input_to_index(input)
   input.to_i-1
 end
 
 def move(index, current_player)
     @board[index] = current_player
 end
-#why do i need a 0 in place of the default argument? Is it inherently needed or is it needed for the running of the Flatiron project itself?
+
 def position_taken?(index)
   @board[index] == "X" || @board[index] == "O"
 end
 
 def valid_move?(index)
-  if position_taken?(index) == false && index.between?(0,8)#why do we need validmove in the first place? #why did we have to add thiis between aprt?
+  if position_taken?(index) == false && index.between?(0,8)
     true
   end
 end
@@ -64,8 +62,8 @@ def turn
   index = input_to_index(input)
   if valid_move?(index)
     player = current_player
-    move(index, player)#this is all i need to execute,pass move
-    display_board#this is how you call more than one method for the same if statement $why did i have to involve all of thee helper methods in this if statement
+    move(index, player)
+    display_board
   else
     turn
   end
@@ -80,10 +78,9 @@ def current_player
 end
 
 def full?
-  # is to check if there are any empty spaces
   @board.all? do |position|
-  position == "X" || position =="O" # Will evaluate to true for 1, true for 3
-end
+  position == "X" || position =="O"
+  end
 end
 
 def draw?
