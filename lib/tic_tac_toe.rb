@@ -11,7 +11,7 @@ class TicTacToe
     [1,4,7],
     [2,5,8],
     [0,4,8],
-    [6,4,2]
+    [2,4,6]
   ]
 
   def display_board
@@ -64,5 +64,33 @@ end
     end
   end
 
+  def won?
+    WIN_COMBINATIONS.each do |combo|
+      arr = [@board[combo[0]], @board[combo[1]], @board[combo[2]]]
+      return combo if arr == ["X","X","X"] || arr == ["O","O","O"]
+    end
+    false
+  end
+
+  def full?
+    @board.all? {|space| space != " "}
+  end
+
+  def draw?
+    won? == false && full? == true ? true : false
+  end
+
+  def over?
+    won? || draw? ? true : false
+  end
+
+  def winner
+    return @board[won?[0]] if won?
+    return nil if draw?
+  end
+
+  def play
+
+  end
 
 end
