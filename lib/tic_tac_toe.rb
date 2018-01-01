@@ -1,9 +1,16 @@
 class TicTacToe
-def initialize
-  @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-end
-attr_accessor :board
 
+def initialize(board = [" "," "," "," "," "," "," "," "," "])
+  @board = board
+end
+
+def TicTacToe(play)
+  @TicTacToe = TicTacToe
+end
+
+def TicTacToe
+  @TicTacToe
+end
 WIN_COMBINATIONS = [
   [0,1,2], # Top row
   [3,4,5],  # Middle row
@@ -33,7 +40,7 @@ end
 
 def position_taken?(index)
     @board[index] != " " && @board[index] != ""
-  end
+end
 
 def valid_move?(index)
     index.between?(0,8) && !position_taken?(index)
@@ -75,25 +82,18 @@ def won?
   end
 end
 
-def full?(board)
-  WIN_COMBINATIONS.all? do |turn| #review .all method
-    position_taken?(board, turn[0])
+def full?
+  @board.none? do |position|
+    position == " " || position.nil?
   end
 end
 
-
 def draw?
-  if !won?(board) && full?(board)
-    return true
-  else
-    return false
-  end
+  full? && !won?
 end
 
 def over?
-  if full?(board) || won?(board) || draw?(board)
-    return true
-  end
+  won? || draw?
 end
 
 def winner
@@ -107,15 +107,15 @@ def winner
   end
 
 def play
-  until over?(board) || won?(board) #= true
-    turn(board)
+  until over?
+    turn
     end
-    if draw?(board)
-      puts "Cats Game!"
-    elsif won?(board)
-      puts "Congratulations!"
+    if draw?
+      puts "Cat's Game!"
+    elsif won?
+      puts "Congratulations #{winner}!"
     end
   end
 end
 
-#lab needs work and I realize I don't like tic tac toe...
+#review lab
