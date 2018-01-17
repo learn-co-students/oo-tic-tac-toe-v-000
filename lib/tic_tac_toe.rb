@@ -58,7 +58,8 @@ class TicTacToe
    end
 
    def turn
-      puts "Hello! Please pick a number from 1 - 9"
+      puts "Hello! Welcome to Tic Tac Toe!
+      Please pick a number from 1 - 9"
         user_input = gets.strip
         index = input_to_index(user_input)
       if valid_move?(index)
