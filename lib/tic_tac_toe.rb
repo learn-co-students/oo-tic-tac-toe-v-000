@@ -1,6 +1,6 @@
 class TicTacToe
   def initialize
-  @board = [" ", " ", " ", " ", " ", " ", " ", " ", " ",  ]
+  @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   end
 
   WIN_COMBINATIONS = [
@@ -36,12 +36,11 @@ end
 
 def valid_move?(position)
 	position.between?(0, 8) && !position_taken?(position)
-
 end
 
 def turn_count
 	@board.count{ |item| item == "X" || item == "O"}
-	end
+end
 
 def current_player
 if turn_count.even?
@@ -56,7 +55,7 @@ puts "Please input a number (1-9):"
 input = gets.strip
 index = input_to_index(input)
 if valid_move?(index)
-player = current_player
+move(index, current_player)
 display_board
 else
 	turn
@@ -78,7 +77,7 @@ full? && !won?
 end
 
 def over?
-draw? || won? || full?
+draw? || won?
 end
 
 def winner
@@ -90,12 +89,12 @@ end
 
 def play
   while !over?
-    turn(board)
+    turn
   end
-  if draw?
-       puts "Cat's Game!"
-  else won?
-     puts "Congratulations #{winner}!"
-   end
+  if won?
+    puts "Congratulations #{winner}!"
+  elsif draw?
+    puts "Cat's Game!"
+  end
 end
 end
