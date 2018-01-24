@@ -1,4 +1,3 @@
-require 'pry'
 class TicTacToe
   def initialize(board = nil)
     @board = board || Array.new(9," ")
@@ -95,7 +94,6 @@ def winner
 end
 
 def play
-binding.pry
   turn until over?
   if winner == "X"
     puts "Congratulations X!"
