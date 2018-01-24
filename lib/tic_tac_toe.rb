@@ -91,9 +91,8 @@ def winner
     else "O"
     end
   end
-end
-
-def play
+  
+  def play
   turn until over?
   if winner == "X"
     puts "Congratulations X!"
@@ -104,3 +103,6 @@ def play
   else
   end
 end
+end
+
+
