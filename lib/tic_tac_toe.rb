@@ -1,6 +1,6 @@
 class TicTacToe
-  def initialize(board = nil)
-    @board = board || Array.new(9, " ")
+  def initialize
+    @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   end
 
   WIN_COMBINATIONS = [
@@ -31,11 +31,7 @@ class TicTacToe
   end
 
   def position_taken?(index)
-    if @board[index] == " " || @board[index] == "" || @board[index] == nil
-      false
-    elsif @board[index] != " "
-      true
-    end
+    @board[index] != " "
   end
 
   def valid_move?(index)
@@ -67,12 +63,13 @@ class TicTacToe
 
     user_input = gets.strip
     index = input_to_index(user_input)
-    if valid_move?(index) == true
-      move(index, current_player)
-        display_board
+    if valid_move?(index)
+     token = current_player
+     move(index, token)
       else
         turn
       end
+      display_board
     end
 
   def won?
