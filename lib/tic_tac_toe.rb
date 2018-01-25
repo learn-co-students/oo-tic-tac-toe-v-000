@@ -52,10 +52,51 @@ class TicTacToe
     input = gets.strip
     index = input_to_index(input)
     if valid_move?(index)
-    move(index, current_player(board))
+    move(index, current_player)
     display_board
-  else
+    else
     turn
+    end
   end
-end
+  def won?
+    WIN_COMBINATIONS.detect do |win|
+      @board[win[0]] == @board[win[1]] && @board[win[1]] == @board[win[2]] && position_taken?(win[0])
+    end
+  end
+  def full?
+    @board.all? do |i|
+      i == "X" || i == "O"
+    end
+  end
+  def draw?
+    if won?
+      false
+    elsif full?
+      true
+    else
+      false
+    end
+  end
+  def over?
+    if won? || draw? || full?
+      true
+    else
+      false
+    end
+  end
+  def winner
+    if won?
+      @board[won?.first]
+    end
+  end
+  def play
+    until over?
+      turn
+    end
+    if won?
+      puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cat's Game!"
+    end
+  end
 end
