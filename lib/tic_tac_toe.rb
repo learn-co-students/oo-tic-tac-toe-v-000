@@ -73,26 +73,14 @@ class TicTacToe
 
   def full?
     !(@board.any?{ |i| i == " " })
-    #   return false
-    # else
-    #   return true
-    # end
   end
 
   def draw?
     full? && !won?
-    #   return true
-    # else
-    #   return false
-    # end
   end
 
   def over?
     won? || full? || draw?
-    #   return true
-    # else
-    #   return false
-    # end
   end
 
   def winner
