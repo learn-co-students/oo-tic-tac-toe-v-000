@@ -57,7 +57,7 @@ class TicTacToe
      index = input_to_index(input)
      valid_move = valid_move?(index)
    end
-   move(index)
+   move(index, current_player)
    display_board
  end
 
@@ -84,45 +84,47 @@ class TicTacToe
    end
  end
 
+ def full?
+   @board.all? do |currentMove|
+    currentMove != " "
+  end
+ end
 
-   def full?
-     @board.all? do |move|
-      move != " "
-   end
-
-
-
-   def over?
-     over = (won? || full? || draw?)
-     over ? true : false
-   end
+      def over?
+        over = (won? || full? || draw?)
+        over ? true : false
+      end
 
 
-   def draw?
-     draw = !won? && full?
-     draw ? true : false
-   end
+      def draw?
+        draw = !won? && full?
+        draw ? true : false
+      end
 
 
-   def winner
-     winner = won?
-     if winner == nil
-       return nil
-     else
-       return  @board[winner[0]]
-     end
-   end
+      def winner
+        winner = won?
+        if winner == nil
+          return nil
+        else
+          return  @board[winner[0]]
+        end
+      end
 
 
-   def play
-     until over?
-       turn
-     end
-     if won?
-       puts "Congratulations #{winner}, you won!"
-     elsif draw?
-       puts "It's a tie!"
-     end
+      def play
+        until over?
+          turn
+        end
+        if won?
+          puts "Congratulations #{winner}!"
+        elsif draw?
+          puts "Cat's Game!"
+        end
+      end
+
+
+
 
 
 
