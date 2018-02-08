@@ -48,14 +48,14 @@ class TicTacToe
     puts "Please enter 1-9:"
     input = gets.strip
     index = input_to_index(input)
-      while !valid_move?(index)
-      puts "invalid"
-      input = gets.strip
-      index = input_to_index(input)
-      end
-    puts move(index, current_player)
-    puts display_board
-    end
+    if valid_move?(index)
+    move(index, current_player)
+    display_board
+    else
+    puts "invalid"
+    turn
+  end
+  end
 
     def turn_count
       @board.count{|token| token == "X" || token == "O"}
@@ -96,10 +96,7 @@ class TicTacToe
       end
 
       def over?
-        if @board.include?(" " || "")
-          return false
-        else true
-        end
+        return full? || won? || draw?
       end
 
       def winner
@@ -112,12 +109,11 @@ class TicTacToe
 
       def play
         while !over?
-        puts turn
-        puts won?
-        puts draw?
+          turn
+          won?
         end
         if won?
-          puts "Congratulations #{winner}!"
+         puts "Congratulations #{winner}!"
         else draw?
         end
       end
