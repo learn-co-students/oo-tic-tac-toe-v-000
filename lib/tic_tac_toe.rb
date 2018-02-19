@@ -58,34 +58,20 @@ class TicTacToe
 
   def turn
     puts "Please enter 1-9: "
-    user_input = STDIN.gets.strip
+    user_input = gets.strip
     index = input_to_index(user_input)
     if !valid_move?(index)
-      puts "Invalid input"
       turn
+    else
+      move(index, current_player)
+      display_board
     end
-    move(index, current_player)
-    display_board
   end
 
   def won?
-    i = 0
-    empty = true
-    while i < @board.length
-      if @board[i] == ("X" || "O")
-        empty = false
-      end
-      i += 1
+    WIN_COMBINATIONS.detect do |win_arr|
+      position_taken?(win_arr[0]) && @board[win_arr[0]] == @board[win_arr[1]] && @board[win_arr[1]] == @board[win_arr[2]]
     end
-    if empty == true
-      return false
-    end
-    WIN_COMBINATIONS.each do |win_arr|
-      if position_taken?(win_arr[0]) && @board[win_arr[0]] == @board[win_arr[1]] && @board[win_arr[1]] == @board[win_arr[2]]
-        return win_arr
-      end
-    end
-    return false
   end
 
   def full?
@@ -112,7 +98,7 @@ class TicTacToe
 
   def winner
     if won?
-      return @board[won?[0]]
+      return @board[won?[1]]
     end
   end
 
@@ -128,7 +114,4 @@ class TicTacToe
       return
     end
   end
-
-
-
 end
