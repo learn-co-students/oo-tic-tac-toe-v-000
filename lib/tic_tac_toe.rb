@@ -43,6 +43,14 @@ class TicTacToe
     turn_count.even? ? "X" : "O"
   end
 
+
+  def play
+    until over?
+      turn
+    end
+    won? ? (puts "Congratulations #{winner}!") : (puts "Cat's Game!")
+  end
+
   def turn
     puts "Please enter 1-9:"
     pos = gets.strip
@@ -76,6 +84,7 @@ class TicTacToe
   def over?
     draw? || won?
   end
+
   def board_x
     board_x_arr = []
     @board.each_with_index do |el, idx|
@@ -95,6 +104,7 @@ class TicTacToe
     end
     board_o_arr
   end
+
 
 
 end
