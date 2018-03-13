@@ -51,7 +51,7 @@ class TicTacToe
   end
 
   def won?
-    WIN_COMBINATIONS.detect
+    WIN_COMBINATIONS.detect do |array|
       @board[array[0]] == @board[array[1]] && @board[array[1]] == @board[array[2]] && position_taken?(array[0])
     end
   end
@@ -61,15 +61,28 @@ class TicTacToe
   end
 
   def draw?
-    @board.full? && !@board.won?
+  full? && !won?
   end
 
   def over?
-    @board.draw? || @board.won?
+    draw? || won?
   end
 
   def winner
-    if winXO = @board.won?
-      @board[winXO.first]
+    if winXO = won?
+      @board[winXO[0]]
     end
   end
+
+  def play
+    until over?
+      turn
+    end
+
+    if won?
+      puts "Congratulations #{winner}!"
+    else
+      puts "Cat's Game!"
+    end
+  end
+end
