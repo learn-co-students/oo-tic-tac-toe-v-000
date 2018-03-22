@@ -26,7 +26,6 @@ class TicTacToe
 
   def input_to_index(input)
   index = input.to_i - 1
-
   end
 
   def move(index,token)
@@ -69,8 +68,7 @@ class TicTacToe
   end
 
   def won?
-    WIN_COMBINATIONS.detect do |win_combination|
-
+    WIN_COMBINATIONS.find do |win_combination|
 
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
@@ -80,11 +78,11 @@ class TicTacToe
     position_2 = @board[win_index_2]
     position_3 = @board[win_index_3]
 
-    if position_1 == "X" || position_1 == "O"
-    win_combination
-    else
-      false
-    end
+    #if @board[win_combination[0]] == @board[win_combination[1]] && @board[win_combination[0]] == @board[win_combination[2]]
+      #binding.pry
+      if (position_1 == "X" && position_2 == "X" && position_3 == "X") || (position_1 == "O" && position_2 == "O" && position_3 == "O")
+      return win_combination
+      end
   end
 
   def full?
@@ -95,19 +93,17 @@ class TicTacToe
     end
   end
 
-
   def draw?
-      !won? && full?
-    end
+    !won? && full?
   end
 
   def over?
     won? || draw?
-    end
+  end
 
 
-  def winner?
-    WIN_COMBINATIONS.each do |win_combination|
+  def winner
+    WIN_COMBINATIONS.find do |win_combination|
 
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
@@ -117,12 +113,34 @@ class TicTacToe
     position_2 = @board[win_index_2]
     position_3 = @board[win_index_3]
 
-    if won? && position_1 == "X" && position_2 == "X" && position_3 == "X"
+    if won? && (position_1 == "X" && position_2 == "X" && position_3 == "X")
       return "X"
-    else won? && position_1 == "O" && position_2 == "O" && position_3 == "O"
+    elsif won? && (position_1 == "O" && position_2 == "O" && position_3 == "O")
       return "O"
+    else
+      nil
+    end
   end
-  nil
+    end
+    nil
   end
+
+  def play
+    until over?
+      turn
+    end
+     if won?
+        puts "Congratulations #{winner}!"
+     else draw?
+        puts "Cat's Game!"
+      end
+    end
 end
-end
+#   end
+# end
+
+  #  def winner
+  #    if the_winner = won? #[0,1,2]
+  #      @board[the_winner[0]]
+  #    end
+  #  end
