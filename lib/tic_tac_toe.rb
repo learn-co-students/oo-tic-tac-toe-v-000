@@ -31,10 +31,10 @@ class TicTacToe
   end
 
   def input_to_index(input)
-    return (input.to_i - 1)
+    @idx = (input.to_i - 1)
   end
   
-  def move(idx, token = "X")
+  def move(idx = @idx, token = "X")
     v = valid_move?(idx)
     
     if v
@@ -61,17 +61,17 @@ class TicTacToe
     puts "Please enter a move: 1-9"
     rtn = gets.strip
     idx = input_to_index(rtn)
-    token = current_player()
+    token = current_player
     
     if !move(idx, token) 
-      turn()
+      turn
     end
     
-    display_board()
+    display_board
     true
   end
-  def current_player()
-    count = turn_count()
+  def current_player
+    count = turn_count
     
     if count.even?
       return "X"
@@ -79,7 +79,8 @@ class TicTacToe
       return "O"
     end
   end
-  def turn_count()
+
+  def turn_count
     count = 0
     @board.each do |elem|
       e = elem.strip
@@ -87,7 +88,8 @@ class TicTacToe
     end
     count
   end
-  def won?()
+
+  def won?
     WIN_COMBINATIONS.each do |arr|
       b_0 = @board[arr[0]].strip
       b_1 = @board[arr[1]].strip
@@ -99,7 +101,8 @@ class TicTacToe
     end
     false
   end
-  def full?()
+
+  def full?
     count = 0
     @board.each do |elem|
       e = elem.strip
@@ -108,9 +111,9 @@ class TicTacToe
     count == 9
   end
   
-  def draw?()
-    w = won?()
-    f = full?()
+  def draw?
+    w = won?
+    f = full?
     
     if w
       return false
@@ -120,40 +123,37 @@ class TicTacToe
       return true
     else
       return false
-    end
-    
+    end 
   end
   
-  def over?()
-    w = won?()
-    f = full?()
-    d = draw?()
+  def over?
+    w = won?
+    f = full?
+    d = draw?
     
     w || f || d ? true : false
   end
   
-  def winner()
-    w = won?()
+  def winner
+    w = won?
     
     if !w 
       return nil
     else
       return @board[w[0]]
     end
-    
   end
   
-  def play()
-    until (over?()) do
-      turn()
+  def play
+    until (over?) do
+      turn
     end
     
-    if won?()
-      winner_ = winner()
+    if won?
+      winner_ = winner
       puts "Congratulations #{winner_}!"
     else
       puts "Cat's Game!"
     end
   end
-  
 end
