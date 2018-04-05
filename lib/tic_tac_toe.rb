@@ -84,7 +84,7 @@ class TicTacToe
   end
   
   def over?
-    won? || full? ? true : false
+    won? || draw? ? true : false
   end
   
   def winner
@@ -97,14 +97,16 @@ class TicTacToe
   
   def play
     
-  while !over?
-    turn
-  end
-    if won?
-      puts "Congratulations #{winner}!"
-    elsif draw?
-      puts "Cat's Game!"
+    while !over?
+      turn
     end
+    
+      if draw?
+        puts "Cat's Game!"
+      elsif won?
+        puts "Congratulations #{winner}!"
+      end
+      
   end
   
   
