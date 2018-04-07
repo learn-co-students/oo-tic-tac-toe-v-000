@@ -68,11 +68,7 @@ class TicTacToe
   end
 
   def draw?
-    if won?.is_a? Array
-      false
-    elsif full?
-      true
-    end
+    !(won?.is_a? Array) && full?
   end
 
   def full?
@@ -89,6 +85,10 @@ class TicTacToe
     else
       nil
     end
+  end
+
+  def play
+
   end
 
 end # end class
