@@ -1,13 +1,9 @@
 
 class TicTacToe
+attr_accessor :board
   def initialize(board = [" ", " ", " ", " ", " ", " ", " ", " ", " "])
     @board = board
   end
-
-def board
-  @board
-end
-
 
 WIN_COMBINATIONS = [
   [0, 1, 2],
@@ -34,8 +30,8 @@ def display_board
   end
 
 def move(location, token)
-binding.pry
-    self.board[location.to_i - 1] = token
+
+    board[location] = token
  end
 
  def position_taken?(board, index)
