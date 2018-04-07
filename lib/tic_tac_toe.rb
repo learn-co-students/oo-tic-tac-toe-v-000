@@ -57,26 +57,38 @@ class TicTacToe
 
   def won?
     WIN_COMBINATIONS.each do |combo|
-      if combo.all? { |ele| ele == "X" }
-         combo
+      if combo.all? { |ele| @board[ele] == "X" }
+        return combo
       end
-      if combo.all? { |ele| ele == "O" }
-        combo
+      if combo.all? { |ele| @board[ele] == "O" }
+        return combo
       end
     end
     false
   end
 
   def draw?
-    return full? && !won? ? true : false
+    if won?.is_a? Array
+      false
+    elsif full?
+      true
+    end
   end
 
   def full?
-    @board.all? { |ele| ele == "X" || ele == "O"}
+    @board.all? { |ele| ele != " " }
   end
 
   def over?
     draw? || won?
+  end
+
+  def winner
+    if won? != false
+      @board[won?[0]] == "X" ? "X" : "O"
+    else
+      nil
+    end
   end
 
 end # end class
