@@ -81,10 +81,9 @@ class TicTacToe
 
   def winner
     if won? != false
-      @board[won?[0]] == "X" ? "X" : "O"
-    else
-      nil
+      return @board[won?[0]] == "X" ? "X" : "O"
     end
+    nil
   end
 
   def play
