@@ -1,3 +1,6 @@
+http://mdblandford.com/is_oo_tictactoe_really_a_metaphor_for_life
+
+
 # OO Tic Tac Toe
 
 ## Objectives
