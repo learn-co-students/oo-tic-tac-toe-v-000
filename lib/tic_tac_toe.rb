@@ -117,7 +117,7 @@ end
 def play
   until over?
   turn
-end
+  end
   if won?
     puts "Congratulations #{winner}!"
   end
@@ -126,6 +126,3 @@ end
   end
 end
 end
-
-
-"rspec spec/01_tic_tac_toe_spec.rb"
