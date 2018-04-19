@@ -1,3 +1,4 @@
+require 'pry'
 class TicTacToe
   WIN_COMBINATIONS = [
     [0,1,2],
@@ -29,7 +30,7 @@ class TicTacToe
     if won?
       puts "Congratulations #{winner}!"
     elsif draw?
-      puts "Cat's Game!"
+      puts "Cat\'s Game!"
     end
   end
 
@@ -42,14 +43,7 @@ class TicTacToe
       move(index, player)
       display_board
     else
-      puts "Please enter 1-9:"
-      input = gets.strip
-      index = input_to_index(input)
-      player = current_player
-      if valid_move?(index)
-        move(index, player)
-        display_board
-      end
+      turn
     end
   end
 
@@ -66,7 +60,7 @@ class TicTacToe
   end
 
   def valid_move?(index)
-    index.between?(0,8) && !position_taken?(index)
+    index.between?(0,8) && !(position_taken?(index))
   end
 
   def position_taken?(index)
@@ -78,15 +72,15 @@ class TicTacToe
   end
 
   def full?
-    @board.none?{ |e| e == " " || e == ""}
+    @board.all?{ |e| e == "X" || e == "O"}
   end
 
   def draw?
-    if won?
-      return false
-    elsif full?
+    if full? && !won?
       return true
-    else
+    elsif won?
+      return false
+    elsif !won? && !full?
       return false
     end
   end
@@ -103,11 +97,15 @@ class TicTacToe
   end
 
   def over?
-    won? || full? ? true : false
+    if won? || draw?
+      return true
+    else
+      return false
+    end
   end
 
   def winner
-    @winner = won?
-    @winner ? @board[@winner[0]] : nil
+    winner = won?
+    winner ? @board[winner[0]] : nil
   end
 end
