@@ -15,37 +15,30 @@ class TicTacToe
   [6,4,2]
   ]
 
-  def display_board=(show_the_board)
+  def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
     puts "-----------"
     puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
     puts "-----------"
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
-    @show_the_board = show_the_board
   end
 
-  def display_board
-    @show_the_board
+  def input_to_index(user_input)
+    index = user_input.to_i - 1
   end
 
-
-
-def input_to_index(user_input)
-  user_input.to_i - 1
+def move(index, player = "X")
+  @board[index] = player
 end
 
-def move(board, index, player)
-  board[index] = player
-end
-
-def position_taken?(board, index)
-  (board[index] ==  " " || board[index] == "" || board[index] == nil) ?
+def position_taken?(index)
+  (@board[index] ==  " " || @board[index] == "" || @board[index] == nil) ?
     false : true
 
 end
 
-def valid_move?(board, index)
-  index.between?(0,8) && !position_taken?(board, index)
+def valid_move?(index)
+  index.between?(0,8) && !position_taken?(index)
 end
 
 def turn(board)
@@ -60,12 +53,12 @@ def turn(board)
   end
 end
 
-def turn_count(board)
-  board.count{|token| token == "X" || token == "O"}
+def turn_count
+  @board.count{|token| token == "X" || token == "O"}
 end
 
-def current_player(board)
-  turn_count(board) % 2 == 0 ? "X" : "O"
+def current_player
+  turn_count % 2 == 0 ? "X" : "O"
 end
 
 def won?(board)
