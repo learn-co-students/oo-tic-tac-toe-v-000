@@ -51,8 +51,15 @@ def valid_move?(index)
   end
 end
 
+def current_player()
+  turn_count() % 2 == 0 ? "X" : "O"
+end
+ 
+def turn_count()
+  @board.count{|token| token == "X" || token == "O"}
+end
 
-
+=begin
 
 def turn_count()
   count = 0
@@ -80,6 +87,7 @@ def current_player()
     return "O"
   end
 end
+=end
 
 def turn()
   puts "Please enter 1-9:"
@@ -164,12 +172,7 @@ end
 
 def play()
   
-  #puts "Please enter 1-9:"
-  #input = gets.strip
-  #turn()
-  
-  display_board
-
+display_board
 
   until(over?()) do
        turn()
