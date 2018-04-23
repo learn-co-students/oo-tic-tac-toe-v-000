@@ -1,8 +1,9 @@
+require "pry"
+
 class TicTacToe
   def initialize(board = nil)
     @board = board || Array.new(9, " ")
   end
-end
 
 
 WIN_COMBINATIONS = [
@@ -17,14 +18,13 @@ WIN_COMBINATIONS = [
   ]
 
 
-    def display_board
+  def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
     puts "-----------"
     puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
     puts "-----------"
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
-binding.pry
 
 
   def input_to_index(user_input)
@@ -53,6 +53,8 @@ binding.pry
     end
   end
   return number_of_turns
+end
+
 
   def current_player
     if turn_count % 2 == 0
@@ -60,6 +62,7 @@ binding.pry
     else
     "O"
   end
+end
 
 #turn
 def turn
@@ -113,7 +116,6 @@ def winner
       nil
     end
   end
-end
 end
 
 #play
