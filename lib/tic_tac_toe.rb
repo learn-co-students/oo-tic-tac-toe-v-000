@@ -53,14 +53,10 @@ def move(index, token)
   @board[index]=token
 end
 
-def current_player(turn)
-    num = turn_count(index)
+def current_player
+    num = (turn_count)
     if num % 2 == 0
       return "X"
-    if num == 3
-      return "X"
-    if num == 4
-      return "O"
     else
       return "O"
     end 
