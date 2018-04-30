@@ -78,10 +78,9 @@ def current_player
 end 
 
 def won?
-  if WIN_COMBINATIONS.any? 
-    @win = @player
-  else
-    puts false
+  WIN_COMBINATIONS.detect do |win|
+    @board[win[0]] == @board[win[1]] && @board[win[1]] == @board[win[2]] && position_taken(win[0])
+  
   end
 end
 end
