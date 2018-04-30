@@ -25,17 +25,24 @@ end
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-def move(array, index, value="X")
-  array[index] = value
+def move(index, value="X")
+  @board[index] = value
 end
 
 def turn
-  gets.strip
-  gets.strip to_i-1
+  value = gets.strip
+  index = input_to_index(value)
+  if valid_move?(index) 
+    move(index, current_player)
+    display_board
+  else 
+    puts "NOPE!"
+    turn
+  end
 end
 
-def input_to_index(move)
-  gets.strip to_i-1
+def input_to_index(input)
+  input.to_i-1
 end
     
 def valid_move?(index)
@@ -61,12 +68,8 @@ def turn_count
   counter
 end
 
-def move(index, value="X")
-  @board[index] = value
-end
-
 def current_player
-    num = (turn_count)
+    num = turn_count
     if num % 2 == 0
       return "X"
     else
