@@ -36,7 +36,7 @@ def turn
     move(index, current_player)
     display_board
   else 
-    puts "NOPE!"
+    puts false
     turn
   end
 end
@@ -76,4 +76,12 @@ def current_player
       return "O"
     end 
 end 
+
+def won?
+  if WIN_COMBINATIONS.any? 
+    @win = @player
+  else
+    puts false
+  end
+end
 end
