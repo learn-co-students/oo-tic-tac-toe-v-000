@@ -29,18 +29,25 @@ def move(array, index, value="X")
   array[index] = value
 end
 
-
-def input_to_index(move)
+def turn
   gets.strip
   gets.strip to_i-1
 end
-  
-def valid_move?(input_to_index)
-  index.between?(0, 8) && !(position_taken?)
-end 
 
-def position_taken?(valid_move)
- !(@board[index] == " " || @board[index] == "" || @board[index] == nil)
+def input_to_index(move)
+  gets.strip to_i-1
+end
+    
+def valid_move?(index)
+  index.between?(0, 8) && !(position_taken?(index))
+end 
+  
+def position_taken?(index)
+  if (@board[index] == " " || @board[index] == "" || @board[index] == nil)
+    false
+  else 
+    true
+  end
 end
 
 
@@ -54,20 +61,9 @@ def turn_count
   counter
 end
 
-def input_to_index(move)
-  move.to_i-1
-end
-
 def move(index, value="X")
   @board[index] = value
-  if (position == "X" || position == "O")
-    puts false
-    if (position == " ")
-      puts true
 end
-end
-end
-
 
 def current_player
     num = (turn_count)
