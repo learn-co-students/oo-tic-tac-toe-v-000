@@ -86,6 +86,11 @@ end
 def full?
   @board.all? {|position| position == "X" || position == "O"}
 end
+
+# def draw?
+#  !=WIN_COMBINATIONS && full
+# end
+
 end
 
 
