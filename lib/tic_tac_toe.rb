@@ -30,6 +30,7 @@ WIN_COMBINATIONS = [
   end
   
   def turn
+    puts "Please enter a space 1-9."
     value = gets.strip
     index = input_to_index(value)
     if valid_move?(index) 
@@ -67,7 +68,7 @@ WIN_COMBINATIONS = [
     end
     counter
   end
-  
+
   def current_player
       num = turn_count
       if num % 2 == 0
@@ -101,6 +102,16 @@ WIN_COMBINATIONS = [
     won? || full? || draw?
   end
   
+  def play
+    until over?
+      turn
+    end
+      if won?
+        puts "Congratulations #{winner}!"
+      else 
+        puts "Cat's Game!"
+    end
   end
+end
   
   
