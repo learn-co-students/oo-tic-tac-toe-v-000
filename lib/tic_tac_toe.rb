@@ -1,5 +1,3 @@
-require 'pry'
-
 class TicTacToe
 
   def initialize
@@ -53,17 +51,68 @@ class TicTacToe
   end
 
   def won?
-    WIN_COMBINATIONS.each do |win_combination|
-      win_comination.select do |win_index|
-        @board[win_index] == "X" && @board[win_index] == "X" && @board[win_index] == "X" ||
-        @board[win_index] == "O" && @board[win_index] == "O" && @board[win_index] == "O"
+  WIN_COMBINATIONS.each do |win_combination|
+    win_index_1 = win_combination[0]
+    win_index_2 = win_combination[1]
+    win_index_3 = win_combination[2]
 
-        else
-        return false
+    position_1 = @board[win_index_1] # load the value of the board at win_index_1
+    position_2 = @board[win_index_2] # load the value of the board at win_index_2
+    position_3 = @board[win_index_3] # load the value of the board at win_index_3
+
+      if position_1 == "X" && position_2 == "X" && position_3 == "X"
+        return win_combination # return the win_combination indexes that won.
+      elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+        return win_combination
+      else
+        false
+      end
     end
+  false
+  end
+
+  def full?
+    @board.all? do |space|
+      space == "X" || space == "O"
     end
   end
 
+  def draw?
+    if !won? && full?
+      return true
+    else
+      return false
+    end
+  end
+
+  def over?
+    if won? || draw?
+      return true
+    else
+      return false
+    end
+  end
+
+  def winner
+    if won?
+      return @board[won?[0]]
+    else
+      return nil
+    end
+  end
+
+  def play
+    if over?
+      if won?
+        puts "Congratulations #{winner}!"
+      elsif draw?
+        puts "Cat's Game!"
+      end
+    else
+      turn
+      play
+    end
+  end
 
 
 end
