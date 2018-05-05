@@ -69,7 +69,7 @@ Every method you build will be encapsulated by this class.
 
 ### `#initialize` and `@board`
 
-The first test in `01_tic_tac_toe_spec.rb` will ensure the requirement that when a new game of Tic Tac Toe is started — that is, when a new instance of `TicTacToe` is initialized — the instance of the game must set the starting state of the board, an array with 9 `" "` empty strings, within an instance variable named `@board`.
+The first test 0-in `01_tic_tac_toe_spec.rb` will ensure the requirement that when a new game of Tic Tac Toe is started — that is, when a new instance of `TicTacToe` is initialized — the instance of the game must set the starting state of the board, an array with 9 `" "` empty strings, within an instance variable named `@board`.
 
 In other words, your `#initialize` method should set a `@board` variable equal to a new, empty array that represents the game board.
 
