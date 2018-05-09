@@ -45,10 +45,10 @@ class TicTacToe
     if valid_move?(index)
       token = current_player
       move(index, token)
-      display_board
     else
       turn
     end
+    display_board
   end
 
   def turn_count
@@ -88,8 +88,8 @@ class TicTacToe
   end
 
   def winner
-    if win_combo = won?
-      @board[win_combo[0]]
+    if combo = won?
+      @board[combo[0]]
     end
   end
 
@@ -104,5 +104,4 @@ class TicTacToe
       puts "Cat's Game!"
     end
   end
-
 end
