@@ -30,25 +30,33 @@ class TicTacToe
   end
   
   def move(board, index, token)
-    
+    @board[index] = token
   end
 
-  def position_taken?(index)
-    if index == "X" || index == "O"
-      false
+  def position_taken?(board, index)
+    if @board[index] != "" || @board[index] != " "
+      true
     end
   end
 
-  def valid_move?(index)
-    if user_input == (0..9) && position_taken?(index) == false
+  def valid_move?(board, index)
+    if index.between?(0,8) && !position_taken?(board, index)
       true
     end
   end
   
-  def turn
+  def turn(board)
+    puts "Please enter 1-9"
+    user_input = gets.strip
+    input_to_index(user_input)
+    index = input_to_index(user_input)
+    if valid_move?(board, index) == true
+      move(board, index, token)
+    else
+      turn(board)
+    end
+  end    
     
-  end
-
   def turn_count
     @board.count{| token | token == "X" || token == "O"}
   end
