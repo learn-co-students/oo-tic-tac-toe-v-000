@@ -65,21 +65,33 @@ class TicTacToe
     turn_count % 2 == 0 ? "X" : "O"
   end
 
-  def won?
-    
+  def won?(board)
+    WIN_COMBINATIONS.detect do | win_combination |
+      board[win_combination[0]] == board[win_combination[1]] && board[win_combination[1]] == board[win_combination[2]] && position_taken?(board, win_combintion[0])
+    end
   end
   
   def full?(board)
-
+    board.all? {|cell| cell == "X" || cell == "O"}
   end
 
   def draw?(board)
+    if !full?(board) && !won?(board)
+      true
   end
 
   def over?(board)
+    if won?(board) || full?(board) || draw?(board)
+      true
+    else
+      false
+    end
   end
   
   def winner?(board)
+    if won?(board)
+      return board[won?(board[0])]
+    end
   end
 
 end
