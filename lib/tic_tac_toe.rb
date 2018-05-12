@@ -93,5 +93,26 @@ class TicTacToe
       return board[won?(board[0])]
     end
   end
+end
+
+  def play(board)
+  turn = 0
+  while turn < 9
+    turn(board)
+    turn += 1
+  end
+end
+
+  def play(board)
+    until over?(board)
+      turn(board)
+    end
+    if won?(board)
+      winner(board) == "X" || winner(board) == "O"
+      puts "Congratulations #{winner(board)}!"
+    elsif draw?(board)
+      puts "Cat's Game!"
+    end
+  end
 
 end
