@@ -8,14 +8,14 @@ class TicTacToe
   WIN_COMBINATIONS = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
   
   def display_board
-    @board
+    display_board = @board
   end
   
-  def input_to_index(user_input)
+  def input_to_index(user_input) #DON'T THINK I DID THIS YET
     user_input.to_i - 1 #gets user input, subtracts one to coincide with board array index
   end
   
-  def move(board, index, token)
+  def move(board, token = "X")
     @board[index] = token
   end
 
