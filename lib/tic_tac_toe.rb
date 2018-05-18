@@ -15,7 +15,7 @@ def display_board
   puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
 end
   
-  def input_to_index(user_input) #DON'T THINK I DID THIS YET
+  def input_to_index(user_input)
     user_input.to_i - 1 #gets user input, subtracts one to coincide with board array index
   end
  
@@ -25,12 +25,14 @@ end
 
   def position_taken?(index)
     if @board[index] == "" || @board[index] == " "
-      false
+      return false
+    else
+      return true
     end
   end
 
-  def valid_move?(board, index)
-    if index.between?(0,8) && !position_taken?(board, index)
+  def valid_move?(index)
+    if index.between?(0,8) && !position_taken?(index)
       true
     end
   end
