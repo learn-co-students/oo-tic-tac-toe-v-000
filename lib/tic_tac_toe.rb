@@ -43,9 +43,10 @@ end
     input_to_index(user_input)
     index = input_to_index(user_input)
     if valid_move?(index) == true
-      move(index, token)
+      move(@board, index, token)
     else
-      turn(@board)
+      puts "That move is invalid."
+      turn
     end
   end    
     
@@ -57,18 +58,20 @@ end
     turn_count % 2 == 0 ? "X" : "O"
   end
 
-  def won?(board)
+  def won?
     WIN_COMBINATIONS.detect do | win_combination |
-      @board[win_combination[0]] == @board[win_combination[1]] && @board[win_combination[1]] == @board[win_combination[2]] && position_taken?(@board, win_combintion[0])
+      @board[win_combination[0]] == @board[win_combination[1]] && @board[win_combination[1]] == @board[win_combination[2]] && position_taken?(@board, win_combination[0])
     end
+    else
+      return false
   end
   
-  def full?(board)
+  def full?
     @board.all? {|cell| cell == "X" || cell == "O"}
   end
 
-  def draw?(board)
-    if !full?(board) && !won?(board)
+  def draw?
+    if !full?(@board) && !won?(@board)
       true
   end
 
