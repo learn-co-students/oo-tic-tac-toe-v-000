@@ -43,7 +43,7 @@ end
     input_to_index(user_input)
     index = input_to_index(user_input)
     if valid_move?(index) == true
-      move(@board, index, token)
+      move(index, current_player)
     else
       puts "That move is invalid."
       turn
@@ -99,10 +99,10 @@ end
 #end
 
   def play
-    until over?(@board)
-      turn(@board)
+    until over?
+      turn
     end
-    if won?(@board)
+    if won?
       winner?(@board) == "X" || winner?(@board) == "O"
       puts "Congratulations #{winner?(@board)}!"
     elsif draw?(board)
