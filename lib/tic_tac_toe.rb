@@ -80,14 +80,12 @@ end
   def over?
     if won? || full? || draw?
       true
-    else
-      false
     end
   end
   
-  def winner?(board)
-    if won?(board)
-      return @board[won?(board[0])]
+  def winner?
+    if won?
+      return @board[won?(@board[0])]
     end
   end
 end
@@ -100,13 +98,13 @@ end
   end
 end
 
-  def play(board)
-    until over?(board)
-      turn(board)
+  def play
+    until over?(@board)
+      turn(@board)
     end
-    if won?(board)
-      winner(board) == "X" || winner(board) == "O"
-      puts "Congratulations #{winner(board)}!"
+    if won?(@board)
+      winner?(@board) == "X" || winner?(@board) == "O"
+      puts "Congratulations #{winner?(@board)}!"
     elsif draw?(board)
       puts "Cat's Game!"
     end
