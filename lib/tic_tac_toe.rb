@@ -15,6 +15,7 @@ class TicTacToe
 ]
 
 
+
   def display_board
 
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
@@ -77,12 +78,13 @@ class TicTacToe
       position_1 == "O" && position_2 == "O" && position_3 == "O"
    end
   end
-#
+
   def full?
     @board.all? do |position|
       position == "X" || position == "O"
+    end
   end
-end
+
 
   def draw?
     !won? && full?
@@ -105,5 +107,14 @@ end
     else
       puts "Cat's Game!"
     end
+  end
+
+
+  def display_board
+    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+    puts "-----------"
+    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+    puts "-----------"
+    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 end
