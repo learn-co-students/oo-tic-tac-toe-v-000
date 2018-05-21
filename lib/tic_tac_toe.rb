@@ -39,12 +39,13 @@ end
   
   def turn
     puts "Please enter 1-9"
-    #current_player
     user_input = gets.strip
     input_to_index(user_input)
     index = input_to_index(user_input)
-    if valid_move?(index) == true
-      move(index, current_player)
+    token = current_player
+    if valid_move?(index)
+      move(index, token)
+      display_board
     else
       puts "That move is invalid."
       turn
