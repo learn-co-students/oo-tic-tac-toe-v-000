@@ -90,7 +90,7 @@ end
       return @board[won?(@board[0])]
     end
   end
-end
+
 
 #  def play(board)
 #  turn = 0
@@ -111,3 +111,4 @@ end
       puts "Cat's Game!"
     end
   end
+end
