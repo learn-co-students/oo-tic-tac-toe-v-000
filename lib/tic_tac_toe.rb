@@ -63,8 +63,8 @@ end
     WIN_COMBINATIONS.detect do | win_combination |
       @board[win_combination[0]] == @board[win_combination[1]] && @board[win_combination[1]] == @board[win_combination[2]] && position_taken?(win_combination[0])
     end
-    else
-      return false
+  #  else
+  #    return false
   end
   
   def full?
@@ -74,8 +74,7 @@ end
   def draw?
     if full? && !won?
       true
-    else
-      false
+    end
   end
 
   def over?
@@ -112,5 +111,3 @@ end
       puts "Cat's Game!"
     end
   end
-
-end
