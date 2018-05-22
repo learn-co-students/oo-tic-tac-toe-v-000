@@ -40,7 +40,6 @@ end
   def turn
     puts "Please enter 1-9"
     user_input = gets.strip
-    input_to_index(user_input)
     index = input_to_index(user_input)
     token = current_player
     if valid_move?(index)
@@ -87,8 +86,14 @@ end
   end
   
   def winner?
-    if won?
-      return @board[won?(@board[0])]
+    WIN_COMBINTAIONS.detect do | win_combination |
+      if (@board[win_combination[0]]) == "X" && (@board[win_combination[1]]) == "X" && (@board[win_combination[2]]) == "X"
+        return "X"
+      elsif (@board[win_combination[0]]) == "O" && (@board[win_combination[1]]) == "O" && (@board[win_combination[2]]) == "O"
+        return "O"
+      else
+        return nil
+      end
     end
   end
 
