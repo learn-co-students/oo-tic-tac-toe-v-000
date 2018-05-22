@@ -85,8 +85,8 @@ end
     end
   end
   
-  def winner?
-    WIN_COMBINTAIONS.detect do | win_combination |
+  def winner
+    WIN_COMBINATIONS.detect do | win_combination |
       if (@board[win_combination[0]]) == "X" && (@board[win_combination[1]]) == "X" && (@board[win_combination[2]]) == "X"
         return "X"
       elsif (@board[win_combination[0]]) == "O" && (@board[win_combination[1]]) == "O" && (@board[win_combination[2]]) == "O"
@@ -111,8 +111,8 @@ end
       turn
     end
     if won?
-      winner?(@board) == "X" || winner?(@board) == "O"
-      puts "Congratulations #{winner?(@board)}!"
+      winner(@board) == "X" || winner(@board) == "O"
+      puts "Congratulations #{winner(@board)}!"
     elsif draw?(board)
       puts "Cat's Game!"
     end
