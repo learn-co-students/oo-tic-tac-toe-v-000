@@ -26,31 +26,31 @@ class TicTacToe
   user_input.to_i - 1
   end
 
-def move(index, player_token = "X")
-  @board[index] = player_token
-end
+  def move(index, player_token = "X")
+    @board[index] = player_token
+  end
 
-def position_taken?(index)
-  !(@board[index].nil? || @board[index] == " ")
-end
+  def position_taken?(index)
+    !(@board[index].nil? || @board[index] == " ")
+  end
 
-def valid_move?(index)
-  index.between?(0,8) && !position_taken?(index)
-end
+  def valid_move?(index)
+    index.between?(0,8) && !position_taken?(index)
+  end
 
-def turn
-  puts "Please enter 1-9:"
-  input = gets.strip
-  index = input_to_index(input)
-  if valid_move?(index)
-    move(index, current_player)
-    display_board
-  else
+  def turn
+    puts "Please enter 1-9:"
+    input = gets.strip
+    index = input_to_index(input)
+    if valid_move?(index)
+      move(index, current_player)
+      display_board
+    else
       puts "Invalid Input. Please enter 1-9:"
       input = gets.strip
       index = input_to_index(input)
+    end
   end
-end
 
   def turn_count
   counter = 0
@@ -71,15 +71,15 @@ end
     return player
   end
 
-def play
-  until over? 
-    turn
+  def play
+    until over? 
+      turn
+    end
+    if draw?
+      puts "Cat's Game!"
+    end
+      puts "Congratulations #{winner}!"
   end
-  if draw?
-    puts "Cat's Game!"
-  end
-    puts "Congratulations #{winner}!"
-end
 
   def won?
     WIN_COMBINATIONS.detect do |winning_combo|
