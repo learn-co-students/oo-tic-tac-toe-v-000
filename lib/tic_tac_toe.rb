@@ -109,9 +109,9 @@ end
       turn
     end
     if won?
-      winner(@board) == "X" || winner(@board) == "O"
-      puts "Congratulations #{winner(@board)}!"
-    elsif draw?(board)
+      winner == "X" || winner == "O"
+      puts "Congratulations #{winner}!"
+    elsif draw?
       puts "Cat's Game!"
     end
   end
