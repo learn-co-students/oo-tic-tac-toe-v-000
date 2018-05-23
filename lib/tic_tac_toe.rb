@@ -68,7 +68,7 @@ end
    end
 
    def over?
-    draw? || full?
+    draw? || won?
      end
 
      def winner
@@ -84,8 +84,9 @@ end
       if won?
         puts "Congratulations #{winner}!"
       else
-        puts "Cat's game!"
+        puts "Cat's Game!"
       end
     end
+
 
 end
