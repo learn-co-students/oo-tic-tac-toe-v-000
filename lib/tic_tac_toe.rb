@@ -4,17 +4,6 @@ class TicTacToe
     @board = board || Array.new(9, " ")
   end
 
-  def play
-    until over?
-      current_player
-      turn
-    end
-    if won?
-      puts "Congratulations #{winner(board)}!"
-    else
-      puts "Cat's Game!"
-    end
-  end
 
   def current_player
     turn_count % 2 == 0 ? "X" : "O"
@@ -82,9 +71,9 @@ class TicTacToe
       position_3 = @board[win_index_3]
 
       if position_1 == "X" && position_2 == "X" && position_3 == "X"
-        return win_combination
+        win_combination
       elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
-        return win_combination
+        win_combination
       else
         false
       end
@@ -100,7 +89,8 @@ class TicTacToe
   end
 
   def draw?
-    if (won? == false && full? == true)
+    #if (won? == false && full? == true)
+    if !won? && full?
       true
     else
       false
@@ -108,16 +98,31 @@ class TicTacToe
   end
 
   def over?
-    if won? != false
+    if won? || draw?
       true
-    elsif full? == true
-      true
+    else
+      false
     end
   end
 
   def winner
-    if win_combination = won?
-      @board[win_combination.first]
+    return nil if !won?
+    position = won?[0]
+    if @board[position] == "X"
+      return "X"
+    elsif @board[position] == "O"
+      return "O"
+    end
+  end
+
+  def play
+    until over?
+      turn
+    end
+    if won?
+      puts "Congratulations #{winner}!"
+    elsif
+      puts "Cat's Game!"
     end
   end
 
