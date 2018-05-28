@@ -1,5 +1,7 @@
 # OO Tic Tac Toe
-<!--
+
+This is a 2 player CLI version of Tic Tac Toe. To play clone and download the repository, run `bundle install` then `./bin/tictactoe`.
+<!-- Original Assignment
 ## Objectives
 
 1. Build a CLI Tic Tac Toe game!
