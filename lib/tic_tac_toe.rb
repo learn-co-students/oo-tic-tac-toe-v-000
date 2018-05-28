@@ -1,6 +1,7 @@
 require "pry"
 
 class TicTacToe
+  binding.pry
   def initialize
     @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   end
