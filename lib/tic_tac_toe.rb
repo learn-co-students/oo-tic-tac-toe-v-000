@@ -6,7 +6,7 @@ class TicTacToe
   end
 
   def board=(board)
-    @board = board 
+    @board = board
   end
   def board
     @board
@@ -23,7 +23,7 @@ class TicTacToe
       [2, 4, 6] #diagonal 2
     ]
 
-    
+
     def display_board
       puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
       puts "-----------"
@@ -31,11 +31,11 @@ class TicTacToe
       puts "-----------"
       puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
     end
-    
+
     def input_to_index(user_input)
       user_input.to_i - 1
     end
-    
+
     def move(index, current_player)
       index = input_to_index
       @board[index] = current_player
@@ -97,7 +97,7 @@ class TicTacToe
     def full?
       @board.none? {|play| play == nil || play == " "}
     end
-    
+
     def draw?
       if full? && !won?
       return true
@@ -128,5 +128,4 @@ class TicTacToe
           puts "Cat's Game!"
         end
       end
-
 end
