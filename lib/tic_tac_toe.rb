@@ -1,5 +1,4 @@
 
-require 'pry'
 
 class TicTacToe
     def initialize(board = nil)
@@ -33,6 +32,7 @@ def input_to_index(user_input)
 end
 
 
+
 def move(index, token)
   @board[index] = token 
 end
@@ -46,8 +46,8 @@ def position_taken?(index)
     !position_taken?(index) && index.between?(0,8)
   end
 
- 
 
+ 
 def turn_count
   counter = 0
   @board.each do |spaces|
@@ -56,7 +56,8 @@ def turn_count
     end
   end
   counter
-end
+end  
+
 
 def current_player
   turn_count % 2 == 0 ? "X" : "O"
@@ -75,17 +76,17 @@ end
     end
     display_board
   end
+end
 
 
-   def won?
-    WIN_COMBINATIONS.any? do |combo|
-      if position_taken?(combo[0]) && @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]
-        return combo
-       end
-     end
-  end 
+ def won?
+  WIN_COMBINATIONS.any? do |index|
+    @board[index[0]] == @board[index[1]] &&
+    @board[index[1]] == @board[index[2]]
+    position_taken?(index[0])
+    end
+ end
  
-
 def full?
   @board.all?{|element| element == "X" || element == "O"}
 end
@@ -116,6 +117,7 @@ end
     end
   end
 end
+
 
 
 
