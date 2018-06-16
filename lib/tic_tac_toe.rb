@@ -95,30 +95,17 @@ end
     won? || draw?
   end
 
-  #checks if the game has a winner
   def winner
-    if won?
-      winning_play = won?
-      first_play = winning_play[0]
-      if @board[first_play] == "X"
-        "X"
-      elsif @board[first_play] == "O"
-        "O"
-      end
-    else
-      nil
-    end
+    won? ? board[won?[0]] : nil
   end
-  #end of helper methods
 
   #starts the game
   def play
     while !over? do
       turn
     end
-    player_x_o = winner
-    if player_x_o
-      puts "Congratulations #{player_x_o}!"
+    if winner
+      puts "Congratulations #{winner}!"
     else
       puts "Cat's Game!"
     end
