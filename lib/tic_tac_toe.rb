@@ -1,8 +1,8 @@
 class TicTacToe
   def initialize
-    @board = [" "," "," "," "," "," "," "," "," "]
-  end 
-  
+    @board = Array.new(9," ")
+  end
+
   WIN_COMBINATIONS = [
   [0,1,2],
   [3,4,5],
@@ -16,10 +16,10 @@ class TicTacToe
 
   def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
-   puts "-----------"
-   puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
-   puts "-----------"
-   puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+    puts "-----------"
+    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+    puts "-----------"
+    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
   def input_to_index(user_input)
@@ -51,21 +51,17 @@ class TicTacToe
   end
 
   def turn_count
-    counter = 0 
+    counter = 0
       @board.each do |player|
         if player == "X" || player == "O"
-          counter += 1 
+          counter += 1
         end
     end
     counter
   end
-  
+
   def current_player
-    if turn_count .even?
-      "X"
-    else  
-      "O"
-    end
+    turn_count.even? ? "X" : "O"
   end
 
  def won?
@@ -90,31 +86,19 @@ class TicTacToe
   end
 
   def full?
-    if @board.detect {|element| element == " "}
-      false
-    else
-      true 
-    end
+    @board.detect {|element| element == " "} ? false : true
   end
 
   def draw?
-    if !won? && full?
-      true
-    else
-      false 
-    end   
+    !won? && full? ? true : false
   end
 
   def over?
-    if won? || draw? || full?
-      true 
-    else
-     false 
-    end
+    won? || draw? || full? ? true : false
   end
 
   def winner
-    if win_combination = won?
+     if win_combination = won?
       @board[win_combination.first]
     end
   end
