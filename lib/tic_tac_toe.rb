@@ -3,25 +3,21 @@ require 'pry'
 class TicTacToe
 
   attr_accessor :board
-  #constant that provides a library of possible win combinations
   WIN_COMBINATIONS = [
-    [0,1,2], # top row
-    [3,4,5], # middle row
-    [6,7,8], # bottom row
-    [0,3,6], # left column
-    [1,4,7], # middle column
-    [2,5,8], # right column
-    [0,4,8], # left-top to right-bottom diagonal
-    [2,4,6], # right-top to left-bottom diagonal
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6],
   ]
 
-  #set a @board variable equal to a new, empty array that represents the game board
   def initialize(board=nil)
     @board = board || Array.new(9, " ")
   end
 
-  #start of helper methods
-  #displays the board when called
   def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
     puts "-----------"
@@ -30,32 +26,26 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  #changes user input to proper index
   def input_to_index(input)
     input = input.to_i - 1
   end
 
-  #takes in the input that the player would like to input onto the board
   def move(index, value)
     board[index] = value
   end
 
-  #checks to see if the selected position is available for user in puts
   def position_taken?(index)
     board[index] != " "
   end
 
-  #ensures that the players requested move is actually valid: present on the board and not already filled with a token
   def valid_move?(index)
     !position_taken?(index) && index.between?(0,8)
   end
 
-  #counts the number of turns taken
   def turn_count
     board.count {|turn| turn.include?("X") || turn.include?("O")}
   end
 
-  #encapsulates the logic to complete multiple turns
 def turn
   puts "Please enter 1-9"
   input = gets.strip
@@ -85,12 +75,10 @@ end
     !board.include?(" ") ? true : false
   end
 
-  #chcks if the board is full without a winner
   def draw?
     full? && !won?
   end
 
-  #checks if the game was won or a draw
   def over?
     won? || draw?
   end
@@ -99,15 +87,10 @@ end
     won? ? board[won?[0]] : nil
   end
 
-  #starts the game
   def play
-    while !over? do
-      turn
-    end
-    if winner
-      puts "Congratulations #{winner}!"
-    else
-      puts "Cat's Game!"
-    end
+    turn while !over?
+    puts "Congratulations #{winner}!" if winner
+    puts "Cat's Game!" if draw?
   end
+
 end
