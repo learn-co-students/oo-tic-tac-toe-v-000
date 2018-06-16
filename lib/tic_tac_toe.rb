@@ -1,5 +1,7 @@
 require 'pry'
 
+# Refactored 16 June 2018
+
 class TicTacToe
 
   attr_accessor :board
@@ -46,17 +48,17 @@ class TicTacToe
     board.count {|turn| turn.include?("X") || turn.include?("O")}
   end
 
-def turn
-  puts "Please enter 1-9"
-  input = gets.strip
-  index = input_to_index(input)
-  if !valid_move?(index)
-    turn
-  else
-    move(index, current_player)
+  def turn
+    puts "Please enter 1-9"
+    input = gets.strip
+    index = input_to_index(input)
+    if !valid_move?(index)
+      turn
+    else
+      move(index, current_player)
+    end
+    display_board
   end
-  display_board
-end
 
   def current_player
     turn_count.even? ? "X" : "O"
