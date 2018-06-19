@@ -1,6 +1,6 @@
 class TicTacToe
    def initialize
-     @board=[" " ," " ," " ," " ," " ," " ," " ," " ," "]
+     @board = [" "," "," "," "," "," "," "," "," "]
     end
     
   WIN_COMBINATIONS = [
@@ -52,8 +52,8 @@ end
 
 def turn
   puts "Please enter 1-9:"
-  user_input = gets.strip
-  index = input_to_index(user_input)
+  input = gets.strip
+  index = input_to_index(input)
   if valid_move?(index)
     move(index, current_player)
     display_board
@@ -79,7 +79,7 @@ end
 end
 def draw?
  if full? && !won?
-   return true
+   return "Cat's Game!"
  else return false
  end
 end
@@ -92,28 +92,22 @@ end
   end
   
 def winner
+  
   won = won?
-  if won != nil
-    return @board[won[0]]
+  if won !=nil
+    return @board[won[0]] 
   end
   end
 ########################################
 def play
-  counter= 1
- while counter<=9
+ while over? !=true
  turn
- counter += 1
  if won?
    puts "Congratulations #{winner}!"
-   break
- elsif over?
+ end
+ if draw?
  puts "Cat's Game!"
- break
- elsif full?
- puts "Draw!"
- break
-
+end
  end
  end
-end
-end
+ end
