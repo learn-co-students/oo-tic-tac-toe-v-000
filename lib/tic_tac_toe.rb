@@ -94,11 +94,11 @@ class TicTacToe
       position_1 == "O" && position_2 == "O" && position_3 == "O"
       
         return win_combination
-        end
       end
+    end
       else 
         false
-      end
+    end
   
   def full?
     @board.all? do |full_board| 
@@ -112,6 +112,29 @@ class TicTacToe
         return true 
     else
        return false
+    end
+  end
+  
+  def over?
+    if won? || draw? || full?
+      return true
+    end
+  end
+  
+  def winner
+    if won?
+      return @board[won?[0]]
+    end
+  end
+  
+  def play
+    until over?
+      turn
+    end
+    if won?
+      puts "Congratulations #{winner}!"
+    elsif draw?
+      puts "Cat's Game!"
     end
   end
     
