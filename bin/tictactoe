@@ -3,4 +3,5 @@ require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
 
 gameOne = TicTacToe.new
+gameOne.display_board
 gameOne.play
