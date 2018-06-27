@@ -107,6 +107,10 @@ def play
  end
  if draw?
  puts "Cat's Game!"
+ break
+ elsif full?
+ puts "Draw!"
+ break
 end
  end
  end
