@@ -93,25 +93,20 @@ end
   
 def winner
   
-  won = won?
+ won = won?
   if won !=nil
     return @board[won[0]] 
   end
   end
 ########################################
 def play
- while over? !=true
- turn
- if won?
-   puts "Congratulations #{winner}!"
- end
- if draw?
- puts "Cat's Game!"
- break
- elsif full?
- puts "Draw!"
- break
+  while !over?
+    turn
+  end
+  if won?
+    puts "Congratulations #{winner}!"
+  elsif draw?
+    puts "Cat's Game!"
+  end
 end
- end
- end
- end
+end
