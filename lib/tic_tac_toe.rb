@@ -128,4 +128,16 @@ def winner
   end 
 end
 
+# play
+def play
+while !over? 
+  turn
+end
+  if draw?
+  puts "Cat's Game!"
+  elsif won?
+  puts "Congratulations #{winner}!"
+  end
+end
+
 end
