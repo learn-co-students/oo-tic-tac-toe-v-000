@@ -35,10 +35,10 @@ def move(index, current_player = "X")
 end
 
 # valid_move? 
-def valid_move?(board, index)
+def valid_move?(index)
   if index < 0  || index > 8
     return false
-  elsif board[index] == "X" || board[index] == "O"
+  elsif @board[index] == "X" || @board[index] == "O"
     return false
   else
     true
