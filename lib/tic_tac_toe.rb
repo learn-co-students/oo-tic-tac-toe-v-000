@@ -53,4 +53,79 @@ def position_taken?(index)
     return true 
  end
 end
+
+# turn_count
+def turn_count
+  counter = 0
+  @board.each do |board_var|
+    if board_var == "X" || board_var == "O"
+    counter += 1
+  end
+  end
+  counter
+end
+
+# current_player
+def current_player
+  if turn_count % 2 == 0 
+    return "X"
+  else 
+    return "O"
+  end
+end
+
+# turn 
+def turn
+  puts "Please enter 1-9:"
+  input = gets.strip
+  index = input_to_index(input)
+  
+  if valid_move?(index)
+  move(index, current_player)
+  display_board
+  else 
+    turn
+  end
+end
+
+# won
+def won?
+  WIN_COMBINATIONS.detect do |winner|
+  @board[winner[0]] == @board[winner[1]] && @board[winner[2]] == @board[winner[0]] && position_taken?(winner[0])
+  end
+end
+
+def full?
+  @board.all? do |full_var|
+    full_var == "X" || full_var == "O"
+  end
+end
+
+
+def draw?
+  if won?
+    return false
+    elsif full? 
+      return true
+  end
+end
+
+def over?
+    won? || draw?
+end
+
+def winner
+  index_array = won?
+  if index_array == nil 
+    return nil
+  end
+  
+  position = index_array[0]
+    if @board[position] == "X"
+      return "X"
+    elsif @board[position] == "O"
+      return "O"
+  end 
+end
+
 end
