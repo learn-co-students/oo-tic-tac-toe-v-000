@@ -1,7 +1,7 @@
 class TicTacToe
   # assign instance var to @board
-   def initialize(board = nil)
-    @board = board || Array.new(9, " ")
+   def initialize
+    @board = Array.new(9, " ")
     end
 # win combination
 WIN_COMBINATIONS = [
@@ -30,8 +30,8 @@ def input_to_index(input)
 end
 
 # move
-def move(board, index, current_player)
-   board[index] = current_player
+def move(index, current_player = "X")
+   @board[index] = current_player
 end
 
 # valid_move? 
@@ -46,10 +46,10 @@ def valid_move?(board, index)
 end
 
 # position_taken? 
-def position_taken?(board, index)
-    if board[index] == " "
+def position_taken?(index)
+    if @board[index] == " "
     return false
-    elsif board[index] == "X" || board[index] == "O" 
+    elsif @board[index] == "X" || @board[index] == "O" 
     return true 
  end
 end
