@@ -128,4 +128,18 @@ end
       return "O"
      end
   end
+  #play the game
+  def play
+  if over? == false
+    turn
+    play
+  elsif over? == true
+    if !won? == false
+        puts "Congratulations #{winner}!"
+      elsif draw? == true
+        puts "Cat's Game!"
+      end
+    end
+  end
+
 end
