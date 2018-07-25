@@ -12,13 +12,13 @@ class TicTacToe
 
 
 
- def display_board
+  def display_board
    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
    puts "-----------"
    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
    puts "-----------"
    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
- end
+  end
 
 
   def input_to_index(input)
@@ -32,7 +32,7 @@ class TicTacToe
   end
 
 
-  def position_taken?
+  def position_taken?(index)
     if @board[index] == "X" || @board[index] == "O"
       true
     else
@@ -41,10 +41,80 @@ class TicTacToe
   end
 
 
+  def valid_move?(position)
+    if (position).between?(0, 8) && !position_taken?(position)
+     true
+    else
+     false
+    end
+  end
+
+
+
+  def turn
+    puts "Please enter 1-9:"
+      input = gets.strip
+      index = input_to_index(input)
+
+    if valid_move?(index)
+      move(index)
+   end
+   end
+
+
+
+ def turn_count
+    counter = 0
+    @board.each do |space|
+   if space == "X" || space == "O"
+     counter = counter + 1
+   end
+    returns turn
+ end
+end
+
+
+
+  #def current_player(board)
+    #if turn_count % 2 == 0
+    #{}"X"
+    #end
+
+end
 
 
 
 
 
 
-    #@board= {[index 0, 8]}
+
+
+
+
+
+    #number_of_ turns
+
+
+
+
+
+
+
+
+
+
+ #if valid_move?(board, index)
+    #move(board, index)
+  #else
+    #turn(board)
+  #end
+  #display_board(board)
+#end
+
+
+
+
+#def turn(board)
+  #puts "Please enter 1-9:"
+  #input = gets.strip
+  #index = input_to_index(input)
