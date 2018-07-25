@@ -111,16 +111,15 @@ class TicTacToe
   def full?
    @board.all? {|space| space != " " }
   #board.all?{|token| token == "X" || token == "O"}
- end
+  end
 
 
  def draw?
    if full? && !won?
     return true
-   if !full? || !won?
+  else
     return false
-   end
-   end
+  end
  end
 
 
@@ -131,7 +130,7 @@ class TicTacToe
   else
     return false
   end
-  end
+end
 
 
   def winner
@@ -151,26 +150,16 @@ class TicTacToe
 
 
   def play
-    turn
-    if valid_move?
-      move
+    while !over?
+     turn
     end
-    while !over?(board)
-      turn
+    if won?
+      puts "Congratulations #{winner}!"
+     else
+      puts "Cat's Game!"
     end
   end
-
-
-
-
-
-
-#   if won?
-#     puts "Congratulations #{winner(board)}!"
-#    else
-#     puts "Cat's Game!"
-#   end
-# end
+end
 
 
 
