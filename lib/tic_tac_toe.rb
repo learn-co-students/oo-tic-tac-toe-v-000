@@ -74,30 +74,88 @@ def current_player
     return "O"
 end 
 
-def turn(board)
+ end 
+
+def turn
   puts "Please enter 1-9:"
   input= gets.strip
   index = input_to_index(input)
-
-   
-  move(index, character="X")
-  display_board
-  valid_move?(index)
-  index.between?(0, 8) && @board[index] ==" " || @board[index] ==""
-  until index.between?(0, 8)
-end
-end
-      puts "Please enter 1-9:"
-end
-
-
-
-
-
-
-end
-
-
-
-
+  character= current_player
   
+  if valid_move?(index)
+  move(index, character)
+  display_board
+  
+  else 
+    turn
+  end
+end
+
+def won?
+  WIN_COMBINATIONS.each {|win_combo|
+  
+   index_0 = win_combo[0]
+   index_1 = win_combo[1]
+   index_2 = win_combo[2]
+   
+   position_1 = @board[index_0]
+   position_2 = @board[index_1]
+   position_3 = @board[index_2]
+  
+  if position_1 == "X" && position_2 == "X" && position_3 == "X"
+    return win_combo
+    
+  elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+    return win_combo
+
+end
+}
+    return false
+ 
+ end
+  def full?
+   @board.all? {|index| index == "X" || index == "O"}
+ end
+ def draw?
+    if !won? && full?
+    return true
+  else 
+    return false
+ end
+end 
+def over?
+   if won? || full? || draw?
+     return true
+  else
+    return false
+    
+  end
+end
+def winner
+  index = []
+  index = won?
+  if index == false 
+    return nil 
+    
+    else 
+    if @board[index[0]] == "X"
+      return "X"
+    else 
+      return "O"
+  end
+ end 
+end 
+def play
+  while !over?
+    turn
+  end
+  if won?
+    puts "Congratulations #{winner}!"
+  elsif draw?
+    puts "Cat's Game!"
+  end
+end
+ 
+end 
+
+
