@@ -152,8 +152,10 @@ class TicTacToe
   def play
     turn
     if valid_move?
+    end
     move
     while !over?
+    end
     turn
     end
   end
