@@ -146,20 +146,20 @@ class TicTacToe
     else
       return nil
     end
+  end
 
 
 
   def play
     turn
     if valid_move?
+      move
     end
-    move
-    while !over?
-    end
-    turn
+    while !over?(board)
+      turn
     end
   end
-end
+
 
 
 
