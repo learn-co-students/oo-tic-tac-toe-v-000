@@ -64,12 +64,8 @@ class TicTacToe
   end
 
   def won?
-    winning_combo = WIN_COMBINATIONS.detect {|combo| @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]}
-    if winning_combo && winning_combo.all? {|pos| position_taken?(pos)}
-      return winning_combo
-    else
-      return false
-    end
+    winning_combo = WIN_COMBINATIONS.detect {|combo| @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]] && position_taken?(combo[0])}
+    
   end
 
   def full?
