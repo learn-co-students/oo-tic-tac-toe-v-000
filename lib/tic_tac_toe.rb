@@ -72,13 +72,14 @@ def won?
 end
 
 def full?
-  @board.each do |space|
-    if space == "X" || space == "O"
-    else
-      return false
-    end
-  end
-  true
+  @board.all? {|xo| xo != " "}
+  # @board.each do |space|
+  #   if space == "X" || space == "O"
+  #   else
+  #     return false
+  #   end
+  # end
+  # true
 end
 
 def draw?
