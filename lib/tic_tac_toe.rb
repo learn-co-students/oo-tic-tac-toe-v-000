@@ -106,6 +106,7 @@ def won?
     draw? == true || won? != false ? true : false
   end
 
+  #defines the winner if the game has been won
   def winner
     win_combination = won?
     if win_combination == false
@@ -117,6 +118,7 @@ def won?
     end
   end
 
+  #executes gameplay
   def play
     while over? == false
       turn
