@@ -81,9 +81,17 @@ class TicTacToe
 
   def full?
     @board.all? do |board_array|
-      @board_array == "X" || @board_array == "O"
+      board_array == "X" || board_array == "O"
     end
   end
+
+  def draw?
+    if full? && !won?
+      return true
+  
+    end
+  end
+
 
 end
 
