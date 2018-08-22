@@ -72,13 +72,16 @@ class TicTacToe
     position_2 = @board[win_index_2]
     position_3 = @board[win_index_3]
     
-      if position_taken?(@board, win_index_1) && position_2 == position_1 && position_3 == position_2
+      if position_taken?(win_index_1) && position_2 == position_1 && position_3 == position_2
          return win_combination
-      else return false
       end     
     end
+    return false
   end
 
+  def full?
+    
+  end
 
 end
 
