@@ -98,10 +98,38 @@ class TicTacToe
   end
   
   def winner
-    
+    win = won?
+    if won?
+      return @board[win.first]
+    end
   end
 
+
+
+
+
 end
+
+
+
+
+#def play(board)
+#  until over?(board)
+#    turn(board)
+#    if won?(board) || draw?(board)
+#     break
+#    end
+#  end
+#  if winner(board) == "X"
+#    puts "Congratulations X!"
+#  elsif winner(board) == "O"
+#   puts "Congratulations O!"
+# elsif draw?(board)
+#  end
+#end
+
+
+
 
 
 
