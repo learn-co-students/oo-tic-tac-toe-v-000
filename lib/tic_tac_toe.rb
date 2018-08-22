@@ -16,7 +16,7 @@ class TicTacToe
 
   def input_to_index(input)
     index = input.to_i
-    index = index - 1
+    @index = index - 1
   end
   
   def move (index, token="X")
@@ -54,13 +54,13 @@ class TicTacToe
     input=gets.chomp
     input_to_index(input)
     
-    #if valid_move?(index)
-    #  move(index)
-     # display_board
+    if valid_move?(@index)
+      move(@index)
+      display_board
     #  current_player
     #else
     #  turn
-    #end
+    end
   end
 
 
