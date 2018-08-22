@@ -41,22 +41,40 @@ class TicTacToe
     return counter
   end
   
+  def current_player
+    if turn_count % 2 == 0
+      return "X"
+   elsif turn_count % 2 != 0
+      return "O"
+    end
+  end
   
-  
-#def current_player(board)
-#  if turn_count(board) % 2 == 0
- #   return "X"
-#  elsif turn_count(board) % 2 != 0
-#    return "O"
-#  end
-#end
-  
-  
-  
-  
- # def turn
-   # puts "Please enter 1-9:"
-  #end
+  def turn
+    puts "Please enter 1-9:"
+    input=gets.chomp
+    input_to_index(input)
+    
+    #if valid_move?(index)
+    #  move(index)
+     # display_board
+    #  current_player
+    #else
+    #  turn
+    #end
+  end
+
+
+
+#it "calls #input_to_index, #valid_move?, and #current_player" do
+ #       allow($stdout).to receive(:puts)
+  #      expect(game).to receive(:gets).and_return("5")
+   #     expect(game).to receive(:input_to_index).and_return(4)
+    #    expect(game).to receive(:valid_move?).and_return(true)
+     #   expect(game).to receive(:current_player).and_return("X")
+
+
+
+
 
 
 end
