@@ -20,7 +20,7 @@ class TicTacToe
   end
   
   def move (index, token="X")
-    @board[index] = token
+    @board[index]=token
   end
 
   def position_taken?(index)
@@ -53,28 +53,14 @@ class TicTacToe
     puts "Please enter 1-9:"
     input=gets.chomp
     input_to_index(input)
-    
+   
     if valid_move?(@index)
-      current_player
-      move(@index)
+      move(@index, token=current_player)
       display_board
-    #else
-    #  turn
+    else
+      turn
     end
   end
-
-
-
-#it "calls #input_to_index, #valid_move?, and #current_player" do
- #       allow($stdout).to receive(:puts)
-  #      expect(game).to receive(:gets).and_return("5")
-   #     expect(game).to receive(:input_to_index).and_return(4)
-    #    expect(game).to receive(:valid_move?).and_return(true)
-     #   expect(game).to receive(:current_player).and_return("X")
-
-
-
-
 
 
 end
