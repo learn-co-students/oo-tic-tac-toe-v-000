@@ -16,7 +16,7 @@ class TicTacToe
 
   def input_to_index(input)
     index = input.to_i
-    @index = index - 1
+    index = index - 1
   end
   
   def move (index, token="X")
@@ -52,10 +52,10 @@ class TicTacToe
   def turn
     puts "Please enter 1-9:"
     input=gets.chomp
-    input_to_index(input)
+    index = input_to_index(input)
    
-    if valid_move?(@index)
-      move(@index, token=current_player)
+    if valid_move?(index)
+      move(index, token=current_player)
       display_board
     else
       turn
@@ -80,7 +80,9 @@ class TicTacToe
   end
 
   def full?
-    
+    @board.all? do |board_array|
+      @board_array == "X" || @board_array == "O"
+    end
   end
 
 end
