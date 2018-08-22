@@ -104,35 +104,18 @@ class TicTacToe
     end
   end
 
-
-
-
-
+  def play
+   until over?
+     turn
+    if won? || draw?
+     break
+    end
+  end
+  if winner
+    puts "Congratulations #{winner}!"
+  elsif draw?
+    puts "Cat's Game!"
+  end
 end
 
-
-
-
-#def play(board)
-#  until over?(board)
-#    turn(board)
-#    if won?(board) || draw?(board)
-#     break
-#    end
-#  end
-#  if winner(board) == "X"
-#    puts "Congratulations X!"
-#  elsif winner(board) == "O"
-#   puts "Congratulations O!"
-# elsif draw?(board)
-#  end
-#end
-
-
-
-
-
-
-
-
-# rspec spec/01_tic_tac_toe_spec.rb
+end
