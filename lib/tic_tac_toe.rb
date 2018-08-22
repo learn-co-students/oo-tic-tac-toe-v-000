@@ -24,18 +24,18 @@ class TicTacToe
   end
 
   def position_taken?(index)
-    if !(@board[index] == " " || @board[index] == "")
-      return true
-    else
-      return false
-    end
+    !(@board[index] == " " || @board[index] == "")
   end
     
   def valid_move?(index)
     !position_taken?(index) && index.between?(0, 8)
   end
   
-  
+  def turn_count
+
+
+  end
+
 
 
 
