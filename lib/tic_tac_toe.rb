@@ -82,5 +82,32 @@ def full?
   @board.none? { |openMoves| openMoves == " "} 
 end
 
+def draw?
+    full? && !won?
+end
+
+def over?
+  if won? || full? || draw?
+    return true
+  end
+end
+
+def winner
+  if won?
+    @board[won?[0]]
+  end
+end
+
+def play
+  until over?
+    turn
+  end
+   if won?
+    winningPlayer = winner
+    puts "Congratulations #{winningPlayer}!"
+  elsif draw?
+    puts "Cat's Game!"
+  end
+end
 
 end
