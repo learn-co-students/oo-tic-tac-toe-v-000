@@ -43,5 +43,27 @@ class TicTacToe
     !(@board[index].nil? || @board[index] == " ")
   end
   
+  def valid_move?(index)
+    !position_taken?(index) && index.between?(0, 8)
+  end
+  
+  def current_player
+    if turn_count % 2 == 0
+      "X"
+    else 
+      "O"
+    end
+  end 
+  
+  def turn
+    puts "Please enter 1-9:"
+      user_input = gets.strip
+      index = input_to_index(user_input)
+      if valid_move?(index) == true
+        move(index, character = current_player)
+        display_board
+      else turn
+    end
+  end
   
 end #end tictactoe class
