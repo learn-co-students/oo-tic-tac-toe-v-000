@@ -102,4 +102,10 @@ end # end won?
   end 
 end #ends full 
 
+def draw?
+  if full? && !won?
+    true 
+  end 
+end #ends draw?
+
 end 
