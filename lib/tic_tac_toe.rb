@@ -137,4 +137,18 @@ def winner
   end #end if statement 
 end #end win_combinations
 
+def play
+  until over?
+    turn
+  end #ends until loop 
+  if winner == "X"
+    puts "Congratulations X!"
+  elsif winner == "O"
+    puts "Congratulations O!"
+  else draw?
+    puts "Cat's Game!"
+  end #ends if statement 
+end #ends def 
+
+
 end 
