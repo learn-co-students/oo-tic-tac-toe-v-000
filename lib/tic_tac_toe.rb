@@ -14,23 +14,23 @@ class TicTacToe
    [0,3,6], [1,4,7], [2,5,8],
    [0,4,8], [2,4,6]
    ]
-  and
+  
  
   def display_board 
-  puts " #{@board[0]} | #{@board[1]} | #{@board[2]} " 
-  puts "-----------"
-  puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
-  puts "-----------"
-  puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} " 
+    puts "-----------"
+    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+    puts "-----------"
+    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
   
   
   def input_to_index
-  index = input.to_i - 1
+    index = input.to_i - 1
   end
 
   def move
-  board[index] = input  
+    board[index] = input  
   end
   
   def position_taken?
@@ -38,7 +38,7 @@ class TicTacToe
   end
   
   def valid_move?
-  index.between?(0,8) && !position_taken?(index)
+    index.between?(0,8) && !position_taken?(index)
   end
   
 #   board(input_to_index[user_input])
@@ -51,14 +51,16 @@ class TicTacToe
 
 
   def turn
-    puts "Please enter 1-9:"
+    puts "Please enter 1-9:"  
      input = gets.strip
      index = input_to_index(input) 
-  if valid_move?(board, index)
-         move(board, index) 
-    display_board(board)
-  else 
-    turn(board)
+
+    if valid_move?(board, index)
+      move(board, index) 
+      display_board(board)
+    else 
+      turn(board)
+    end
   end
 
 
@@ -71,7 +73,6 @@ class TicTacToe
 
   def current_player
    turn_count % 2 == 0 ? "X" : "O"
-  
   end
 
 
@@ -97,8 +98,11 @@ class TicTacToe
     else
       false
     end
+  
   end
   false
+  end
+ 
 
 
   def full?
@@ -106,38 +110,35 @@ class TicTacToe
   end
  
   def draw?
-  full?(board) && !won?(board)
+    full?(board) && !won?(board)
   end
 
   def over?
-  draw?(board) || won?(board) 
+    draw?(board) || won?(board) 
   end
-
-
 
   def winner
-  winning_array = won?(board) #Setting winning_array to equal results from won?(board)
-  if won?(board) # Implicit return of boolean -> if true return which character won
-    return board[winning_array[0]] 
-   winner!"
-  else
-    return nil
+    winning_array = won?(board) 
+    if won?(board) 
+        return board[winning_array[0]] 
+  
+    else
+        return nil
+    end
     
   end
+  
+  
   
   def play
    9.times {turn(board)}
-  end
    
-    if position_1 == "X" && position_2 == "X" && position_3 == "X" 
+    if position_1 == X && position_2 == X && position_3 == X 
       return WIN_COMBINATION
-    end
-  
     
-    puts "Congratulations, you are the winner!"    
-    end
+    puts "Congratulations, you are the winner!"
     
-    elsif position_1 == "O" && position_2 == "O" && position_3 == "O" 
+    elsif position_1 == O && position_2 == O && position_3 == O
       return WIN_COMBINATION
     
     else
@@ -148,7 +149,7 @@ class TicTacToe
 
 
 end
-  
+
   
   
   
