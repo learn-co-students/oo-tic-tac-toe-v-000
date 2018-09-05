@@ -29,8 +29,8 @@ class TicTacToe
     index = input.to_i - 1 
   end
 
-  def move(index, input)
-    @board[index] = input
+  def move(index, token = "X")
+    @board[index] = token
     
   end
   
@@ -38,8 +38,8 @@ class TicTacToe
    @board[index] == "X" || @board[index] == "O"
   end
   
-  def valid_move?(input, index)
-    index.between?(0,8) && !position_taken?(index)
+  def valid_move?(index)
+    index.between?(0, 8) && !position_taken?(index)
   end
   
 #   board(input_to_index[user_input])
@@ -56,8 +56,8 @@ class TicTacToe
      input = gets.strip
      index = input.to_i-1 
 
-    if valid_move?
-      move
+    if valid_move?(index)
+      move(index)
       display_board
     else 
       turn
