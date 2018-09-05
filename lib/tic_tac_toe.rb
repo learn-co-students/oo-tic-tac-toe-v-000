@@ -25,19 +25,20 @@ class TicTacToe
   end
   
   
-  def input_to_index
-    index = input.to_i - 1
+  def input_to_index(input)
+    index = input.to_i - 1 
   end
 
-  def move
-    board[index] = input  
+  def move(index, input)
+    @board[index] = input
+    
   end
   
-  def position_taken?
-   board[index] == "X" || board[index] == "O"
+  def position_taken?(index)
+   @board[index] == "X" || @board[index] == "O"
   end
   
-  def valid_move?
+  def valid_move?(input, index)
     index.between?(0,8) && !position_taken?(index)
   end
   
@@ -53,13 +54,13 @@ class TicTacToe
   def turn
     puts "Please enter 1-9:"  
      input = gets.strip
-     index = input_to_index(input) 
+     index = input.to_i-1 
 
-    if valid_move?(board, index)
-      move(board, index) 
-      display_board(board)
+    if valid_move?
+      move
+      display_board
     else 
-      turn(board)
+      turn
     end
   end
 
@@ -106,21 +107,21 @@ class TicTacToe
 
 
   def full?
-   board.all? {|b| b != " " } 
+   @board.all? {|b| b != " " } 
   end
  
   def draw?
-    full?(board) && !won?(board)
+    full? && !won?
   end
 
   def over?
-    draw?(board) || won?(board) 
+    draw? || won?
   end
 
   def winner
-    winning_array = won?(board) 
-    if won?(board) 
-        return board[winning_array[0]] 
+    winning_array = won?
+    if won? 
+        return @board[winning_array[0]] 
   
     else
         return nil
@@ -131,7 +132,7 @@ class TicTacToe
   
   
   def play
-   9.times {turn(board)}
+   9.times {turn}
    
     if position_1 == X && position_2 == X && position_3 == X 
       return WIN_COMBINATION
