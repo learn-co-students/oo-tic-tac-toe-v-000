@@ -39,16 +39,17 @@ class TicTacToe
   end 
   
   def turn
-  puts "Please choose a number 1-9:"
-  user_input = gets.chomp
-  index = input_to_index(user_input)
-  if valid_move?(index)
+    puts "Please choose a number 1-9:"
+    user_input = gets.chomp
+    index = input_to_index(user_input)
+      if valid_move?(index)
     player_token = current_player
     move(index, player_token)
     display_board
-  else
-    turn
-  end
+      else
+      turn
+      end
+  end 
   
   def turn_count 
     turn = 0 
@@ -71,7 +72,7 @@ class TicTacToe
   end 
   
   def won?
-    WIN_COMBINATIONS.each {|win_combo|
+    WIN_COMBINATIONS.each do |win_combo|
     index_0 = win_combo[0]
     index_1 = win_combo[1]
     index_2 = win_combo[2]
@@ -85,8 +86,6 @@ class TicTacToe
     elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
       return win_combo
     end
-    }
-  return false
   end
 
   def full?
