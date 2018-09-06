@@ -4,10 +4,6 @@ class TicTacToe
     @board = board || Array.new(9, " ") 
   end
   
-  def play 
-    @play  
-  end 
-  
   
  WIN_COMBINATIONS =  [
    [0,1,2], [3,4,5],[6,7,8],
@@ -83,19 +79,16 @@ class TicTacToe
 
 
   def won?
-  #for each win_combination in WIN_COMBINATIONS
+  
   WIN_COMBINATIONS.each do |win_combination|
     
-  
-    # win_combination is a 3 element array of indexes that compose a win, [0,1,2]
-    # grab each index from the win_combination that composes a win.
     win_index_1 = win_combination[0]
     win_index_2 = win_combination[1]
     win_index_3 = win_combination[2]
    
-    position_1 = board[win_index_1] # load the value of the board at win_index_1
-    position_2 = board[win_index_2] # load the value of the board at win_index_2
-    position_3 = board[win_index_3] # load the value of the board at win_index_3
+    position_1 = @board[win_index_1] 
+    position_2 = @board[win_index_2] 
+    position_3 = @board[win_index_3] 
    
     if position_1 == "X" && position_2 == "X" && position_3 == "X" 
       return win_combination 
@@ -137,24 +130,23 @@ class TicTacToe
   
   
   def play
-   9.times {turn}
+    turn until over?
+    
    
-    if position_1 == X && position_2 == X && position_3 == X 
-      return WIN_COMBINATION
+    if won?
     
-    puts "Congratulations, you are the winner!"
+    puts "Congratulations #{winner}!"
     
-    elsif position_1 == O && position_2 == O && position_3 == O
-      return WIN_COMBINATION
-    
-    else
-      false
+    elsif draw?
+      puts "Cat's Game!"
+      
+  
     end
     
   end
 
 
-end
+  end
 
   
   
