@@ -74,7 +74,6 @@ class TicTacToe
   end
   
   def won?
-    @board
     WIN_COMBINATIONS.each do |win_combination| 
     win_index_1 = win_combination[0] 
     win_index_2 = win_combination[1]
@@ -88,7 +87,7 @@ class TicTacToe
       return win_combination 
     elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
       return win_combination
-    elsif draw?
+    elsif @draw
       false
     end 
   end
@@ -101,20 +100,20 @@ class TicTacToe
     end 
   end
 
-  def draw?(index)
-    if @board[@index] != " "
+  def draw?
+    @board
+    if full?
       true
-    elsif @board[@index] = WIN_COMBINATIONS
-      false
-    else @board[@index] == " "
+    else won?
       false
     end
   end
 
   def over?
-    if won?(@board) || draw?(@board)
+    if won?
       true
-    elsif draw?(@board)
+    elsif draw?
+      @board
       true
     else @board == " "
       false
@@ -122,24 +121,29 @@ class TicTacToe
   end
 
   def winner
-    if !won?(@board) == false
+    if won?
       @board[won?(@board).first]
+      # else won? == WIN_COMBINATIONS
+      # true
     end
   end
 
-  # def play(input_to_index)   
-  #   @user_input = user_input
-  #   user_input = user_input.to_i-1
-  #   index = user_input
+  # def play
+  #   @board
+  #   @input_to_index
   #   until over?  
   #   @turn
   #   end
-  #     if won?
-  #       puts "Congratulations #{winner(@board)}!"
-  #     elsif draw?
-  #       puts "Cat's Game!"
+  #   if won?
+  #     puts "Congratulations #{winner(@board)}!"
+  #   end
+  #   # @board
+  #   #   if won?
+  #   #     puts "Congratulations #{winner(@board)}!"
+  #   #   elsif draw?
+  #   #     puts "Cat's Game!"
     
-  #     end
+    
   # end
   
  
