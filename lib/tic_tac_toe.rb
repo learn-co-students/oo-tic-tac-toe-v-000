@@ -64,17 +64,15 @@ end
 
 def turn
   puts "Please enter 1-9:"
-  input = gets.chomp
+  input = gets.strip
   index = input_to_index(input)
   if valid_move?(index)
     token = current_player
+    move(index, token)
   else
     turn
   end
-  move(index, token)
   display_board
-
-
 
 end
 
@@ -82,34 +80,37 @@ def won?
   #returns first matching array in WIN_COMBINATIONS where ["X","X","X"] or ["O","O","O"]
   #the winning marker of the game would simply be any element from the winner variable: winner.first
   #method is thinking a combo of [" ", " ", " "] is a winner
-  WIN_COMBINATIONS.detect do |var|
+  WIN_COMBINATIONS.any? do |var|
     if @board[var[0]] == @board[var[1]] &&
-       @board[var[1]] == @board[var[2]]
-    return var
+       @board[var[1]] == @board[var[2]] && position_taken?(var[0])
+      return var
     end
   end
 end
 
-def draw?
-
-end
-
-def full?
-
-end
-
-def over?
-
-
-end
-
 def winner
   if winning_combination = won? #method is thinking a combo of [" ", " ", " "] is a winner
-    binding.pry
     @board[winning_combination.first]
+  else
+    nil
   end
 end
 
+def full?
+  @board.all?{|square| square != " " }
+end
 
+def draw?
+  full? && !won?
+end
+
+def over?
+  won? || draw?
+end
+
+def play
+  turn until over?
+  puts winner ? "Congratulations #{winner}!" : "Cat's Game!"
+end
 
 end
