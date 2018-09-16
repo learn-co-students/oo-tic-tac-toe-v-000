@@ -115,11 +115,8 @@ end
 
 def winner
   if won?
-  binding.pry  
-  winning_player = @board[(won?[0])]
-  return winning_player
-else
-end
+    return @board[(won?[0])]
+  end
 end
 
 def play
@@ -127,9 +124,8 @@ def play
     turn
   end
   if won?
-  winning_player=winner(@board)
-    puts "Congratulations #{winning_player}!"
-  elsif draw?(board)
+    puts "Congratulations #{self.winner}!"
+  elsif draw?
     puts "Cat's Game!"
   end
 
