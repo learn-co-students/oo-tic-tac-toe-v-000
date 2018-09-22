@@ -14,33 +14,33 @@ def input_to_index(user_input)
   return user_input.to_i - 1
 end
 
-def player_move(array, index, value)
-  array[index] = value
+def move(index, value)
+  @board[index] = value
 end
 
-def valid_move?(board, index)
- position_taken?(board, index) == false && index.between?(0,8)
+def valid_move?(index)
+ position_taken?(index) == false && index.between?(0,8)
  end
 
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
+def position_taken?(index)
+  !(@board[index].nil? || @board[index] == " ")
 end
 
-def turn(board)
+def turn
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
-  if valid_move?(board, index)
-    player_move(board, index, current_player(board))
-    display_board(board)
+  if valid_move?(index)
+    move(index, current_player)
+    display_board
   else
-    turn(board)
+    turn
   end
 end
 
-def turn_count(board)
+def turn_count
  counter = 0
-    board.each do |cell|
+    @board.each do |cell|
       if cell != " " && cell != ""
        counter +=1
      end
@@ -48,8 +48,8 @@ def turn_count(board)
   counter
 end
 
-def current_player(board)
- if turn_count(board).to_i.even?
+def current_player
+ if turn_count.to_i.even?
   return "X"
  else return "O"
 end
@@ -66,15 +66,15 @@ WIN_COMBINATIONS = [
   [2,4,6],
 ]
 
-def won?(board)
+def won?
  WIN_COMBINATIONS.each do |combo|
   win_index_1 = combo[0]
   win_index_2 = combo[1]
   win_index_3 = combo[2]
 
-  position_1 = board[win_index_1] # load the value of the board at win_index_1
-  position_2 = board[win_index_2] # load the value of the board at win_index_2
-  position_3 = board[win_index_3] # load the value of the board at win_index_3
+  position_1 = @board[win_index_1] # load the value of the board at win_index_1
+  position_2 = @board[win_index_2] # load the value of the board at win_index_2
+  position_3 = @board[win_index_3] # load the value of the board at win_index_3
 
   if position_1 == "X" && position_2 == "X" && position_3 == "X"
     return combo
@@ -87,43 +87,43 @@ def won?(board)
  false
 end
 
-def full?(board)
-  board.all? do |position_taken|
+def full?
+  @board.all? do |position_taken|
     position_taken == "X" || position_taken == "O"
 end
 end
 
-def draw?(board)
- if full?(board) == true && won?(board) == false
+def draw?
+ if full? == true && won? == false
    return true
  else
    false
  end
 end
 
-def over?(board)
-if won?(board)  || full?(board)  || draw?(board)
+def over?
+if won?  || full?  || draw?
   return true
 end
 end
 
-def winner(board)
-winning_array = won?(board)
+def winner
+winning_array = won?
   if winning_array
-  board[winning_array[0]]
+  @board[winning_array[0]]
  else
   nil
   end
 end
 
 
-def play(board)
-    until over?(board)
-      turn(board)
+def play
+    until over?
+      turn
   end
-  if won?(board)
-    puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
+  if won?
+    puts "Congratulations #{winner}!"
+  elsif draw?
     puts "Cat's Game!"
   end
 end
