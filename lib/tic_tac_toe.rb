@@ -62,59 +62,60 @@ class TicTacToe
       end
     end
 
-#Turn countx
-def turn_count
-  @board.count{|token| token == "X" || token == "O"}
-end
-
-#Current Playerx
-def current_player
- turn_count % 2 == 0 ? "X" : "O"
-end
-
-#Won?
-def won?
-    WIN_COMBINATIONS.detect do |combo|
-      @board[combo[0]] == @board[combo[1]] && @board[combo[2]] == @board[combo[0]] && position_taken?(combo[0])
+    #Turn count
+    def turn_count
+      @board.count{|token| token == "X" || token == "O"}
     end
-  end
+
+    #Current Player
+    def current_player
+      turn_count % 2 == 0 ? "X" : "O"
+    end
+
+    #Won?
+    def won?
+      WIN_COMBINATIONS.detect do |combo|
+        @board[combo[0]] == @board[combo[1]] && @board[combo[2]] == @board[combo[0]] && position_taken?(combo[0])
+      end
+    end
   
-#Full?
-def full?
-    @board.all? do |positions|
-      positions == "X" || positions == "O"
+    #Full?
+    def full?
+      @board.all? do |positions|
+       positions == "X" || positions == "O"
+      end
     end
-end
 
-#Draw?
-def draw?
-  !won? && full?
-end
+    #Draw?
+    def draw?
+      !won? && full?
+    end
 
-#Over?
-def over?
-  draw? || won?
-end
+    #Over?
+    def over?
+      draw? || won?
+    end
 
-#Winner
-def winner
- if won?
-   combo = won?
-   @board[combo[0]]
- else
-   nil
- end
-end
+    #Winner
+    def winner
+      if won?
+        combo = won?
+        @board[combo[0]]
+      else
+        nil
+      end
+    end
 
-#Play
-def play
-  while !over?
-    turn
-  end
-if won?
-  puts "Congratulations #{winner}!"
-elsif draw?
-  puts "Cat's Game!"
-end
-end
+    #Play
+    def play
+      while !over?
+        turn
+      end
+      
+      if won?
+        puts "Congratulations #{winner}!"
+      elsif draw?
+        puts "Cat's Game!"
+      end
+    end
 end
