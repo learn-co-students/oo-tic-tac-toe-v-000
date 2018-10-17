@@ -38,8 +38,28 @@ def move(index, token = "X")
   @board[index] = token
 end
 
-def position_taken?
-  index == "X" || index == "O"
+def position_taken?(index)
+  @board[index] == "X" || @board[index] == "O"
 end
+
+def valid_move?(index)
+  !position_taken?(index) && index.between?(0, 8)
+end
+
+def turn_count
+  @board.count { |spot| spot == "X" || spot == "O" }
+end
+
+def turn
+  puts "Please, choose a position ( 1 - 9 ) : "
+  input = gets.strip
+  index = input_to_index(input)
+  if valid_move?(index)
+    move(index, token)
+  else
+    turn
+  end
+end
+
 
 end
