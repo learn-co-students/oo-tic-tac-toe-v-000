@@ -20,7 +20,6 @@ class TicTacToe
   [2,4,6]
   ]
 
-
 #method uses strings and interpolation of the board array variable to create a visual ASCII game board
 def display_board()
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
@@ -50,15 +49,29 @@ def turn_count
   @board.count { |spot| spot == "X" || spot == "O" }
 end
 
+def current_player
+ turn_count.even? ? "X" : "O"
+end
+
 def turn
   puts "Please, choose a position ( 1 - 9 ) : "
   input = gets.strip
   index = input_to_index(input)
   if valid_move?(index)
-    move(index, token)
+    move(index, current_player)
+    display_board
   else
     turn
   end
+end
+
+def won?()
+  WIN_COMBINATIONS.each do |win|
+      if position_taken?(@board[win[0]]) && @board[win[0]] == @board[win[1]] && @board[win[1]] == @board[win[2]]
+        return win
+      end
+  end
+  false
 end
 
 
