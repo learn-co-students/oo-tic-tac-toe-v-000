@@ -2,7 +2,7 @@
 class TicTacToe
 
 #every instance of this class will begin with its own board array instance variable of 9 spaces of empty strings
-  def initialize
+  def initialize()
     @board = Array.new(9, " ")
   end
 
@@ -38,22 +38,22 @@ def move(index, token = "X")
 end
 
 def position_taken?(index)
-  @board[index] == "X" || @board[index] == "O"
+  @board[index.to_i] == "X" || @board[index.to_i] == "O"
 end
 
 def valid_move?(index)
   !position_taken?(index) && index.between?(0, 8)
 end
 
-def turn_count
+def turn_count()
   @board.count { |spot| spot == "X" || spot == "O" }
 end
 
-def current_player
+def current_player()
  turn_count.even? ? "X" : "O"
 end
 
-def turn
+def turn()
   puts "Please, choose a position ( 1 - 9 ) : "
   input = gets.strip
   index = input_to_index(input)
@@ -71,7 +71,28 @@ def won?()
         return win
       end
   end
-  false
+  return false
+end
+
+def full?()
+  @board.all? { |space| space == "X" || space == "O" }
+end
+
+def draw?()
+  full?() && !won?()
+end
+
+def over?()
+ draw?() || won?()
+end
+
+def winner()
+  if won?()
+    win = won?()
+    return @board[win[0]]
+  else draw?()
+    return nil
+  end
 end
 
 
