@@ -86,12 +86,34 @@ def over?()
  draw?() || won?()
 end
 
+#there must be a different way to write this method
+#i'm pretty sure what I wrote is a jerk-way of writing it
+#so I feel like I'm the real reason why this method would
+#return a " " instead of nil is something wth OO vs procedural
 def winner()
   if won?()
     win = won?()
-    return @board[win[0]]
-  else draw?()
-    return nil
+      if @board[win[0]] == "X"
+        return "X"
+      elsif @board[win[0]] == "O"
+        return "O"
+      else @board[win[0]] != "X" && @board[win[0]] != "O" #srsly..this is like ducttape over a huge hole
+        return nil
+      end
+  end
+end
+
+
+def play()
+  until over?()
+    turn()
+  end
+  if !won?() && !draw?() && !over?()
+      play()
+    elsif won?()
+      puts "Congratulations #{winner().to_s}!"
+    else draw?()
+      puts "Cat's Game!"
   end
 end
 
