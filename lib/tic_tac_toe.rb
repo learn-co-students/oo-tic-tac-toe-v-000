@@ -107,10 +107,11 @@ end
 def play()
   until over?()
     turn()
+    draw?()
   end
   if !won?() && !draw?() && !over?()
       play()
-    elsif won?()
+    elsif won?() && over?()
       puts "Congratulations #{winner().to_s}!"
     else draw?()
       puts "Cat's Game!"
