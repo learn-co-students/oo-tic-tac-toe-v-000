@@ -1,6 +1,6 @@
 class TicTacToe
-  def initialize(board= nil)
-    @board = board || Array.new(9, " ")
+  def initialize
+      @board = Array.new(9, " ")
   end 
   WIN_COMBINATIONS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
   def display_board
@@ -30,7 +30,7 @@ def turn
   index_number=input_to_index(user_input)
   if valid_move?(index_number)
     token = current_player
-    move(index_number, token="X")
+    move(index_number, token)
     display_board
   else
     turn
@@ -71,7 +71,7 @@ def winner
   end 
 end 
 def play
-  until over? 
+  until over? == true 
     turn
   end
   if won? 
