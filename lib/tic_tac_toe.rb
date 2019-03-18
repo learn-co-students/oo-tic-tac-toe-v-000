@@ -87,6 +87,7 @@ def winner
     return nil
   end
 end
+
 def play
   turn until over?
       if won?
@@ -95,5 +96,6 @@ def play
         puts "Cat\'s Game!" 
     end
    end
+   
 end
 
