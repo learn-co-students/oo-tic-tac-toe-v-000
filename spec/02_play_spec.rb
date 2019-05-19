@@ -145,3 +145,15 @@ describe './lib/tic_tac_toe.rb' do
     end
   end
 end
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
