@@ -23,32 +23,12 @@ class TicTacToe
     n - 1
   end
   
-  def turn_count(board = @board)
-    new_board = []
-    @board.each do |entry|
-      if entry != " "
-        new_board.push entry
-        end
-      end
-    new_board.length
-  end
-  
-  def current_player(board = @board)
-    if turn_count(board).even?
-      "X"
-      elsif turn_count(board).odd?
-      "O"
-      end
-    end
-    
   def move(index, current_player = "X")
-    current_player = current_player(board = @board)
     @board = board
     @board[index] = current_player
-    current_player
   end
   
-  def position_taken?(board = @board, index)
+   def position_taken?(board = @board, index)
     x = board[index]
     if x == " " || x == "" || x == nil
       false
@@ -65,7 +45,7 @@ class TicTacToe
     end
   end
   
-  def turn(board = @board)
+    def turn(board = @board)
     counter = 0
     until counter.between?(1,9)
     puts "Please enter 1-9:"
@@ -74,31 +54,34 @@ class TicTacToe
     x = index + 1 
     x += counter
     if valid_move?(board = @board, index) == true
-      thing = current_player(board = @board)
       move(index, current_player = "X")
+      current_player(board = @board)
+      move(index)
       display_board
       break
     end
   end
 end
   
-  #def turn_count(board = @board)
-    #new_board = []
-    #board.each do |entry|
-      #if entry != " "
-        #new_board.push entry
-        #end
-      #end
-    #new_board.length
-  #end
-
-  #def current_player(board = @board)
-    #if turn_count(board).even?
-      #"X"
-      #elsif turn_count(board).odd?
-      #"O"
-      #end
-    #end
+  def turn_count(board = @board)
+    new_board = []
+    @board.each do |entry|
+      if entry != " "
+        new_board.push entry
+        end
+      end
+    new_board.length
+  end
+  
+  def current_player(board = @board)
+    if turn_count(board) == 0
+      "X"
+      elsif turn_count(board).even?
+      "X"
+      elsif turn_count(board).odd?
+      "O"
+      end
+    end
     
   def won?(board = @board)
     WIN_COMBINATIONS.detect do |combo|
@@ -131,14 +114,14 @@ end
   
   def play(board = @board)
     until over?(board = @board)
-      turn(board = @board)
+    turn(board = @board)
     end
-    
     if won?(board = @board)
-      puts "Congratulations #{winner(board = @board)}!"
-    elsif draw?(board = @board)
-      puts "It has been a draw."
+      puts "Congratulations #{winner(board)}!"
+      elsif draw?(board = @board)
+      puts "It has been a draw!"
+      elsif draw?(board = @board) == false && won?(board = @board) == false
+        puts "Cat's Game!"
       end
     end
   end
-
