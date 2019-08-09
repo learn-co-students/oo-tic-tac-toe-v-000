@@ -45,7 +45,7 @@ class TicTacToe
     end
   end
   
-    def turn(board = @board)
+  def turn(board = @board)
     counter = 0
     until counter.between?(1,9)
     puts "Please enter 1-9:"
@@ -53,11 +53,9 @@ class TicTacToe
     index = input_to_index(input)
     x = index + 1 
     x += counter
-    if valid_move?(board = @board, index) == true
-      move(index, current_player = "X")
-      current_player(board = @board)
-      move(index)
-      display_board
+    if valid_move?(board = @board, index)
+      move(index, current_player(board))
+      display_board(board = @board)
       break
     end
   end
@@ -83,7 +81,10 @@ end
       end
     end
     
-  def won?(board = @board)
+  
+
+
+def won?(board = @board)
     WIN_COMBINATIONS.detect do |combo|
       board[combo[0]] == "X" && board[combo[1]] == "X" && board[combo[2]] == "X" ||  board[combo[0]] == "O" && board[combo[1]] == "O" && board[combo[2]] == "O"
       end
@@ -113,15 +114,15 @@ end
   end
   
   def play(board = @board)
-    until over?(board = @board)
+    until won?(board = @board) || over?(board = @board) || draw?(board = @board)
     turn(board = @board)
-    end
-    if won?(board = @board)
-      puts "Congratulations #{winner(board)}!"
-      elsif draw?(board = @board)
-      puts "It has been a draw!"
-      elsif draw?(board = @board) == false && won?(board = @board) == false
+   end
+    if won?(board = @board) || over?(board = @board) || draw?(board = @board)
+      if won?(board = @board)
+        puts "Congratulations #{winner(board = @board)}!"
+        elsif draw?(board = @board)
         puts "Cat's Game!"
       end
     end
   end
+end
