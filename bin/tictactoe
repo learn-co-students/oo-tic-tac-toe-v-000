@@ -1,12 +1,8 @@
+ 
 #!/usr/bin/env ruby
 require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
 
-
-
-class TicTacToe
-  def initialize(board = nil)
-    @board = board || Array.new(9, " ")
-  end
-  play(board)
-end 
+puts "Welcome to Tic Tac Toe!"
+game = TicTacToe.new
+game.play
