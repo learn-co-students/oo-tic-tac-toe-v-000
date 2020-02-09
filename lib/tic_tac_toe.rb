@@ -5,7 +5,7 @@ class TicTacToe
   attr_accessor :board, :input
 
   def initialize
-    @board = board || Array.new( 9, " ")
+    @board = Array.new( 9, " ")
   end
 
   WIN_COMBINATIONS = [
@@ -20,11 +20,11 @@ class TicTacToe
   ]
 
   def display_board
-    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+    puts " #{self.board[0]} | #{self.board[1]} | #{self.board[2]} "
     puts "-----------"
-    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+    puts " #{self.board[3]} | #{self.board[4]} | #{self.board[5]} "
     puts "-----------"
-    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+    puts " #{self.board[6]} | #{self.board[7]} | #{self.board[8]} "
   end
 
   def input_to_index(input)
@@ -32,7 +32,7 @@ class TicTacToe
   end
 
   def move(index, token = "X")
-    @board[index] = token
+    self.board[index] = token
   end
 
   def position_taken?(index)
@@ -101,5 +101,5 @@ class TicTacToe
     else  # else if the game was a draw
       puts "Cat's Game!" #   tell the players it has been a draw
     end
-  end  
+  end
 end
