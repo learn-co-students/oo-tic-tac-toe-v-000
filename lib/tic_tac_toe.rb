@@ -1,9 +1,10 @@
+require 'pry'
+
 class TicTacToe
 
-  def initialize(board = Array.new(9, " "))
-    @board = board
+  def initialize
+    @board = [" "," "," "," "," "," "," "," "," "]
   end
-
   WIN_COMBINATIONS = [
     [0,1,2],
     [3,4,5],
@@ -12,8 +13,7 @@ class TicTacToe
     [1,4,7],
     [2,5,8],
     [0,4,8],
-    [2,4,6]
-  ]
+    [2,4,6]]
 
   def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
@@ -23,87 +23,73 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  def input_to_index(user_input)
-    user_input.to_i - 1
+  def input_to_index(input)
+    index = input.to_i-1
   end
 
-  def move(user_input, player_token)
-    @board[user_input] = player_token
+  def move(index,token = "X")
+    @board[index] = token
   end
 
   def position_taken?(index)
-    !(@board[index].nil? || @board[index] == " ")
+    @board[index] == " " ? false : true
   end
 
   def valid_move?(index)
-    !position_taken?(index) && index.between?(0,8)
+    index >= 0 && index <= 8 && position_taken?(index) == false
+  end
+
+  def turn_count
+    @board.select {|position| position != " "}.count
+  end
+
+  def current_player
+    turn_count.even? ? "X" : "O"
   end
 
   def turn
-    puts "Please enter 1-9:"
-    user_input = gets.strip
-    index = input_to_index(user_input)
-    if valid_move?(index)
-      move(index, current_player)
+    puts "Please select a space between 1 and 9:"
+    input = gets.strip
+    index = input_to_index(input)
+    if valid_move?(index) && !position_taken?(index)
+      token = current_player
+      move(index,token)
       display_board
     else
+      puts "Invalid move."
+      display_board
       turn
     end
   end
 
-  def turn_count
-    counter = 0
-    @board.each do |occupied|
-      if occupied == "X" || occupied == "O"
-        counter += 1
-      end
-    end
-    counter
-  end
-
-  def current_player
-    if turn_count.even?
-      "X"
-    elsif turn_count.odd?
-      "O"
-    end
-  end
-
   def won?
-    WIN_COMBINATIONS.detect do |winner| #[0, 1, 2]
-        @board[winner[0]] == @board[winner[1]] && @board[winner[0]] == @board[winner[2]] && position_taken?(winner[0])
+    WIN_COMBINATIONS.detect do |win_combo|
+      @board[win_combo[0]] == @board[win_combo[1]] && @board[win_combo[0]] == @board[win_combo[2]] && @board[win_combo[0]] != " "
     end
   end
 
   def full?
-    @board.all? do |board_position|
-      board_position == "X" || board_position == "O"
-    end
+    turn_count == 9 ? true : false
   end
 
   def draw?
-    full? && !won?
+    full? and !won? ? true : false
   end
 
   def over?
-    draw? || (won? && full?) || (won? && !full?)
+    draw? || won? ? true : false
   end
 
   def winner
-    if won?
-      @board[won?[0]]
-    end
+    won? ? @board[won?[0]] : nil
   end
 
   def play
     until over?
       turn
     end
-    if draw?
-      puts "Cat's Game!"
-    elsif won?
-      puts "Congratulations #{winner}!"
-    end
+    won? ? (puts "Congratulations #{winner}!") : false
+    draw? ? (puts "Cat's Game!") : false
   end
 
 end
