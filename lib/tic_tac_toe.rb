@@ -1,3 +1,4 @@
+require 'pry'
 class TicTacToe
 
   def initialize(board = nil)
@@ -12,15 +13,15 @@ class TicTacToe
     [1,4,7],
     [2,5,8],
     [0,4,8],
-    [2,4,6]
+    [6,4,2]
   ]
 
   def display_board
-    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
-    puts "-----------"
-    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
-    puts "-----------"
-    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} \n
+          ----------- \n
+           #{@board[3]} | #{@board[4]} | #{@board[5]} \n
+          ----------- \n
+           #{@board[6]} | #{@board[7]} | #{@board[8]} \n"
   end
 
   def input_to_index(input)
@@ -32,37 +33,11 @@ class TicTacToe
   end
 
   def position_taken?(index)
-    if @board[index] == " " || @board[index] == "" || @board[index] == nil
-      false
-    else
-      true
-    end
+    @board[index] == "X" || @board[index] == "O"
   end
 
   def valid_move?(index)
-    if position_taken?(index) == false && index.between?(0,8)
-      true
-    else
-      false
-    end
-  end
-
-  def turn_count
-    counter = 0
-    @board.each do |turn|
-      if turn != " " && turn != "" && turn != nil
-        counter += 1
-      end
-    end
-    counter
-  end
-
-  def current_player
-    if turn_count % 2 == 0
-      return "X"
-    else
-      return "O"
-    end
+    index.between?(0,8) && position_taken?(index) == false
   end
 
   def turn
@@ -70,51 +45,45 @@ class TicTacToe
     input = gets.strip
     index = input_to_index(input)
     token = current_player
-    if !valid_move?(index)
-      turn
-    else
+    if valid_move?(index)
       move(index, token)
       display_board
+    else
+      turn
     end
   end
 
+  def turn_count
+    @board.select{|e| e != " "}.length
+  end
+
+  def current_player
+    turn_count.odd? ? "O" : "X"
+  end
+
   def won?
-    WIN_COMBINATIONS.detect do |win_combo|
-      @board[win_combo[0]] == @board[win_combo[1]] && @board[win_combo[1]] == @board[win_combo[2]] && position_taken?(win_combo[0])
+    WIN_COMBINATIONS.detect do |combo|
+      @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]] && position_taken?(combo[0])
     end
   end
 
   def full?
-    if @board.detect{|x| x == " "}
-      false
-    else
-      true
-    end
+    @board.all?{|e| e == "X" || e == "O"}
   end
 
   def draw?
-    if won? == nil && full? == true
-      true
-    else
-      false
-    end
+    full? && !won?
   end
 
   def over?
-    if won? || draw? || full?
-      true
-    end
+    draw? || won?
   end
 
   def winner
-    if won? != nil
-      won?.each do |x|
-        if @board[x] == "X"
-          return "X"
-        else
-          return "O"
-        end
-      end
+    if won? && @board[won?[0]] == "X"
+      "X"
+    elsif won? && @board[won?[0]] == "O"
+      "O"
     end
   end
 
@@ -122,15 +91,8 @@ class TicTacToe
     until over?
       turn
     end
-    if winner == "X"
-      puts "Congratulations X!"
-    elsif winner == "O"
-      puts "Congratulations O!"
-    elsif draw?
-      puts "Cat's Game!"
-    else
-      nil
-    end
+    puts "Congratulations #{winner}!" if won?
+    puts "Cat's Game!" if draw?
   end
 
 end
