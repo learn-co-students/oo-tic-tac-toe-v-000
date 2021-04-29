@@ -1,6 +1,6 @@
 require_relative '../lib/tic_tac_toe.rb'
 
-describe './lib/tic_tac_toe.rb' do
+puts describe './lib/tic_tac_toe.rb' do
   describe TicTacToe do
     describe '#play' do
       it 'asks for players input on a turn of the game' do
@@ -13,7 +13,7 @@ describe './lib/tic_tac_toe.rb' do
         game.play
       end
 
-      it 'checks if the game is over after every turn' do
+      puts it 'checks if the game is over after every turn' do
         game = TicTacToe.new
         allow($stdout).to receive(:puts)
         allow(game).to receive(:gets).and_return("1", "2", "3")
@@ -23,7 +23,7 @@ describe './lib/tic_tac_toe.rb' do
         game.play
       end
 
-      it 'plays the first turn of the game' do
+      puts it 'plays the first turn of the game' do
         game = TicTacToe.new
         allow($stdout).to receive(:puts)
         allow(game).to receive(:gets).and_return("1")

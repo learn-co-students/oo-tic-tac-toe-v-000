@@ -1,6 +1,6 @@
 require_relative '../lib/tic_tac_toe.rb'
 
-describe './lib/tic_tac_toe.rb' do
+puts describe './lib/tic_tac_toe.rb' do
   describe TicTacToe do
     describe '#initialize' do
       it 'assigns an instance variable @board to an array with 9 blank spaces " "' do
@@ -9,7 +9,7 @@ describe './lib/tic_tac_toe.rb' do
       end
     end
 
-    describe 'WIN_COMBINATIONS' do
+    puts describe 'WIN_COMBINATIONS' do
       it 'defines a constant WIN_COMBINATIONS with arrays for each win combination' do
         expect(TicTacToe::WIN_COMBINATIONS.size).to eq(8)
 
@@ -52,13 +52,13 @@ describe './lib/tic_tac_toe.rb' do
       end
     end
 
-    describe '#input_to_index' do
+    puts describe '#input_to_index' do
       it "accepts the user's input (a string) as an argument" do
         game = TicTacToe.new
         expect{game.input_to_index}.to raise_error(ArgumentError)
       end
 
-      it "converts the user's input (a string) into an integer" do
+      puts it "converts the user's input (a string) into an integer" do
         game = TicTacToe.new
         expect(game.input_to_index("1")).to be_an(Integer)
       end
