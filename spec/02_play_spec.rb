@@ -115,7 +115,7 @@ describe './lib/tic_tac_toe.rb' do
         game.play
       end
 
-      it 'prints "Cat\'s Game!" on a draw' do
+      it 'prints "Cats Game!" on a draw' do
         game = TicTacToe.new
         board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
         game.instance_variable_set(:@board, board)
