@@ -1,3 +1,4 @@
+require "pry"
 require_relative '../lib/tic_tac_toe.rb'
 
 describe './lib/tic_tac_toe.rb' do
@@ -29,7 +30,6 @@ describe './lib/tic_tac_toe.rb' do
         board = ["X", "X", "X", "X", "O", "O", "X", "O", "O"]
         game = TicTacToe.new
         game.instance_variable_set(:@board, board)
-
         output = capture_puts{ game.display_board }
 
         expect(output).to include(" X | X | X ")
