@@ -1,5 +1,5 @@
 require_relative '../lib/tic_tac_toe.rb'
-
+require "pry"
 describe './lib/tic_tac_toe.rb' do
   describe TicTacToe do
     describe '#initialize' do
@@ -129,7 +129,6 @@ describe './lib/tic_tac_toe.rb' do
         game.instance_variable_set(:@board, board)
 
         expect(game.turn_count).to eq(3)
-
         board = ["O", " ", "O", " ", "X", " ", " ", " ", "X"]
         game.instance_variable_set(:@board, board)
 
@@ -161,7 +160,6 @@ describe './lib/tic_tac_toe.rb' do
       it 'receives user input via the gets method' do
         allow($stdout).to receive(:puts)
         expect(game).to receive(:gets).and_return("1")
-
         game.turn
       end
 
