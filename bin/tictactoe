@@ -1,3 +1,14 @@
 #!/usr/bin/env ruby
 require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
+
+# Pry.start
+#
+# board = ["X", "X", "X", " ", " ", " ", " ", " ", " "]
+# board = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
+#
+# ttt = TicTacToe.new(board)
+#
+# binding.pry
+
+TicTacToe.new.play
