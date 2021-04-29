@@ -1,3 +1,10 @@
 #!/usr/bin/env ruby
 require 'pry'
 require_relative '../lib/tic_tac_toe.rb'
+
+# Greet the players with a welcome message, ask where to go
+puts "Welcome to Tic Tac Toe!"
+puts "Where would you like to go?"
+# Begin the game by creating a new instance of TicTacToe class, call #play method on new instance
+game = TicTacToe.new
+game.play
