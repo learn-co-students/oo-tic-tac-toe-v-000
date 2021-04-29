@@ -1,5 +1,6 @@
 require_relative "../lib/tic_tac_toe.rb"
 
+
 RSpec.configure do |config|
   config.order = :default
 end
