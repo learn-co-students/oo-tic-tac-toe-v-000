@@ -1,0 +1,33 @@
+[33m44db9aa[m Merge pull request #28 from Argonity/Argonity-1469488364 [31m(AnnJohn, 3 months ago)[m
+[33mf8ed423[m Updated README.md [31m(Maurice, 3 months ago)[m
+[33ma511d9c[m Merge pull request #22 from becky000/becky000-1462846809 [31m(AnnJohn, 6 months ago)[m
+[33m8777537[m corrected youtube height attribute [31m(Rebecca Sherman, 6 months ago)[m
+[33md14cd96[m Merge pull request #20 from learn-co-curriculum/fix [31m(Peter Bell, 6 months ago)[m
+[33m7432551[m slight change in tip for copying methods [31m(mendelB, 6 months ago)[m
+[33ma28fbbe[m clarify that #valid_move should deal with "user data" [31m(mendelB, 6 months ago)[m
+[33m1969ab7[m change description of turn to have it call #display_board only if the move is valid [31m(mendelB, 6 months ago)[m
+[33m3b73be2[m add test to ensure user is displaying board in #turn [31m(mendelB, 6 months ago)[m
+[33mffe19e5[m add tip abt using previous labs methods in README [31m(mendelB, 6 months ago)[m
+[33m0f4e571[m change win_combo test to not be specific abt order of the numbers [31m(mendelB, 6 months ago)[m
+[33m99cbc5e[m fix WIN_COMBINATION test Move win_combo test higher in the order to reflect the order in the readme [31m(mendelB, 6 months ago)[m
+[33m223513d[m optimize learn link [processing skip] [31m(Adam Jonas, 9 months ago)[m
+[33m41767ca[m Merge pull request #13 from CodeByLine/CodeByLine-1452438364 [31m(AnnJohn, 9 months ago)[m
+[33m0151fa4[m Merge pull request #14 from rambllah/rambllah-1452739413 [31m(AnnJohn, 10 months ago)[m
+[33mb9028ff[m Updated README.md [31m(rambllah, 10 months ago)[m
+[33mcd7bb3e[m "token" was used previously and is a more precise term. Also consolidated the message. [31m(CodeByLine, 10 months ago)[m
+[33ma72767c[m Merge pull request #10 from jaeku/jaeku-1449388983 [31m(AnnJohn, 10 months ago)[m
+[33m658a063[m Merge pull request #2 from learn-co-curriculum/wip-improvements [31m(AnnJohn, 10 months ago)[m
+[33m686e4c6[m Change 'with be' typo to 'will be' [31m(jaeku, 11 months ago)[m
+[33mef69682[m add learn link [processing skip] [31m(Adam Jonas, 11 months ago)[m
+[33mcb0b814[m Merge pull request #8 from aviflombaum/aviflombaum-1446697954 [31m(Avi Flombaum, 12 months ago)[m
+[33mb04706b[m Explicit bundle instructions [31m(Avi Flombaum, 12 months ago)[m
+[33mac14c48[m Merge pull request #6 from LauraSilvey/LauraSilvey-1445832542 [31m(Avi Flombaum, 1 year ago)[m
+[33mfc7bafd[m Updated README.md [31m(Laura Silvey, 1 year ago)[m
+[33mdd6d110[m fixed code snippet [31m(SOPHIE DEBENEDETTO, 1 year, 1 month ago)[m
+[33m8e7be4e[m added contrib. and license files [31m(SOPHIE DEBENEDETTO, 1 year, 1 month ago)[m
+[33m2efd9d9[m some minor clarifications [31m(SOPHIE DEBENEDETTO, 1 year, 1 month ago)[m
+[33m3d58bbd[m removed solution [31m(aviflombaum, 1 year, 1 month ago)[m
+[33mf444753[m initial [31m(aviflombaum, 1 year, 1 month ago)[m
+[33m295d80b[m working on readme going to remove a lot of the examples [31m(aviflombaum, 1 year, 1 month ago)[m
+[33mf9fcad0[m OO test suite [31m(aviflombaum, 1 year, 1 month ago)[m
+[33m40c92ca[m Initial solution [31m(aviflombaum, 1 year, 2 months ago)[m
