@@ -187,10 +187,11 @@ describe './lib/tic_tac_toe.rb' do
       end
 
       it 'asks for input again after a failed validation' do
+
         game = TicTacToe.new
         allow($stdout).to receive(:puts)
 
-        expect(game).to receive(:gets).and_return("invalid")
+        expect(game).to receive(:gets).and_return("Invalid Move!")
         expect(game).to receive(:gets).and_return("1")
 
         game.turn
